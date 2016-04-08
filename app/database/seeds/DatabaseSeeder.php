@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UpdateClientsAndProductsTableSeeder');
 		$this->call('CategoriesTableSeeder2');
 		$this->call('ClientAddressChangeTableSeeder');
+		$this->call('CreateTestUsersTableSeeder');
 		// $this->call('UserTableSeeder');
 	}
 

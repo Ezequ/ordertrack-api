@@ -19,14 +19,14 @@ class AuthController extends \BaseController {
 					'password'   => Input::get('password'),
 			];
 
-			if ( Auth::attempt($credentials)) {
+			if (Auth::attempt($credentials)) {
 				$user = Auth::user();
 				return $user->toJson();
 			} else {
-				//return Response::make('Unauthorized', 401);
+				return Response::make('Unauthorized', 401);
 			}
 		} else {
-			return $validator->messages()->toJson();
+			return Response::make('Unauthorized', 401);
 		}
 	}
 }
