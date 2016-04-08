@@ -1,25 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Auth as Auth;
-use \Symfony\Component\HttpFoundation\Response as Response;
 use Illuminate\Support\Facades\Validator as Validator;
-
+use Illuminate\Support\Facades\Response as Response;
 class AuthController extends \BaseController {
 
 	public function login()
 	{
 		$rules = [
-				'username'    => 'required',
+				'email'    => 'required',
 				'password' => 'required',
 		];
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->passes()) {
 			$credentials = [
-					'username'      => Input::get('username'),
+					'email'      => Input::get('email'),
 					'password'   => Input::get('password'),
 			];
-
-			if (Auth::attempt($credentials)) {
+			if (Auth::attempt($credentials,true)) {
 				$user = Auth::user();
 				return $user->toJson();
 			} else {
