@@ -13,11 +13,11 @@ class UpdateClientsAndProductsTableSeeder extends Seeder {
 	{
 		$clients = Client::all();
 		foreach ($clients as $index => $client) {
-			$lat = rand(0,333333) / 1000000;
-			$long = rand(0,333333) / 1000000;
+			$lat = rand(0,10000) / 1000000;
+			$long = rand(0,10000) / 1000000;
 			$state = rand(0,3);
-			$client->latitud = 34.61 + $lat;
-			$client->longitud = (- 58.37 ) + $long;
+			$client->latitud = -34.6031351+ $lat;
+			$client->longitud = -58.4234919 + $long;
 			$client->estado = $state;
 			$client->save();
 		}

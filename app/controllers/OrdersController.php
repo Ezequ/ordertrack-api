@@ -72,7 +72,7 @@ class OrdersController extends \BaseController {
 		$data = Input::all();
 		$order = Order::create($data);
 		if($order){
-			return json_encode($order->id);
+			return json_encode($order);
 		} else {
 			return Response::make('No se encontró la orden', 500);
 		}
