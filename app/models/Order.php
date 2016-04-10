@@ -1,7 +1,7 @@
 <?php
 
 class Order extends Model{
-	protected $fillable = ["id_cliente", "id_estado"];
+	protected $fillable = ["id_cliente", "id_estado", "comentarios"];
 
 	protected $table = "ordenes";
 
@@ -20,5 +20,21 @@ class Order extends Model{
 			->leftJoin('productos_ordenes', 'ordenes.id', '=', 'productos_ordenes.id_orden')
 			->get();
 		return $productsOrder;
+	}
+
+	public static function addProductToOrder($data)
+	{
+		if(Order::find($data['id_orden']) && Product::find($data['id_producto']) && $data['cantidad'] > 0)
+		{
+			if($model = OrdersProducts::where('id_orden', $data['id_orden'])->where('id_producto', $data['id_producto'])->first()){
+				$model->update(array('cantidad' => $data['cantidad']));
+				$result = $model;
+			} else {
+				$result = OrdersProducts::create($data);
+			}
+			return $result;
+		} else {
+			throw(new Exception('error al agregara producto a la orden'));
+		}
 	}
 }

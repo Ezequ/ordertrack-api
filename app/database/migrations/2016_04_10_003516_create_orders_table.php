@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration {
 			$table->increments('id');
 			$table->integer("id_cliente");
 			$table->integer("id_estado");
+			$table->text("comentarios");
 			$table->timestamps();
 		});
 	}

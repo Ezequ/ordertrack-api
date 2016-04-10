@@ -25,6 +25,31 @@ class OrdersController extends \BaseController {
 		}
 	}
 
+
+	public function addProductToOrder()
+	{
+		if($id = Input::get('id_orden'))
+		{
+			$data['id_orden'] = $id;
+			$data['id_producto'] = Input::get('id_producto');
+			$data['cantidad'] = Input::get('cantidad') ? (int)Input::get('cantidad') : 0;
+			$rules = [
+				'cantidad'    => 'min:1',
+				'id_orden' => 'required',
+				'id_producto' => 'required'
+			];
+			$validator = Validator::make($data, $rules);
+			if($validator->passes()) {
+				$orderProduct = Order::addProductToOrder($data);
+				return $orderProduct->toJson();
+			} else {
+				return Response::make($validator->getMessages(), 500);
+			}
+		} else {
+			return Response::make('Error', 500);
+		}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /orders/create
