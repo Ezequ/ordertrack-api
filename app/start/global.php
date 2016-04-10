@@ -49,7 +49,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
-	return json_encode(array('e' => $exception->getMessage()));
+	return Response::make($exception->getMessage(), 500);
 });
 
 /*
