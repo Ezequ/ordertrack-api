@@ -16,8 +16,12 @@ Route::post('/login', 'AuthController@login');
 Route::get('/login', 'AuthController@login');
 Route::resource('client', 'ClientController');
 Route::get('/client/getFromToday/{sellerId}', 'ClientController@getFromToday');
+Route::get('orders/getProducts', 'OrdersController@getProductsByOrder');
+Route::post('orders/addProductToOrder', 'OrdersController@addProductToOrder');
+Route::get('orders/addProductToOrder', 'OrdersController@addProductToOrder');
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
+Route::resource('orders', 'OrdersController');
 Route::group(array('before' => 'tokenauth'), function()
 {
     Route::get('/', 'HomeController@showHome');
