@@ -87,7 +87,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		return Order::findOrFail($id)->toJson();
 	}
 
 	/**
