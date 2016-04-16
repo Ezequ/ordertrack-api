@@ -126,4 +126,15 @@ class OrdersController extends \BaseController {
 		//
 	}
 
+	public function getActiveProductOrder($id)
+	{
+		$order = Order::where('id', $id)
+			->where('id_estado', Order::ACTIVE_STATE)->first();
+		if ($order) {
+			return $order->toJson();
+
+		} else {
+			return Response::make('No se encontró la orden', 500);
+		}
+	}
 }

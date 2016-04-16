@@ -7,6 +7,12 @@ class Order extends Model{
 
 	protected $allowedFilters = array('id_vendedor',  'estado');
 
+	const PENDING_STATE = 0;
+	const ACTIVE_STATE = 1;
+	const CANCELED_STATE = 2;
+	const COMPLETED_STATE = 3;
+
+
 	public static function getList($filters = array())
 	{
 		$model = new self;
