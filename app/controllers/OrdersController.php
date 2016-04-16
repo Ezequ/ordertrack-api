@@ -128,7 +128,7 @@ class OrdersController extends \BaseController {
 
 	public function getActiveProductOrder($id)
 	{
-		$order = Order::where('id', $id)
+		$order = Order::where('id_cliente', $id)
 			->where('id_estado', Order::ACTIVE_STATE)->first();
 		if ($order) {
 			return $order->toJson();
