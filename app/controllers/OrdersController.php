@@ -158,6 +158,12 @@ class OrdersController extends \BaseController {
 			->where('id_orden',$orderId)
 			->where('id_producto',$productId)
 			->delete();
-		return $this->getProductsFromActiveOrder(Input::get('id_orden'));
+		$left = Order::find($orderId);
+		if($left)
+		{
+			return $this->getProductsFromActiveOrder($left->id_cliente);
+		} else {
+			return json_encode(array());
+		}
 	}
 }
