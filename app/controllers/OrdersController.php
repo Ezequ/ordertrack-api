@@ -146,7 +146,7 @@ class OrdersController extends \BaseController {
 			return json_encode($orders);
 		} else
 		{
-			return Response::make('No hay productos', 500);
+			return json_encode(array());
 		}
 	}
 }
