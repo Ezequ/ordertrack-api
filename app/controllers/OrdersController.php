@@ -154,10 +154,10 @@ class OrdersController extends \BaseController {
 	{
 		$orderId = Input::get('id_orden');
 		$productId = Input::get('id_producto');
-		$orderProduct = DB::table('productos_ordenes')
-						->where('id_orden',$orderId)
-						->where('id_producto',$productId)
-						->delete();
-		return json_encode("todo ok");
+		DB::table('productos_ordenes')
+			->where('id_orden',$orderId)
+			->where('id_producto',$productId)
+			->delete();
+		return $this->getProductsFromActiveOrder(Input::get('id_orden'));
 	}
 }
