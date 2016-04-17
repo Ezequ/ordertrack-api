@@ -44,4 +44,24 @@ class Order extends Model{
 			throw(new Exception('error al agregara producto a la orden'));
 		}
 	}
+
+	public function confirmOrder($order)
+	{
+		$products = self::getProductsByOrder($order->id);
+		$productsError = array();
+		foreach ($products as $index => $product) {
+			if($product->cantidad > $product->stock){
+				$productsError[] = $product->nombre;
+			}
+		}
+		if(count($productsError) > 0){
+			$errors = "Los siguientes productos superan al stock pedido: ";
+			$stringProducts = implode(" , ", $productsError);
+			return $errors . $stringProducts;
+		} else {
+			$order->id_estado = Order::COMPLETED_STATE;
+			$order->save();
+			return "";
+		}
+	}
 }

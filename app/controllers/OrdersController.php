@@ -166,4 +166,16 @@ class OrdersController extends \BaseController {
 			return json_encode(array());
 		}
 	}
+
+	public function confirmOrder($id)
+	{
+		$order = Order::findOrFail($id);
+		$result = $order->confirmOrder($order);
+		if($result != ""){
+			// error
+			return Response::make($result, 500);
+		} else {
+			return $order->toJson();
+		}
+	}
 }

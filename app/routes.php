@@ -22,6 +22,8 @@ Route::post('orders/removeProductFromOrder', 'OrdersController@removeProductFrom
 Route::get('orders/addProductToOrder', 'OrdersController@addProductToOrder');
 Route::get('orders/getActiveProductOrder/{id}', 'OrdersController@getActiveProductOrder');
 Route::get('orders/getProductsFromActiveOrder/{id}', 'OrdersController@getProductsFromActiveOrder');
+Route::get('orders/confirmOrder/{id}', 'OrdersController@confirmOrder');
+Route::post('orders/confirmOrder/{id}', 'OrdersController@confirmOrder');
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('orders', 'OrdersController');
