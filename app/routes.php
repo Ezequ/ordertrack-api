@@ -18,6 +18,7 @@ Route::resource('client', 'ClientController');
 Route::get('/client/getFromToday/{sellerId}', 'ClientController@getFromToday');
 Route::get('orders/getProducts', 'OrdersController@getProductsByOrder');
 Route::post('orders/addProductToOrder', 'OrdersController@addProductToOrder');
+Route::post('orders/removeProductFromOrder', 'OrdersController@removeProductFromOrder');
 Route::get('orders/addProductToOrder', 'OrdersController@addProductToOrder');
 Route::get('orders/getActiveProductOrder/{id}', 'OrdersController@getActiveProductOrder');
 Route::get('orders/getProductsFromActiveOrder/{id}', 'OrdersController@getProductsFromActiveOrder');
