@@ -158,6 +158,6 @@ class OrdersController extends \BaseController {
 						->where('id_orden',$orderId)
 						->where('id_producto',$productId)
 						->delete();
-		return json_encode($orderProduct);
+		return json_encode("todo ok");
 	}
 }
