@@ -137,4 +137,16 @@ class OrdersController extends \BaseController {
 			return Response::make('No se encontró la orden', 500);
 		}
 	}
+
+	public function getProductsFromActiveOrder($id)
+	{
+		$order = json_decode($this->getActiveProductOrder($id));
+		if ($order) {
+			$orders = Order::getProductsByOrder($order->id);
+			return json_encode($orders);
+		} else
+		{
+			return Response::make('No hay productos', 500);
+		}
+	}
 }

@@ -20,6 +20,7 @@ Route::get('orders/getProducts', 'OrdersController@getProductsByOrder');
 Route::post('orders/addProductToOrder', 'OrdersController@addProductToOrder');
 Route::get('orders/addProductToOrder', 'OrdersController@addProductToOrder');
 Route::get('orders/getActiveProductOrder/{id}', 'OrdersController@getActiveProductOrder');
+Route::get('orders/getProductsFromActiveOrder/{id}', 'OrdersController@getProductsFromActiveOrder');
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('orders', 'OrdersController');
