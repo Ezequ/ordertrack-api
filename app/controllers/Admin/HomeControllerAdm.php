@@ -18,7 +18,7 @@ class HomeControllerAdm extends BaseController
 		$username = Input::get("email");
 		$password = Input::get("password");
 		$user = User::where('email', $username)->first();
-		if($user)
+		if($user && $user->rol > 0) // rol > seller
 		{
 			if($user->password == $password)
 			{
