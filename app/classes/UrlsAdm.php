@@ -14,7 +14,7 @@ class UrlsAdm
 	public static function getMenu()
 	{
 		return array(
-			"Home" => array(
+			/*"Home" => array(
 				"Listar sliders" => "/adm/homeslider",
 				"Crear slider" => "/adm/homeslider/crear",
 				),
@@ -43,14 +43,14 @@ class UrlsAdm
 				),
 			"Metadata" => array(
 				"Listar metadata" => "/adm/metadata",
-				),
+				),*/
 			"Usuarios" => array(
 				"Listar usuarios" => "/adm/usuario",
 				"Crear usuario" => "/adm/usuario/crear",
 				),
-			"Imagenes generales" => array(
+			/*"Imagenes generales" => array(
 				"Listar imagenes generales" => "/adm/imagenes",
-				),
+				),*/
 		);
 	}
 

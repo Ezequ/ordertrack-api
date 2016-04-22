@@ -59,4 +59,14 @@ abstract class Model extends \Eloquent
 	{
 
 	}
+
+	public  function getInputsForEdit()
+	{
+		return array();
+	}
+
+	public function getImagesForEdit()
+	{
+		return array();
+	}
 }

@@ -10,7 +10,7 @@
 	<div class="row">
 		<div class="col-lg-{{$tamCol}}">
 			<div class="table-responsive">
-                <table class="table table-bordered table-hover tablesorter">
+                <table class="table table-bordered table-hover tablesorter" style="table-layout: fixed">
                   	<thead>
 	                    <tr>
                             @foreach($fields as $index => $field)

@@ -1,0 +1,26 @@
+<?php
+class Definition
+{
+
+    public static function convertObjectFieldToDefinition($object, $field)
+    {
+        $called = get_called_class();
+        $definition = $called::getDefinition();
+        if (isset($definition[$object->$field])){
+            $object->$field = $definition[$object->$field];
+        } else {
+            $object->$field = "";
+        }
+        return $object;
+    }
+
+    public static function convertObjectListFieldToDefinition($list, $field)
+    {
+        foreach ($list as $index => $item) {
+            $item = self::convertObjectFieldToDefinition($item, $field);
+            $list[$index] = $item;
+        }
+        return $list;
+    }
+
+}
