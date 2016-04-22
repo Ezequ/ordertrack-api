@@ -48,11 +48,13 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 		static::saving(function($model)
 		{
+			if(Input::get('password'))
 			$model->password = Hash::make(Input::get('password'));
 		});
 
 		static::updating(function($model)
 		{
+			if(Input::get('password'))
 			$model->password = Hash::make(Input::get('password'));
 		});
 	}
