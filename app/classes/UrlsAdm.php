@@ -22,14 +22,8 @@ class UrlsAdm
 				"Listar familias" => "/adm/presupuestador",
 				"Crear familia" => "/adm/presupuestador/crear",
 				),
-			"Categorias" => array(
-				"Listar categorias" => "/adm/categoria",
-				"Crear categoria" => "/adm/categoria/crear",
-				),
-			"Productos" => array(
-				"Listar productos" => "/adm/producto",
-				"Crear producto" => "/adm/producto/crear",
-				),
+
+
 			"Promociones" => array(
 				"Listar productos" => "/adm/promocion",
 				"Crear producto" => "/adm/promocion/crear",
@@ -44,6 +38,14 @@ class UrlsAdm
 			"Metadata" => array(
 				"Listar metadata" => "/adm/metadata",
 				),*/
+			"Productos" => array(
+				"Listar productos" => "/adm/producto",
+				"Crear producto" => "/adm/producto/crear",
+			),
+			"Categorias" => array(
+				"Listar categorias" => "/adm/categoria",
+				"Crear categoria" => "/adm/categoria/crear",
+			),
 			"Usuarios" => array(
 				"Listar usuarios" => "/adm/usuario",
 				"Crear usuario" => "/adm/usuario/crear",

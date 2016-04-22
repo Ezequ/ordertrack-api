@@ -17,19 +17,19 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 	Route::post('/presupuestador/crear', 'PresupuestadorControllerAdm@postCreate');
 	Route::get('/presupuestador/borrar/{id}', 'PresupuestadorControllerAdm@getDelete');
 	/*	Categorias	*/
-	Route::get('/categoria', 'CategoriasControllerAdm@getListado');
-	Route::get('/categoria/crear', 'CategoriasControllerAdm@getCreate');
-	Route::get('/categoria/editar/{id}', 'CategoriasControllerAdm@getEdit');
-	Route::post('/categoria/editar/{id}', 'CategoriasControllerAdm@postEdit');
-	Route::post('/categoria/crear', 'CategoriasControllerAdm@postCreate');
-	Route::get('/categoria/borrar/{id}', 'CategoriasControllerAdm@getDelete');
+	Route::get('/categoria', 'CategoryControllerAdm@getListado');
+	Route::get('/categoria/crear', 'CategoryControllerAdm@getCreate');
+	Route::get('/categoria/editar/{id}', 'CategoryControllerAdm@getEdit');
+	Route::post('/categoria/editar/{id}', 'CategoryControllerAdm@postEdit');
+	Route::post('/categoria/crear', 'CategoryControllerAdm@postCreate');
+	Route::get('/categoria/borrar/{id}', 'CategoryControllerAdm@getDelete');
 	/*	Categorias	*/
-	Route::get('/producto', 'ProductosControllerAdm@getListado');
-	Route::get('/producto/crear', 'ProductosControllerAdm@getCreate');
-	Route::get('/producto/editar/{id}', 'ProductosControllerAdm@getEdit');
-	Route::post('/producto/editar/{id}', 'ProductosControllerAdm@postEdit');
-	Route::post('/producto/crear', 'ProductosControllerAdm@postCreate');
-	Route::get('/producto/borrar/{id}', 'ProductosControllerAdm@getDelete');
+	Route::get('/producto', 'ProductsControllerAdm@getListado');
+	Route::get('/producto/crear', 'ProductsControllerAdm@getCreate');
+	Route::get('/producto/editar/{id}', 'ProductsControllerAdm@getEdit');
+	Route::post('/producto/editar/{id}', 'ProductsControllerAdm@postEdit');
+	Route::post('/producto/crear', 'ProductsControllerAdm@postCreate');
+	Route::get('/producto/borrar/{id}', 'ProductsControllerAdm@getDelete');
 	/* Subcategorias */
 	Route::get('/subcategoria', 'SubcategoriasControllerAdm@getListado');
 	Route::get('/subcategoria/crear', 'SubcategoriasControllerAdm@getCreate');
