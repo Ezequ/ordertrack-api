@@ -10,9 +10,9 @@ class UsuarioControllerAdm extends AdminController
 		/* nombre acciones habilitadas*/
 		$buttons = array('editar' => null, 'borrar' => null);
 		/* nombre => campo en base de datos	*/
-		$fields = array('id' => 'id','Nombre' => 'nombre_usuario', 'rol' => 'rol');
+		$fields = array('id' => 'id','Nombre' => 'nombre_usuario','Email' => 'email', 'rol' => 'rol');
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
-		return parent::getList($fields,$buttons,"",'8');
+		return parent::getList($fields,$buttons,"",'11');
 	}
 
 	public function getModel()

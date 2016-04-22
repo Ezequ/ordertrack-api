@@ -4,8 +4,8 @@ class RolsDefinition extends Definition
     public static function getDefinition()
     {
         return array(
-          '0' => 'Vendedor',
-          '1' => 'Administrador'
+          '1' => 'Vendedor',
+          '2' => 'Administrador'
         );
     }
 
