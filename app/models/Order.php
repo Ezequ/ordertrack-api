@@ -25,6 +25,7 @@ class Order extends Model{
 			->where('ordenes.id', $id)
 			->leftJoin('productos_ordenes', 'ordenes.id', '=', 'productos_ordenes.id_orden')
 			->leftJoin('productos', 'productos_ordenes.id_producto', '=', 'productos.id')
+			->whereNotNull('productos.id')
 			->get();
 		return $productsOrder;
 	}
