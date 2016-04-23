@@ -38,6 +38,11 @@ class HomeControllerAdm extends BaseController
 		return null;
 	}
 
+	public function getLogout()
+	{
+		Auth::logout();
+		return Redirect::back();
+	}
 
 
 }

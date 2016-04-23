@@ -6,6 +6,16 @@ class UrlsAdm
 		return "/adm/login";	
 	}
 
+	public static function getLogout()
+	{
+		return "/adm/logout";
+	}
+
+	public static function getUserData()
+	{
+		return "/adm/usuario/editar/" . Auth::user()->id;
+	}
+
 	public static function getViewHome()
 	{
 		return "/adm";	

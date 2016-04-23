@@ -16,13 +16,19 @@
         @include('adm.body.menu')               
       </ul>
 
-      <ul class="nav navbar-nav navbar-right navbar-user">                
-        <li class="dropdown user-dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user">{{Auth::user()->username}}<b class="caret"></b></a>
-          <ul class="dropdown-menu">            
-            <li><a href="index.php?logout=1"><i class="fa fa-power-off"></i> Salir</a></li>
+      <ul class="nav navbar-nav navbar-right navbar-user" style="margin-top: 8px;">
+        <div class="dropdown">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="{{UrlsAdm::getUserData()}}">Editar usuario</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{UrlsAdm::getLogout()}}">Salir</a></li>
+            <!--<li><a href="#">Another action</a></li>
+            <li><a href="#">Separated link</a></li>-->
           </ul>
-        </li>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{Auth::user()->nombre_usuario}}
+            <span class="caret"></span>
+          </button>
+        </div>
       </ul>
     </div><!-- /.navbar-collapse -->
   </nav>

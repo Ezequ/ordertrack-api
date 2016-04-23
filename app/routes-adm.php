@@ -3,6 +3,7 @@ Route::get('/adm/login', 'HomeControllerAdm@getLogin');
 Route::post('/adm/login', 'HomeControllerAdm@postLogin');
 Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 {
+	Route::get('/logout', 'HomeControllerAdm@getLogout');
 	/*	Home	*/
 	Route::get('/', 'HomeControllerAdm@getHome');
 	/*	Imagenes	*/
