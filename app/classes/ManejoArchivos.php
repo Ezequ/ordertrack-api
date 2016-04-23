@@ -7,7 +7,15 @@ class ManejoArchivos
 
 	public static function getImage($name, $folder)
 	{
-		return Config::get("constants.hd_imagenes") . $folder . "/" . $name ;
+		$path = Config::get("constants.hd_imagenes") . $folder . "/" . $name ;
+		foreach (ManejoArchivos::$extenciones_fotos as $index => $ext) {
+			$imgPath = $path . "." . $ext;
+			if(file_exists($imgPath))
+			{
+				return Config::get('constants.url_imagenes') . $folder . "/" . $name . "." . $ext;
+			}
+		}
+		return Config::get('constants.url_no_foto');
 	}
 
 	public static function existe_foto( $nombre , $sliderfolder = "", $ruta = "" )
