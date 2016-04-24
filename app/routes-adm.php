@@ -78,5 +78,6 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 	Route::post('/metadata/editar/{id}', 'MetadataControllerAdm@postEdit');
 	/*	Imagenes generales	*/
 	Route::get('/imagenes', 'ImagenesGeneralesControllerAdm@getEdit');
-
+	/*	Pedidos	*/
+	Route::get('/pedido', 'PedidosControllerAdm@getListado');
 });

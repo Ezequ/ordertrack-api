@@ -28,7 +28,7 @@
                             <th>
                                 <div class="botones_columna">
                                     @foreach($buttons as $nameButton => $href)
-                                        <a style="margin-left:15px" href="{{$href or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}" class="btn btn-default">{{$nameButton}}</a>
+                                        <a id="{{$nameButton}}" style="margin-left:15px" href="{{$href or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}" class="btn btn-default">{{$nameButton}}</a>
                                     @endforeach
                                 </div>
                             </th>	

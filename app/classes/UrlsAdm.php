@@ -48,6 +48,9 @@ class UrlsAdm
 			"Metadata" => array(
 				"Listar metadata" => "/adm/metadata",
 				),*/
+			"Pedidos" => array(
+				"Listar pedidos" => "/adm/pedido",
+			),
 			"Productos" => array(
 				"Listar productos" => "/adm/producto",
 				"Crear producto" => "/adm/producto/crear",
