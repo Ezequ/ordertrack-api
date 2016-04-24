@@ -11,8 +11,9 @@ class Order extends Model{
 	const ACTIVE_STATE = 1;
 	const CANCELED_STATE = 2;
 	const COMPLETED_STATE = 3;
-	const BUILDING_STATE = 4;
-	const SHIPPING_STATE = 5;
+	const CONFIRM_STATE = 4;
+	const BUILDING_STATE = 5;
+	const SHIPPING_STATE = 6;
 
 
 	public static function getList($filters = array())
@@ -62,7 +63,7 @@ class Order extends Model{
 			$stringProducts = implode(" , ", $productsError);
 			$this->comentarios = $errors . $stringProducts;
 		} else {
-			$this->id_estado = Order::COMPLETED_STATE;
+			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
 	}
