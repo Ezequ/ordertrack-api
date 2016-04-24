@@ -11,6 +11,8 @@ class Order extends Model{
 	const ACTIVE_STATE = 1;
 	const CANCELED_STATE = 2;
 	const COMPLETED_STATE = 3;
+	const BUILDING_STATE = 4;
+	const SHIPPING_STATE = 5;
 
 
 	public static function getList($filters = array())
@@ -46,9 +48,9 @@ class Order extends Model{
 		}
 	}
 
-	public function confirmOrder($order)
+	public function confirmOrder()
 	{
-		$products = self::getProductsByOrder($order->id);
+		$products = self::getProductsByOrder($this->id);
 		$productsError = array();
 		foreach ($products as $index => $product) {
 			if($product->cantidad > $product->stock){
@@ -58,11 +60,10 @@ class Order extends Model{
 		if(count($productsError) > 0){
 			$errors = "Los siguientes productos superan al stock pedido: ";
 			$stringProducts = implode(" , ", $productsError);
-			return $errors . $stringProducts;
+			$this->comentarios = $errors . $stringProducts;
 		} else {
-			$order->id_estado = Order::COMPLETED_STATE;
-			$order->save();
-			return "";
+			$this->id_estado = Order::COMPLETED_STATE;
 		}
+		$this->save();
 	}
 }

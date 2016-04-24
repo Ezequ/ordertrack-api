@@ -170,12 +170,7 @@ class OrdersController extends \BaseController {
 	public function confirmOrder($id)
 	{
 		$order = Order::findOrFail($id);
-		$result = $order->confirmOrder($order);
-		if($result != ""){
-			// error
-			return Response::make($result, 500);
-		} else {
-			return $order->toJson();
-		}
+		$order->confirmOrder();
+		return $order->toJson();
 	}
 }
