@@ -177,8 +177,9 @@ class OrdersController extends \BaseController {
 
 	public function confirmOrder($id)
 	{
+		$force = Input::get('force', false);
 		$order = Order::findOrFail($id);
-		$order->confirmOrder();
+		$order->confirmOrder($force);
 		return $order->toJson();
 	}
 }

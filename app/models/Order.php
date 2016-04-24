@@ -49,7 +49,7 @@ class Order extends Model{
 		}
 	}
 
-	public function confirmOrder()
+	public function confirmOrder($force = false)
 	{
 		$products = self::getProductsByOrder($this->id);
 		$productsError = array();
@@ -58,11 +58,13 @@ class Order extends Model{
 				$productsError[] = $product->nombre;
 			}
 		}
-		if(count($productsError) > 0){
+		$existsErrors = count($productsError) > 0;
+		if($existsErrors) {
 			$errors = "Los siguientes productos superan al stock pedido: ";
 			$stringProducts = implode(" , ", $productsError);
 			$this->comentarios = $errors . $stringProducts;
-		} else {
+		}
+		if(!$existsErrors || $force){
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
