@@ -21,6 +21,11 @@ class UrlsAdm
 		return "/adm";	
 	}
 
+	public static function getChangeStatus()
+	{
+		return "/adm/pedido/changeStatus";
+	}
+
 	public static function getMenu()
 	{
 		return array(

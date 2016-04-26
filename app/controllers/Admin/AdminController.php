@@ -3,20 +3,17 @@
 */
 abstract class AdminController extends BaseController
 {
-	public function getList($fields,$buttons, $view = "",$tamCol = "")
+	public function getList($fields,$buttons, $view = "adm.templates.listado",$tamCol = "")
 	{
 		$objects = $this->getObjectsToList();
 		if($tamCol == "") $tamCol = '12';
-		if($view == "")
-		{
-			return View::make('adm.templates.listado')
-					->with('model', $this->getModel())
-					->with("objects", $objects)
-					->with("name", $this->name)
-					->with("buttons", $buttons)
-					->with("tamCol", $tamCol)
-					->with("fields", $fields);
-		}
+		return View::make($view)
+				->with('model', $this->getModel())
+				->with("objects", $objects)
+				->with("name", $this->name)
+				->with("buttons", $buttons)
+				->with("tamCol", $tamCol)
+				->with("fields", $fields);
 	}
 
 	public function getEdit($id,$url = "", $back = "")

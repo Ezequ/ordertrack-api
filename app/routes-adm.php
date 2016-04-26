@@ -33,4 +33,5 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 	Route::get('/pedido', 'PedidosControllerAdm@getListado');
 	Route::get('/pedido/index', 'PedidosControllerAdm@index');
 	Route::get('/pedido/detalle/{id}', 'PedidosControllerAdm@getDetalle');
+	Route::get('/pedido/changeStatus', 'PedidosControllerAdm@changeStatus');
 });

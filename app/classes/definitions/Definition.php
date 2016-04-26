@@ -23,4 +23,15 @@ class Definition
         return $list;
     }
 
+    public static function getIdByName($name)
+    {
+        $called = get_called_class();
+        $definition = $called::getDefinition();
+        foreach ($definition as $index => $item) {
+            if($item == $name)
+                return $index;
+        }
+        return null;
+    }
+
 }
