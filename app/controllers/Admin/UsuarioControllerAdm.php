@@ -12,7 +12,7 @@ class UsuarioControllerAdm extends AdminController
 		/* nombre => campo en base de datos	*/
 		$fields = array('id' => 'id','Nombre' => 'nombre_usuario','Email' => 'email', 'rol' => 'rol');
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
-		return parent::getList($fields,$buttons,"",'11');
+		return parent::getList($fields,$buttons,null,'11');
 	}
 
 	public function getModel()
