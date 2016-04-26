@@ -22,7 +22,7 @@ class PedidosControllerAdm extends AdminController
 
 	public function getObjectsToList()
 	{
-		$objects = $this->getModel()->getList(Input::all());
+		$objects = $this->getModel()->getList($this->getInputFilters());
 		$objects = ClientsDefinition::convertObjectListFieldToDefinition($objects,'id_cliente');
 		$objects = OrderStatesDefinition::convertObjectListFieldToDefinition($objects, 'id_estado');
 		return $objects;
@@ -41,6 +41,11 @@ class PedidosControllerAdm extends AdminController
 		} else {
 			return \Illuminate\Support\Facades\Redirect::back()->with('message',"No se encuentra el pedido")->with('result',false);
 		}
+	}
+
+	public function index()
+	{
+		return View::make('adm.templates.template2');
 	}
 
 }

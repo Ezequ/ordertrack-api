@@ -4,7 +4,6 @@ class OrderStatesDefinition extends Definition
     public static function getDefinition()
     {
         return array(
-            Order::PENDING_STATE => 'Pendiente',
             Order::ACTIVE_STATE => 'Activo',
             Order::CANCELED_STATE => 'Cancelado',
             Order::COMPLETED_STATE => 'Completado',

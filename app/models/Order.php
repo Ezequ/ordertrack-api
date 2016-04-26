@@ -5,9 +5,8 @@ class Order extends Model{
 
 	protected $table = "ordenes";
 
-	protected $allowedFilters = array('id_vendedor',  'estado');
+	protected $allowedFilters = array('id_vendedor',  'id_estado', 'id_cliente');
 
-	const PENDING_STATE = 0;
 	const ACTIVE_STATE = 1;
 	const CANCELED_STATE = 2;
 	const COMPLETED_STATE = 3;
@@ -68,5 +67,12 @@ class Order extends Model{
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
+	}
+
+	public function getFiltersForList()
+	{
+		$inputs[] = array("type" => 'select', 'data1' => 'Estado', 'data2' => 'id_estado', 'data3' => OrderStatesDefinition::getDefinition(), 'data4' => Input::get('id_estado'));
+		$inputs[] = array("type" => 'select', 'data1' => 'Cliente', 'data2' => 'id_cliente', 'data3' => ClientsDefinition::getDefinition(), 'data4' => Input::get('id_cliente'));
+		return $inputs;
 	}
 }

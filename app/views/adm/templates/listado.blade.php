@@ -1,13 +1,32 @@
 @extends('adm.templates.template')
 @section('content')
 <div id="page-wrapper">
-   <?php 
-    $f = new Formularios();
-    $f->cabecera(ucfirst($name),'Seleccione un item para modificar o borrar.'); 
-    $f->generarForm();
-    ?>    
-	<?php ?>
-	<div class="row">
+    <div class="row">
+        <div class="col-md-{{$tamCol}}">
+            <?php
+            $f = new Formularios();
+            $f->cabecera(ucfirst($name),'Seleccione un item para modificar o borrar.');
+            $f->generarForm();
+            ?>
+            <?php
+            $filters = $model->getFiltersForList();
+            if (count($filters)){
+                $f = new Formularios();
+                $f->inicioForm('get',$name);
+                foreach ($filters as $key => $input)
+                {
+                    for ($i=1; $i < 6; $i++) {
+                        if(!isset($input['data'.$i])) $input['data'.$i] = "";
+                    }
+                    $f->addGenericInput($input['type'], $input['data1'],  $input['data2'],  $input['data3'],  $input['data4'],  $input['data5']);
+                }
+                $f->addSubmit('Buscar','','');
+                $f->generarForm();
+            }
+            ?>
+        </div>
+    </div>
+    <div class="row">
 		<div class="col-lg-{{$tamCol}}">
 			<div class="table-responsive">
                 <table class="table table-bordered table-hover tablesorter" style="table-layout: fixed">

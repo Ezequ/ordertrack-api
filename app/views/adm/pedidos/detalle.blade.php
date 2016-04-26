@@ -57,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <a href="/adm/pedido" class="btn btn-default">Volver</a>
+                <a href="/adm/pedido?id_estado={{Order::CONFIRM_STATE}}" class="btn btn-default">Volver</a>
                 <a href="#" class="btn btn-info" style="float: right">Cambiar estado</a>
             </div>
         </div>

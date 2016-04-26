@@ -10,6 +10,7 @@ abstract class AdminController extends BaseController
 		if($view == "")
 		{
 			return View::make('adm.templates.listado')
+					->with('model', $this->getModel())
 					->with("objects", $objects)
 					->with("name", $this->name)
 					->with("buttons", $buttons)
@@ -21,6 +22,7 @@ abstract class AdminController extends BaseController
 	public function getEdit($id,$url = "", $back = "")
 	{
 		$object = $this->getObjectToModify($id);
+		$filters = $this->getFilters();
 		if(!$url) $url = "/adm/".$this->name."/editar/$id";
 		if(!$back) $back = "/adm/".$this->name;
 		if($object)
@@ -29,6 +31,7 @@ abstract class AdminController extends BaseController
 				   ->with("object", $object)
 				   ->with("name", $this->name)
 				   ->with("back", $back)
+				   ->with("filters", $filters)
 				   ->with("url", $url);
 		}
 	}
@@ -117,7 +120,23 @@ abstract class AdminController extends BaseController
 	{
 		return $this->getModel()->find($id);
 	}
+
+	protected function getFilters()
+	{
+		return array();
+	}
 	
 	public abstract function getModel();
+
+	protected function getInputFilters()
+	{
+		$inputFilters = array();
+		foreach (Input::all() as $index => $item) {
+			if ($item != "" && $item != 0){
+				$inputFilters[$index] = $item;
+			}
+		}
+		return $inputFilters;
+	}
 
 }

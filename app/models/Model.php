@@ -69,4 +69,9 @@ abstract class Model extends \Eloquent
 	{
 		return array();
 	}
+
+	public function getFiltersForList()
+	{
+		return array();
+	}
 }

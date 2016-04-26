@@ -131,10 +131,7 @@ class OrdersController extends \BaseController {
 		$order = Order::where('id_cliente', $id)
 			->where(function($query)
 			{
-				$query->orWhere('id_estado', Order::ACTIVE_STATE)
-					  ->orWhere('id_estado', Order::BUILDING_STATE)
-					  ->orWhere('id_estado', Order::CONFIRM_STATE)
-					  ->orWhere('id_estado', Order::SHIPPING_STATE);
+				$query->orWhere('id_estado', Order::ACTIVE_STATE);
 			})
 			->orderBy('updated_at', 'desc')
 			->first();
