@@ -7,7 +7,7 @@ abstract class AdminController extends BaseController
 	{
 		$objects = $this->getObjectsToList();
 		if($tamCol == "") $tamCol = '12';
-		$view = $view ? $view : g"adm.templates.listado";
+		$view = $view ? $view : "adm.templates.listado";
 		return View::make($view)
 				->with('model', $this->getModel())
 				->with("objects", $objects)
