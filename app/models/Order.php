@@ -8,11 +8,11 @@ class Order extends Model{
 	protected $allowedFilters = array('id_vendedor',  'id_estado', 'id_cliente');
 
 	const ACTIVE_STATE = 1;
-	const CANCELED_STATE = 2;
-	const COMPLETED_STATE = 3;
-	const CONFIRM_STATE = 4;
-	const BUILDING_STATE = 5;
-	const SHIPPING_STATE = 6;
+	const CONFIRM_STATE = 2;
+	const BUILDING_STATE = 3;
+	const SHIPPING_STATE = 4;
+	const COMPLETED_STATE = 5;
+	const CANCELED_STATE = 6;
 
 
 	public static function getList($filters = array())
@@ -75,4 +75,17 @@ class Order extends Model{
 		$inputs[] = array("type" => 'select', 'data1' => 'Cliente', 'data2' => 'id_cliente', 'data3' => ClientsDefinition::getDefinition(), 'data4' => Input::get('id_cliente'));
 		return $inputs;
 	}
+
+	// !$before => $after
+	public function getStateButton($before = true)
+	{
+		$state = OrderStatesDefinition::getIdByName($this->id_estado);
+		if ($before){
+			return OrderStatesDefinition::getPreviousState($state);
+		} else {
+			return OrderStatesDefinition::getNextState($state);
+		}
+	}
+
+
 }

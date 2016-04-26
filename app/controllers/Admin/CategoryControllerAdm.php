@@ -12,7 +12,7 @@ class CategoryControllerAdm extends AdminController
 		/* nombre => campo en base de datos	*/
 		$fields = array('id' => 'id', 'Nombre' => 'nombre', 'Activo' => 'activo' );
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
-		return parent::getList($fields,$buttons,"",'8');
+		return parent::getList($fields,$buttons,null,'8');
 	}
 
 	public function getModel()

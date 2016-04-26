@@ -12,7 +12,7 @@ class PedidosControllerAdm extends AdminController
 		/* nombre => campo en base de datos	*/
 		$fields = array('id' => 'id', 'Cliente' => 'id_cliente', 'Estado' => 'id_estado', 'Comentarios' => 'comentarios' );
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
-		return parent::getList($fields,$buttons,"",'12');
+		return parent::getList($fields,$buttons,"adm.pedidos.listado",'12');
 	}
 
 	public function getModel()
@@ -46,6 +46,17 @@ class PedidosControllerAdm extends AdminController
 	public function index()
 	{
 		return View::make('adm.templates.template2');
+	}
+
+
+	public function changeStatus()
+	{
+		$order = Order::find(Input::get('id'));
+		if($order){
+			$order->id_estado = Input::get('status');
+			$order->save();
+		}
+		return "";
 	}
 
 }
