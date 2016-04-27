@@ -6,7 +6,7 @@ class ClientsDefinition extends Definition
         $definition = array();
         $clients = Client::all();
         foreach ($clients as $client) {
-            $definition[$client->id] = $client->apenom;
+            $definition[$client->id] = $client->razon_social;
         }
         return $definition;
     }

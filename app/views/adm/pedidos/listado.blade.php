@@ -28,11 +28,9 @@
                                 @foreach($fields as $index => $field)
                                     <td>{{$object->$field}}</td>
                                 @endforeach
-                                <td>
+                                <td style="width:40%">
                                     <div class="botones_columna">
-                                        @foreach($buttons as $nameButton => $href)
-                                            <a id="{{$nameButton}}" style="margin-left:15px" href="{{$href or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}" class="btn btn-default">{{$nameButton}}</a>
-                                        @endforeach
+                                        <button type="button" class="btn btn-primary" onclick="viewDetail('{{$object->id}}')">Ver detalle</button>
                                         <?php $previousData = $object->getStateButton();
                                             $nextData = $object->getStateButton(false);?>
                                         @if($previousData)
@@ -50,11 +48,28 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Close</button>
+                        <a href="#" class="btn btn-info" style="float: right">Cambiar estado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div><!-- /#page-wrapper -->
 @endsection
 <style>
     .table{
         width: inherit !important;
+    }
+    .table td{
+        word-break: break-all;
     }
 </style>
 <script>
@@ -68,4 +83,21 @@
             location.reload();
         });
     }
+
+    function viewDetail(id)
+    {
+        var urlDetail = "{{UrlsAdm::getDetalle()}}";
+        $.ajax({
+            url: urlDetail + id,
+            context: document.body
+        }).done(function(response) {
+            $('.modal-body').empty();
+            $('.modal-body').append(response);
+            $('#myModal').modal('show');
+        });
+    }
+
+
+
+
 </script>
