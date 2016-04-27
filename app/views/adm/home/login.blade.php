@@ -2,28 +2,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Login | Administrator | Order tracker</title>
+
 	<link rel="stylesheet" type="text/css" href="{{Config::get('constants.url_css_adm')}}login.css">
-	<title>Login | Admin</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 col-md-4 col-md-offset-4">
-				<h1 class="text-center login-title">Panel de administración - Login</h1>
-				<div class="account-wall">
-					<img class="profile-img" src="{{ManejoArchivos::getImage('logo','logo')}}" alt="">
-					<form class="form-signin" id="form1" name="form1" method="post" action="{{UrlsAdm::postLogin()}}">
-						<input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
-						<input type="password" name="password" class="form-control" placeholder="Contraseña" required>
-						<button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #7AC8A1">Entrar</button>
-					</form>
-				</div>
+			
+			<header>
+				<img src="{{ManejoArchivos::getImage('logo','logo')}}" alt="">
+			</header>
+
+			<div class="login-block">
 				@if(Session::has('result'))
-				     <div class="alert alert-{{Session::get('result') == 1 ? 'success' : 'danger'}} alert-dismissable">
-				      {{Session::get('message')}}
-				     </div>
+				<div class="error alert alert-{{Session::get('result') == 1 ? 'success' : 'danger'}}">
+					<i class="fa fa-warning"></i>{{Session::get('message')}}
+				</div>
 				@endif
+				<form id="form1" name="form1" method="post" action="{{UrlsAdm::postLogin()}}">
+				    <input  type="text" name="email"  value="" placeholder="Email" required autofocus />
+				    <input type="password" name="password" value=""  placeholder="Contraseña" required />
+				    <button type="submit" >Ingresar</button>
+			    </form>
 			</div>
+
 		</div><!--row-->
 	</div><!--container-->
 </body>
