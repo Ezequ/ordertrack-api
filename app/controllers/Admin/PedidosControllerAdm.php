@@ -69,7 +69,7 @@ class PedidosControllerAdm extends AdminController
 		foreach ($orderProductsFilters as $index => $orderProduct) {
 			$ids[] = $orderProduct->id;
 		}
-		return Order::whereIn('id', $ids)->paginate(10);
+		return Order::whereIn('id', $ids)->paginate(Model::PAGINATOR);
 	}
 
 }

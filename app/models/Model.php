@@ -3,9 +3,11 @@
 abstract class Model extends \Eloquent
 {
 
+	const PAGINATOR = 10;
+
 	protected $allowedFilters = array();
 
-	protected $_paginatation = 5;
+	protected $_paginatation = self::PAGINATOR;
 
 	/* List custom method */
 
