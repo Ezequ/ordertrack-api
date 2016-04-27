@@ -35,9 +35,10 @@ class PedidosControllerAdm extends AdminController
 			$order = ClientsDefinition::convertObjectFieldToDefinition($order,'id_cliente');
 			$order = OrderStatesDefinition::convertObjectFieldToDefinition($order, 'id_estado');
 			$products = $order->getProductsByOrder($order->id);
-			return View::make('adm.pedidos.detalle')
+			$view = View::make('adm.pedidos.detalle')
 					->with('products',$products)
 					->with('order', $order);
+			return $view;
 		} else {
 			return \Illuminate\Support\Facades\Redirect::back()->with('message',"No se encuentra el pedido")->with('result',false);
 		}
