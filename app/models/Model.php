@@ -5,7 +5,7 @@ abstract class Model extends \Eloquent
 
 	protected $allowedFilters = array();
 
-	protected $_paginatation = 4;
+	protected $_paginatation = 5;
 
 	/* List custom method */
 

@@ -4,7 +4,7 @@
 <!-- Add custom CSS here -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 <!--favicon-->
-<link rel="shortcut icon" href="./img/plantilla/favicon.ico">
+
 <!-- JavaScript -->
 <script src="{{Config::get('constants.url_js_adm')}}jquery-1.10.2.js"></script>
 <script src="{{Config::get('constants.url_js_adm')}}bootstrap.js"></script>

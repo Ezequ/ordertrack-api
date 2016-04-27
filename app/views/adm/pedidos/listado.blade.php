@@ -48,16 +48,17 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-{{$tamCol}}">
+                {{method_exists($objects, 'links') ? $objects->links() : ''}}
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Close</button>
-                        <a href="#" class="btn btn-info" style="float: right">Cambiar estado</a>
                     </div>
                 </div>
             </div>
@@ -91,10 +92,22 @@
             url: urlDetail + id,
             context: document.body
         }).done(function(response) {
-            $('.modal-body').empty();
-            $('.modal-body').append(response);
+            modal = $('.modal-body');
+            modal.empty();
+            modal.append(response);
+           /* $("#modalstate").attr("orderid", id);*/
             $('#myModal').modal('show');
         });
+    }
+
+    function modalChangeValue()
+    {
+       /* $('#myModal').modal('toggle');
+        console.log("asd");*/
+        modal = $("#modalstate");
+        id = modal.attr("orderid");
+        state =  modal.val();
+        changeStatus(id,state);
     }
 
 
