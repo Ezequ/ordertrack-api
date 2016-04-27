@@ -59,7 +59,8 @@ class UrlsAdm
 				"Listar metadata" => "/adm/metadata",
 				),*/
 			"Pedidos" => array(
-				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+/*				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,*/
+				"Listar pedidos" => "/adm/pedido",
 			),
 			"Productos" => array(
 				"Listar productos" => "/adm/producto",

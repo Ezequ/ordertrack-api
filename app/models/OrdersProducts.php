@@ -1,16 +1,18 @@
 <?php
-class OrdersProducts extends Eloquent
+class OrdersProducts extends Model
 {
     protected $table = 'productos_ordenes';
 
     protected $fillable = ["id_orden", "id_producto", "cantidad"];
 
+    protected $allowedFilters = ["razon_social", "nombre_usuario"];
 
-    public function getListForAdmin($filters = array(),$paginate = false)
+    public function _getList($filters = array(),$paginate = false)
     {
         $model = DB::table('ordenes')
                 ->leftJoin('clientes', 'ordenes.id_cliente', '=', 'clientes.id')
-                ->leftJoin('usuarios', 'usuarios.id', '=', 'clientes.id_vendedor');
+                ->leftJoin('users', 'users.id', '=', 'clientes.id_vendedor')
+                ->select('ordenes.id');
 
         $filtersToCompare =  self::getFilters($filters);
         foreach ($filtersToCompare as $filter){

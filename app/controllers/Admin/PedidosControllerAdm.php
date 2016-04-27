@@ -22,7 +22,9 @@ class PedidosControllerAdm extends AdminController
 
 	public function getObjectsToList()
 	{
-		$objects = $this->getModel()->getList(Input::all(),true);
+		$objects = $this->getFilteredOrders();
+		/*$objects = OrdersProducts::getList(Input::all());
+		$objects = $this->getModel()->getList(Input::all(),true);*/
 		$objects = ClientsDefinition::convertObjectListFieldToDefinition($objects,'id_cliente');
 		$objects = OrderStatesDefinition::convertObjectListFieldToDefinition($objects, 'id_estado');
 		return $objects;
@@ -58,6 +60,16 @@ class PedidosControllerAdm extends AdminController
 			$order->save();
 		}
 		return "";
+	}
+
+	public function getFilteredOrders()
+	{
+		$orderProductsFilters = OrdersProducts::getList(Input::all());
+		$ids = array();
+		foreach ($orderProductsFilters as $index => $orderProduct) {
+			$ids[] = $orderProduct->id;
+		}
+		return Order::whereIn('id', $ids)->paginate(10);
 	}
 
 }
