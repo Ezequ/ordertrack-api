@@ -18,7 +18,14 @@ class ProductsControllerAdm extends AdminController
 	public function getModel()
 	{
 		return new Product();
+
 	}
 
+	public function getObjectsToList()
+	{
+		$objects = $this->getModel()->getList(Input::all(),true);
+		$objects = YesNoDefinition::convertObjectListFieldToDefinition($objects,'activo');
+		return $objects;
+	}
 
-} ?>
+}

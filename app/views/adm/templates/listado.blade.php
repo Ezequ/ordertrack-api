@@ -58,5 +58,11 @@
             </div>
 		</div>
 	</div>
+
+    <div class="row">
+        <div class="col-lg-{{$tamCol}}">
+            {{method_exists($objects, 'links') ? $objects->links() : ''}}
+        </div>
+    </div>
 </div><!-- /#page-wrapper -->
 @endsection

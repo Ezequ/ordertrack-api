@@ -7,12 +7,6 @@ class Category extends Model {
 
 	protected $allowedFilters = array('nombre');
 
-	public static function getList($filters)
-	{
-		$model = new self;
-		return $model->_getList($filters);
-	}
-
 	public function getInputsForEdit()
 	{
 		$inputs[] = array("type" => 'common', 'data1' => 'Nombre', 'data2' => 'nombre', 'data3' => $this->nombre);

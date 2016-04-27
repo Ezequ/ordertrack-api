@@ -22,11 +22,6 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	}
 
-	public static function getList($filters)
-	{
-		$model = new self;
-		return $model->_getList($filters);
-	}
 
 	public function getInputsForEdit()
 	{

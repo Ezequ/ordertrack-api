@@ -11,10 +11,4 @@ class Client extends Model {
 
 	public $timestamps = false;
 
-	public static function getList($filters)
-	{
-		$model = new self;
-		return $model->_getList($filters);
-	}
-
 }

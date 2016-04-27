@@ -15,11 +15,6 @@ class Order extends Model{
 	const CANCELED_STATE = 6;
 
 
-	public static function getList($filters = array())
-	{
-		$model = new self;
-		return $model->_getList($filters);
-	}
 
 	public static function getProductsByOrder($id)
 	{

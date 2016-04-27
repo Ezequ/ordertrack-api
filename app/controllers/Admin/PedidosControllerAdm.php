@@ -22,7 +22,7 @@ class PedidosControllerAdm extends AdminController
 
 	public function getObjectsToList()
 	{
-		$objects = $this->getModel()->getList($this->getInputFilters());
+		$objects = $this->getModel()->getList($this->getInputFilters(),10);
 		$objects = ClientsDefinition::convertObjectListFieldToDefinition($objects,'id_cliente');
 		$objects = OrderStatesDefinition::convertObjectListFieldToDefinition($objects, 'id_estado');
 		return $objects;
