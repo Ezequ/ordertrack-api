@@ -7,7 +7,7 @@ class ClientTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 25) as $index)
+		foreach(range(1, 50) as $index)
 		{
 			DB::table('clientes')->insert(array(
 				'apenom' => $faker->name,
@@ -15,7 +15,7 @@ class ClientTableSeeder extends Seeder {
 				'telefono' =>  $faker->phoneNumber,
 				'observaciones' => $faker->paragraph(),
 				'id_vendedor' => rand(1,5),
-				'fecha_visita' => date('Y-m-d')
+				'fecha_visita' => date('Y-m-d', strtotime(date('Y-m-d') . ' +'.rand(0,8).' days')),
 			));
 		}
 	}
