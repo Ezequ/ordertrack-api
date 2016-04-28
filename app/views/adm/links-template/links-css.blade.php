@@ -1,7 +1,7 @@
 <!-- Add custom CSS here -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 <!--favicon-->
-<link rel="shortcut icon" href="./img/plantilla/favicon.ico">
+<link rel="shortcut icon" href="{{Config::get('constants.url_imagenes') . 'logo/logo.ico'}}">
 
  <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
