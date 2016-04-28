@@ -1,7 +1,7 @@
 <?php
 
 class Order extends Model{
-	protected $fillable = ["id_cliente", "id_estado", "comentarios"];
+	protected $fillable = ["id_cliente", "id_estado", "comentarios", "id_vendedor"];
 
 	protected $table = "ordenes";
 

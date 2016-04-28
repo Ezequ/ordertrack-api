@@ -10,7 +10,7 @@ class PedidosControllerAdm extends AdminController
 		/* nombre acciones habilitadas*/
 		$buttons = array('detalle' => null);
 		/* nombre => campo en base de datos	*/
-		$fields = array('id' => 'id', 'Cliente' => 'id_cliente', 'Estado' => 'id_estado', 'Modificado' => 'updated_at' );
+		$fields = array('id' => 'id', 'Cliente' => 'id_cliente', 'Vendedor' => 'id_vendedor' ,'Estado' => 'id_estado', 'Modificado' => 'updated_at' );
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
 		return parent::getList($fields,$buttons,"adm.pedidos.listado",'12');
 	}
@@ -23,10 +23,9 @@ class PedidosControllerAdm extends AdminController
 	public function getObjectsToList()
 	{
 		$objects = $this->getFilteredOrders();
-		/*$objects = OrdersProducts::getList(Input::all());
-		$objects = $this->getModel()->getList(Input::all(),true);*/
 		$objects = ClientsDefinition::convertObjectListFieldToDefinition($objects,'id_cliente');
 		$objects = OrderStatesDefinition::convertObjectListFieldToDefinition($objects, 'id_estado');
+		$objects = SellerDefinition::convertObjectListFieldToDefinition($objects, 'id_vendedor');
 		return $objects;
 	}
 
