@@ -5,7 +5,7 @@ class OrdersProducts extends Model
 
     protected $fillable = ["id_orden", "id_producto", "cantidad"];
 
-    protected $allowedFilters = ["razon_social", "nombre_usuario"];
+    protected $allowedFilters = ["razon_social", "nombre_usuario",'id_estado', 'id_cliente', 'id_vendedor', 'updated_at'];
 
     public function _getList($filters = array(),$paginate = false)
     {
@@ -16,7 +16,7 @@ class OrdersProducts extends Model
 
         $filtersToCompare =  self::getFilters($filters);
         foreach ($filtersToCompare as $filter){
-            if (in_array($filter['name'],$this->allowedFilters)){
+            if (in_array($filter['name'],$this->allowedFilters ) && $filter['value'] != ""){
                 $model = $model->where($filter['name'],$filter['compare'], $filter['value']);
             }
         }

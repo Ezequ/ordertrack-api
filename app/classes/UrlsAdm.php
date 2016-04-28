@@ -31,6 +31,11 @@ class UrlsAdm
 		return "/adm/pedido/detalle/";
 	}
 
+	public static function getPedidos()
+	{
+		return "/adm/pedido";
+	}
+
 	public static function getMenu()
 	{
 		return array(

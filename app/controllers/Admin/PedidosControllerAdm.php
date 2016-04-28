@@ -10,7 +10,7 @@ class PedidosControllerAdm extends AdminController
 		/* nombre acciones habilitadas*/
 		$buttons = array('detalle' => null);
 		/* nombre => campo en base de datos	*/
-		$fields = array('id' => 'id', 'Cliente' => 'id_cliente', 'Estado' => 'id_estado', 'Comentarios' => 'comentarios' );
+		$fields = array('id' => 'id', 'Cliente' => 'id_cliente', 'Estado' => 'id_estado', 'Modificado' => 'updated_at' );
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
 		return parent::getList($fields,$buttons,"adm.pedidos.listado",'12');
 	}

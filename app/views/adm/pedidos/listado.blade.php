@@ -1,13 +1,57 @@
 @extends('adm.templates.template')
 @section('content')
     <div id="page-wrapper">
-        <div class="row">
+         <div class="row">
             <div class="col-md-{{$tamCol}}">
-                <?php
-                $f = new Formularios();
-                $f->cabecera(ucfirst($name),'Seleccione un item para modificar o borrar.');
-                $f->generarForm();
-                ?>
+               <h1>Pedidos</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Filtros</h3>
+                    </div>
+                    <form action="{{UrlsAdm::getPedidos()}}" method="get">
+                        <div class="panel-body">
+                            <div class="col-md-4">
+                                <div class="form-group" style="margin-right: 15px">
+                                    <select class="form-control" id="id_estado" name="id_estado" >
+                                        <option value="">Estado</option>
+                                    @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                                            <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="margin-right: 15px">
+                                    <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" style="margin-right: 15px">
+                                    <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group " style="margin-right: 15px">
+                                    <input type="text" class="form-control datepicker" placeholder="Desde" name="updated_at>" value="{{Input::get('updated_at>')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group " style="margin-right: 15px">
+                                    <input type="text" class="form-control datepicker" placeholder="Hasta" name="updated_at<" value="{{Input::get('updated_at<')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group " style="margin-right: 15px">
+                                    <button type="submit" style="width: 100%;" class="btn btn-success">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -64,53 +108,59 @@
             </div>
         </div>
     </div><!-- /#page-wrapper -->
+    <style>
+        .table{
+            width: inherit !important;
+        }
+        .table td{
+            word-break: break-all;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+        function changeStatus(id,status)
+        {
+            var urlStatus = "{{UrlsAdm::getChangeStatus()}}";
+            $.ajax({
+                url: urlStatus + "?id=" + id + "&status=" + status,
+                context: document.body
+            }).done(function() {
+                location.reload();
+            });
+        }
+
+        function viewDetail(id)
+        {
+            var urlDetail = "{{UrlsAdm::getDetalle()}}";
+            $.ajax({
+                url: urlDetail + id,
+                context: document.body
+            }).done(function(response) {
+                modal = $('.modal-body');
+                modal.empty();
+                modal.append(response);
+                /* $("#modalstate").attr("orderid", id);*/
+                $('#myModal').modal('show');
+            });
+        }
+
+        function modalChangeValue()
+        {
+            /* $('#myModal').modal('toggle');
+             console.log("asd");*/
+            modal = $("#modalstate");
+            id = modal.attr("orderid");
+            state =  modal.val();
+            changeStatus(id,state);
+        }
+
+        (function() {
+            $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+        })();
+
+
+
+    </script>
+
 @endsection
-<style>
-    .table{
-        width: inherit !important;
-    }
-    .table td{
-        word-break: break-all;
-    }
-</style>
-<script>
-    function changeStatus(id,status)
-    {
-        var urlStatus = "{{UrlsAdm::getChangeStatus()}}";
-        $.ajax({
-            url: urlStatus + "?id=" + id + "&status=" + status,
-            context: document.body
-        }).done(function() {
-            location.reload();
-        });
-    }
-
-    function viewDetail(id)
-    {
-        var urlDetail = "{{UrlsAdm::getDetalle()}}";
-        $.ajax({
-            url: urlDetail + id,
-            context: document.body
-        }).done(function(response) {
-            modal = $('.modal-body');
-            modal.empty();
-            modal.append(response);
-           /* $("#modalstate").attr("orderid", id);*/
-            $('#myModal').modal('show');
-        });
-    }
-
-    function modalChangeValue()
-    {
-       /* $('#myModal').modal('toggle');
-        console.log("asd");*/
-        modal = $("#modalstate");
-        id = modal.attr("orderid");
-        state =  modal.val();
-        changeStatus(id,state);
-    }
-
-
-
-
-</script>
