@@ -1,6 +1,6 @@
 <?php
 $globals = array();
-$globals['titulo_web'] = "Order track";
+$globals['titulo_web'] = "Order Tracker";
 $globals['pait'] = "/";
 //$globals['hd_root'] = "C:\\\\lamp\\\\www\\\\sericor\\\\";
 $globals['hd_root'] = "./../";

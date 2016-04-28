@@ -5,20 +5,22 @@
 
 	@include("adm.links-template.links-css")
 </head>
-<body>
-
-	@include("adm.body.header")
-
-	<div id="wrapper" class="">
-		@include("adm.body.sidebar")
+<body class="flat-green">
+	<div class="app-container">
+		<div class="row content-container">
 		
-		<div id="page-content-wrapper">
-		    <div class="container-fluid xyz">
-				@yield('content')
-			</div>
+			@include("adm.body.header")
+
+			@include("adm.body.sidebar")
+
+			<!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                	@yield('content')
+                </div>
+            </div>
+
 		</div>
-
-		
 	</div>
 
 	@include("adm.links-template.links-js")

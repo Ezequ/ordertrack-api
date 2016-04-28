@@ -58,7 +58,11 @@ class UrlsAdm
 			"Metadata" => array(
 				"Listar metadata" => "/adm/metadata",
 				),*/
-			"Pedidos" => array(
+			/*"Imagenes generales" => array(
+				"Listar imagenes generales" => "/adm/imagenes",
+				),*/
+
+			/*"Pedidos" => array(
 				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
 			),
 			"Productos" => array(
@@ -72,10 +76,35 @@ class UrlsAdm
 			"Usuarios" => array(
 				"Listar usuarios" => "/adm/usuario",
 				"Crear usuario" => "/adm/usuario/crear",
-				),
-			/*"Imagenes generales" => array(
-				"Listar imagenes generales" => "/adm/imagenes",
 				),*/
+
+			"Pedidos" => array(
+				"icon" => "shopping-cart",
+				"submenu" => array(
+					"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+				)
+			),
+			"Productos" => array(
+				"icon" => "cubes",
+				"submenu" => array(
+					"Listar productos" => "/adm/producto",
+					"Crear producto" => "/adm/producto/crear",
+				)
+			),
+			"Categorias" => array(
+				"icon" => "tag",
+				"submenu" => array(
+					"Listar categorias" => "/adm/categoria",
+					"Crear categoria" => "/adm/categoria/crear",
+				)
+			),
+			"Usuarios" => array(
+				"icon" => "users",
+				"submenu" => array(
+					"Listar usuarios" => "/adm/usuario",
+					"Crear usuario" => "/adm/usuario/crear",
+				)
+			)
 		);
 	}
 

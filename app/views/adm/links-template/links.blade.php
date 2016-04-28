@@ -6,7 +6,7 @@
 <!-- Add custom CSS here -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 <!--favicon-->
-<link rel="shortcut icon" href="./img/plantilla/favicon.ico">
+<link rel="shortcut icon" href="./img/logo/logo.ico">
 <!-- External libraries -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <!-- General styles -->
@@ -22,30 +22,3 @@
 
 <!-- General scripts -->
 <script src="{{Config::get('constants.url_js_adm')}}scripts.js"></script>
-
-<script>
-/*function holas (apartado,id)
-{
-  window.location = '?apartado='+apartado+'&accion=borrar&id='+id;
-}
-
-function ventanaXY(X, Y, ancho, alto, URL, propiedades) {
-  var windowprops = "left=" + X + ",top=" + Y + ",width=" + ancho + ",height=" + alto;
-  if (propiedades != "") {
-       popup = window.open(URL,"MenuPopup",windowprops+ "," +propiedades);
-	   }
-  else {
-        popup = window.open(URL,"MenuPopup",windowprops);
-        }
-}
-
-function ventanaXY_(X, Y, ancho, alto, URL, propiedades) {
-  var windowprops = "left=" + X + ",top=" + Y + ",width=" + ancho + ",height=" + alto;
-  if (propiedades != "") {
-     windowprops = windoprops + "," + propiedades;
-  }
-  popup = window.open(URL,"MenuPopup",windowprops);
-}*/
-</script>
-
-
