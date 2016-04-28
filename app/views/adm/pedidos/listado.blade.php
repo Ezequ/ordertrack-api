@@ -58,7 +58,8 @@
                                 </div>
                         </form>
                     </div>
-                    <table class="table table-hover">
+                </div>
+                    <table class="datatable table table-hover">
                         <thead>
                         <tr>
                             @foreach($fields as $index => $field)
@@ -90,7 +91,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
     </div>
