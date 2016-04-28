@@ -31,6 +31,11 @@ class UrlsAdm
 		return "/adm/pedido/detalle/";
 	}
 
+	public static function getPedidos()
+	{
+		return "/adm/pedido";
+	}
+
 	public static function getMenu()
 	{
 		return array(
@@ -58,12 +63,17 @@ class UrlsAdm
 			"Metadata" => array(
 				"Listar metadata" => "/adm/metadata",
 				),*/
+
 			/*"Imagenes generales" => array(
 				"Listar imagenes generales" => "/adm/imagenes",
 				),*/
 
 			/*"Pedidos" => array(
 				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+
+			"Pedidos" => array(
+/*				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+				"Listar pedidos" => "/adm/pedido",
 			),
 			"Productos" => array(
 				"Listar productos" => "/adm/producto",
@@ -82,6 +92,7 @@ class UrlsAdm
 				"icon" => "shopping-cart",
 				"submenu" => array(
 					"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+					"Listar pedidos" => "/adm/pedido",
 				)
 			),
 			"Productos" => array(

@@ -7,11 +7,6 @@ class Product extends Model {
 
 	protected $allowedFilters = array('categoria', 'descripcion', 'marca', 'stock', 'precio','nombre');
 
-	public static function getList($filters)
-	{
-		$model = new self;
-		return $model->_getList($filters);
-	}
 
 	public function getInputsForEdit()
 	{

@@ -7,10 +7,6 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 <!--favicon-->
 <link rel="shortcut icon" href="./img/logo/logo.ico">
-<!-- External libraries -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-<!-- General styles -->
-<link rel="stylesheet" href="{{Config::get('constants.url_css_adm')}}styles.css">
 
 <!-- JavaScript -->
 <script src="{{Config::get('constants.url_js_adm')}}jquery-1.10.2.js"></script>

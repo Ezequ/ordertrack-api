@@ -3,11 +3,15 @@
 abstract class Model extends \Eloquent
 {
 
+	const PAGINATOR = 10;
+
 	protected $allowedFilters = array();
+
+	protected $_paginatation = self::PAGINATOR;
 
 	/* List custom method */
 
-	public function _getList($filters = array())
+	public function _getList($filters = array(),$paginate = false)
 	{
 		$model = $this;
 		$filtersToCompare =  self::getFilters($filters);
@@ -20,6 +24,9 @@ abstract class Model extends \Eloquent
 			$orderBy = $filters['orderby'];
 			$orientation = isset($filters['orientation']) ? $filters['orientation'] : 'asc';
 			$model = $model->orderBy($orderBy,$orientation);
+		}
+		if ($paginate){
+			return $model->paginate($this->_paginatation);
 		}
 		return $model->get();
 	}
@@ -74,4 +81,12 @@ abstract class Model extends \Eloquent
 	{
 		return array();
 	}
+
+	public static function getList($filters = array(),$paginate = false)
+	{
+		$called = get_called_class();
+		$model = new $called;
+		return $model->_getList($filters, $paginate);
+	}
+
 }

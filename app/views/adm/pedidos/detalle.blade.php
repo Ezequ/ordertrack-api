@@ -52,3 +52,16 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cerrar</button>
+        <button class="btn btn-info" style="float: right" onclick="modalChangeValue()">Cambiar estado</button>
+        <div class="form-group" style="float: right;margin-right: 15px">
+            <select class="form-control" id="modalstate" name="modalstate" orderid="{{$order->id}}">
+                @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                    <option value="{{$code}}" {{$order->id_estado == $name ? 'selected' : ''}}>{{$name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+</div>

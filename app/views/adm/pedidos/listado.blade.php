@@ -1,17 +1,6 @@
 @extends('adm.templates.template')
 @section('content')
 
-<?php /* <div id="page-wrapper">
-<div class="row">
-    <div class="col-md-{{$tamCol}}">
-        <?php
-        $f = new Formularios();
-        $f->cabecera(ucfirst($name),'Seleccione un item para modificar o borrar.');
-        $f->generarForm();
-        ?>
-    </div>
-</div> */ ?>
-
 <div class="page-title">
     <span class="title">{{ ucfirst($name) }}</span>
     <div class="description">Seleccione un item para modificar o borrar.</div>
@@ -21,45 +10,95 @@
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
+
                 <div class="card-title">
-                <div class="title">Listado de pedidos</div>
+                    <div class="title">Listado de pedidos</div>
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-hover tablesorter" style="table-layout: fixed">
-                    <thead>
-                    <tr>
-                        @foreach($fields as $index => $field)
-                            <th class="header">{{$index}}</th>
-                        @endforeach
-                        <th class="header" style="text-align:center">Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($objects as $object)
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Filtros</div>
+                    <div class="panel-body">
+                        <form action="{{UrlsAdm::getPedidos()}}" method="get">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control" id="id_estado" name="id_estado" >
+                                            <option value="">Estado</option>
+                                        @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                                                <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control datepicker" placeholder="Desde" name="updated_at>" value="{{Input::get('updated_at>')}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control datepicker" placeholder="Hasta" name="updated_at<" value="{{Input::get('updated_at<')}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Buscar</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
                         <tr>
                             @foreach($fields as $index => $field)
-                                <td>{{$object->$field}}</td>
+                                <th class="header">{{$index}}</th>
                             @endforeach
-                            <td style="width:40%">
-                                <div class="botones_columna">
-                                    <button type="button" class="btn btn-primary" onclick="viewDetail('{{$object->id}}')">Ver detalle</button>
-                                    <?php $previousData = $object->getStateButton();
-                                        $nextData = $object->getStateButton(false);?>
-                                    @if($previousData)
-                                        <a style="margin-left:15px" href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$previousData['id_estado']}}')">Cambiar a {{$previousData['nombre']}}</a>
-                                    @endif
-                                    @if($nextData)
-                                        <a style="margin-left:15px" href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">Cambiar a {{$nextData['nombre']}}</a>
-                                    @endif
-                                </div>
-                            </td>
+                            <th class="header">Acciones</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($objects as $object)
+                            <tr>
+                                @foreach($fields as $index => $field)
+                                    <td>{{$object->$field}}</td>
+                                @endforeach
+                                <td>
+                                    <div class="botones_columna">
+                                        <button type="button" class="btn btn-primary" onclick="viewDetail('{{$object->id}}')">Ver detalle</button>
+                                        <?php $previousData = $object->getStateButton();
+                                            $nextData = $object->getStateButton(false);?>
+                                        @if($previousData)
+                                            <a href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$previousData['id_estado']}}')">Cambiar a {{$previousData['nombre']}}</a>
+                                        @endif
+                                        @if($nextData)
+                                            <a href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">Cambiar a {{$nextData['nombre']}}</a>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-{{$tamCol}}">
+        {{method_exists($objects, 'links') ? $objects->appends(Input::except('page'))->links() : ''}}
     </div>
 </div>
 <!-- Modal -->
@@ -67,17 +106,14 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Close</button>
-                <a href="#" class="btn btn-info" style="float: right">Cambiar estado</a>
+
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
+<script type="text/javascript">
     function changeStatus(id,status)
     {
         var urlStatus = "{{UrlsAdm::getChangeStatus()}}";
@@ -96,14 +132,27 @@
             url: urlDetail + id,
             context: document.body
         }).done(function(response) {
-            $('.modal-body').empty();
-            $('.modal-body').append(response);
+            modal = $('.modal-body');
+            modal.empty();
+            modal.append(response);
+            /* $("#modalstate").attr("orderid", id);*/
             $('#myModal').modal('show');
         });
     }
 
+    function modalChangeValue()
+    {
+        /* $('#myModal').modal('toggle');
+         console.log("asd");*/
+        modal = $("#modalstate");
+        id = modal.attr("orderid");
+        state =  modal.val();
+        changeStatus(id,state);
+    }
 
-
+    (function() {
+        $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+    })();
 
 </script>
 

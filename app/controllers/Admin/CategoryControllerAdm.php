@@ -22,7 +22,7 @@ class CategoryControllerAdm extends AdminController
 
 	public function getObjectsToList()
 	{
-		$objects = $this->getModel()->getList(Input::all());
+		$objects = $this->getModel()->getList(Input::all(),10);
 		$objects = YesNoDefinition::convertObjectListFieldToDefinition($objects,'activo');
 		return $objects;
 	}
