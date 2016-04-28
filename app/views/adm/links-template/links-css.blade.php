@@ -18,6 +18,7 @@
 <!-- CSS App -->
 <link rel="stylesheet" type="text/css" href="{{Config::get('constants.url_libs')}}flat-theme/css/style.css">
 <link rel="stylesheet" type="text/css" href="{{Config::get('constants.url_libs')}}flat-theme/css/themes/flat-green.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <!-- General styles -->
 <link rel="stylesheet" href="{{Config::get('constants.url_css_adm')}}styles.css">

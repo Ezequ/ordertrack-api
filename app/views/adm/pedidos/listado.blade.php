@@ -111,8 +111,9 @@
         </div>
     </div>
 </div>
-
-
+@endsection
+@section('scripts')
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <script type="text/javascript">
     function changeStatus(id,status)
     {
@@ -150,10 +151,9 @@
         changeStatus(id,state);
     }
 
-    (function() {
-        $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
-    })();
+
+    $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+
 
 </script>
-
 @endsection

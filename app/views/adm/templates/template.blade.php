@@ -24,6 +24,6 @@
 	</div>
 
 	@include("adm.links-template.links-js")
-	
+	@yield('scripts')
 </body>
 </html>
