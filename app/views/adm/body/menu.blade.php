@@ -1,3 +1,5 @@
+<!-- DEPRECATED -->
+
 @foreach(UrlsAdm::getMenu() as $index => $value)
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> {{$index}}<b class="caret"></b></a>

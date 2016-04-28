@@ -16,4 +16,5 @@ $globals['url_genericas'] = "/img/genericas/";
 $globals['url_css'] = "/assets/css/";
 $globals['url_css_adm'] = "/assets/css/adm/";
 $globals['url_js_adm'] = "/assets/js/adm/";
+$globals['url_libs'] = "/assets/libs/";
 return $globals;
