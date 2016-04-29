@@ -43,17 +43,17 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control datepicker" placeholder="Desde" name="updated_at>" value="{{Input::get('updated_at>')}}">
+                                        <input type="text" class="form-control datepicker" placeholder="Desde" name="fecha_confirmacion>" value="{{Input::get('fecha_confirmacion>')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control datepicker" placeholder="Hasta" name="updated_at<" value="{{Input::get('updated_at<')}}">
+                                        <input type="text" class="form-control datepicker" placeholder="Hasta" name="fecha_confirmacion<" value="{{Input::get('fecha_confirmacion<')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">Buscar</button>
+                                        <button type="submit" class="btn btn-success" style="width: 100%;margin-top: 0px">Buscar</button>
                                     </div>
                                 </div>
                         </form>
@@ -80,10 +80,10 @@
                                         <?php $previousData = $object->getStateButton();
                                             $nextData = $object->getStateButton(false);?>
                                         @if($previousData)
-                                            <a href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$previousData['id_estado']}}')">Cambiar a {{$previousData['nombre']}}</a>
+                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$previousData['id_estado']}}')">Cambiar a {{$previousData['nombre']}}</a>
                                         @endif
                                         @if($nextData)
-                                            <a href="#" class="btn btn-default" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">Cambiar a {{$nextData['nombre']}}</a>
+                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">Cambiar a {{$nextData['nombre']}}</a>
                                         @endif
                                     </div>
                                 </td>
@@ -156,4 +156,10 @@
 
 
 </script>
+<style>
+    .change-status
+    {
+        width: 150px;
+    }
+</style>
 @endsection

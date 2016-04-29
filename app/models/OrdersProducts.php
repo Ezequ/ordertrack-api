@@ -5,7 +5,7 @@ class OrdersProducts extends Model
 
     protected $fillable = ["id_orden", "id_producto", "cantidad"];
 
-    protected $allowedFilters = ["razon_social", "nombre_usuario",'id_estado', 'id_cliente', 'id_vendedor', 'updated_at'];
+    protected $allowedFilters = ["razon_social", "nombre_usuario",'id_estado', 'id_cliente', 'id_vendedor', 'updated_at', 'created_at', 'fecha_confirmacion'];
 
     public function _getList($filters = array(),$paginate = false)
     {

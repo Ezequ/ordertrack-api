@@ -1,11 +1,11 @@
 <?php
 
 class Order extends Model{
-	protected $fillable = ["id_cliente", "id_estado", "comentarios", "id_vendedor"];
+	protected $fillable = ["id_cliente", "id_estado", "comentarios", "id_vendedor", 'fecha_confirmacion'];
 
 	protected $table = "ordenes";
 
-	protected $allowedFilters = array('id_vendedor',  'id_estado', 'id_cliente');
+	protected $allowedFilters = array('id_vendedor',  'id_estado', 'id_cliente','fecha_confirmacion');
 
 	const ACTIVE_STATE = 1;
 	const CONFIRM_STATE = 2;
@@ -59,6 +59,7 @@ class Order extends Model{
 			$this->comentarios = $errors . $stringProducts;
 		}
 		if(!$existsErrors || $force){
+			$this->fecha_confirmacion = date("Y-m-d H:i:s");
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();

@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration {
 			$table->integer("id_estado");
 			$table->integer("id_vendedor");
 			$table->text("comentarios");
+			$table->dateTime("fecha_confirmacion")->nullable();
 			$table->timestamps();
 		});
 	}
