@@ -48,7 +48,7 @@ class Order extends Model{
 		$productsError = array();
 		foreach ($products as $index => $product) {
 			if($product->cantidad > $product->stock){
-				$productsError[] = $product->nombre;
+				$productsError[] = $product->nombre . " - " . $product->marca;
 			}
 		}
 		$existsErrors = count($productsError) > 0;
