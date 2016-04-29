@@ -25,7 +25,7 @@
                                     <div class="form-group">
                                         <select class="form-control" id="id_estado" name="id_estado" >
                                             <option value="">Estado</option>
-                                        @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                                            @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
                                                 <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
                                             @endforeach
                                         </select>
@@ -79,11 +79,11 @@
                                         <button type="button" class="btn btn-primary" onclick="viewDetail('{{$object->id}}')">Ver detalle</button>
                                         <?php $previousData = $object->getStateButton();
                                             $nextData = $object->getStateButton(false);?>
-                                        @if($previousData)
-                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$previousData['id_estado']}}')">Cambiar a {{$previousData['nombre']}}</a>
-                                        @endif
                                         @if($nextData)
-                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">Cambiar a {{$nextData['nombre']}}</a>
+                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">{{$nextData['nombre']}}</a>
+                                        @endif
+                                        @if($previousData)
+                                            <a href="#" class="btn btn-default change-status" onclick="cancelOrder('{{$object->id}}','{{$previousData['id_estado']}}')">{{$previousData['nombre']}}</a>
                                         @endif
                                     </div>
                                 </td>
@@ -154,6 +154,14 @@
 
     $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
 
+    function cancelOrder(id,state)
+    {
+        var strconfirm = confirm("¿Seguro deseas eliminar el pedido numero "+id+"?");
+        if (strconfirm == true)
+        {
+            changeStatus(id,state);
+        }
+    }
 
 </script>
 <style>

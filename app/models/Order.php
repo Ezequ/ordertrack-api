@@ -11,8 +11,7 @@ class Order extends Model{
 	const CONFIRM_STATE = 2;
 	const BUILDING_STATE = 3;
 	const SHIPPING_STATE = 4;
-	const COMPLETED_STATE = 5;
-	const CANCELED_STATE = 6;
+	const CANCELED_STATE = 5;
 
 
 
@@ -59,7 +58,7 @@ class Order extends Model{
 			$this->comentarios = $errors . $stringProducts;
 		}
 		if(!$existsErrors || $force){
-			$this->fecha_confirmacion = date("Y-m-d H:i:s");
+			$this->fecha_confirmacion =	date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
@@ -77,7 +76,7 @@ class Order extends Model{
 	{
 		$state = OrderStatesDefinition::getIdByName($this->id_estado);
 		if ($before){
-			return OrderStatesDefinition::getPreviousState($state);
+			return OrderStatesDefinition::getCancelState($state);
 		} else {
 			return OrderStatesDefinition::getNextState($state);
 		}

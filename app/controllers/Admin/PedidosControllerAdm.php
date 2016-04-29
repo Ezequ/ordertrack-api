@@ -57,7 +57,7 @@ class PedidosControllerAdm extends AdminController
 		if($order){
 			$order->id_estado = Input::get('status');
 			if(Input::get('status') == Order::CONFIRM_STATE){
-				$order->fecha_confirmacion = date("Y-m-d H:i:s");
+				$order->fecha_confirmacion =	date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 			}
 			$order->save();
 		}
@@ -71,7 +71,7 @@ class PedidosControllerAdm extends AdminController
 		foreach ($orderProductsFilters as $index => $orderProduct) {
 			$ids[] = $orderProduct->id;
 		}
-		return Order::whereIn('id', $ids)->paginate(Model::PAGINATOR);
+		return Order::whereIn('id', $ids)->where('id_estado', '<>', Order::ACTIVE_STATE)->paginate(Model::PAGINATOR);
 	}
 
 }
