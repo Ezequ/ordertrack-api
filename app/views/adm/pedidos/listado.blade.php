@@ -1,18 +1,11 @@
 @extends('adm.templates.template')
 @section('content')
-
-<div class="page-title">
-    <span class="title">{{ ucfirst($name) }}</span>
-    <div class="description">Seleccione un item para modificar o borrar.</div>
-</div>
-
 <div class="row">
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
-
                 <div class="card-title">
-                    <div class="title">Listado de pedidos</div>
+                    <div class="title">Listado de {{$nameList}}</div>
                 </div>
             </div>
             <div class="card-body">

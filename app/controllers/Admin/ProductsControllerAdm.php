@@ -5,6 +5,8 @@ class ProductsControllerAdm extends AdminController
 {
 	public $name = "producto";
 
+	protected $nameList =  "productos";
+
 	public function getListado()
 	{
 		/* nombre acciones habilitadas*/

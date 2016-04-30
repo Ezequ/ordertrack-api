@@ -3,6 +3,9 @@
 */
 abstract class AdminController extends BaseController
 {
+
+	protected $nameList = "";
+
 	public function getList($fields,$buttons, $view = "adm.templates.listado",$tamCol = "")
 	{
 		$objects = $this->getObjectsToList();
@@ -11,6 +14,7 @@ abstract class AdminController extends BaseController
 		return View::make($view)
 				->with('model', $this->getModel())
 				->with("objects", $objects)
+				->with("nameList", $this->nameList)
 				->with("name", $this->name)
 				->with("buttons", $buttons)
 				->with("tamCol", $tamCol)

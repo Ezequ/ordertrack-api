@@ -5,6 +5,8 @@ class CategoryControllerAdm extends AdminController
 {
 	public $name = "categoria";
 
+	protected $nameList = "categorias";
+
 	public function getListado()
 	{
 		/* nombre acciones habilitadas*/

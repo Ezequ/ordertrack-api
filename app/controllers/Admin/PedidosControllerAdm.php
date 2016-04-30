@@ -5,6 +5,8 @@ class PedidosControllerAdm extends AdminController
 {
 	public $name = "pedido";
 
+	protected $nameList =  "pedidos";
+
 	public function getListado()
 	{
 		/* nombre acciones habilitadas*/
