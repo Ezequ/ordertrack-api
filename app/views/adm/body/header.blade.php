@@ -5,8 +5,11 @@
                 <i class="fa fa-bars icon"></i>
             </button>
             <ol class="breadcrumb navbar-breadcrumb">
-                <li>{{$sectionName}}</li>
+                <?php if($sectionName != "") { ?>
+                <li class="{{ ($subSectionName == '') ? 'active' : '' }}">{{$sectionName}}</li>
+                <?php if($subSectionName != "") { ?>
                 <li class="active">{{$subSectionName}}</li>
+                <?php } } ?>
             </ol>
             <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                 <i class="fa fa-th icon"></i>

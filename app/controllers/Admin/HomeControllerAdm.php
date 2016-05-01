@@ -3,6 +3,8 @@
 */
 class HomeControllerAdm extends BaseController
 {
+	protected $sectionName =  "Inicio";
+
 	public function getHome()
 	{
 		return View::make('adm.home.index')

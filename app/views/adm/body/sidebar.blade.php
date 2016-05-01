@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="side-menu-container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/adm/">
                     <div class="icon icon-logo">
                         <img src="{{Config::get('constants.url_imagenes') . 'logo/logo.svg'}}" alt="Order Tracker logo "/>
                     </div>
@@ -13,6 +13,11 @@
                 </button>
             </div>
             <ul class="nav navbar-nav">
+                <!--<li class="panel panel-default dropdown {{ ($sectionName == 'Inicio') ? 'active' : '' }}">
+                    <a href="/">
+                        <span class="icon fa fa-home"></span><span class="title">Inicio</span>
+                    </a>
+                </li>-->
                 <?php $i=0 ?>
                 @foreach(UrlsAdm::getMenu() as $index => $value)
                 <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
