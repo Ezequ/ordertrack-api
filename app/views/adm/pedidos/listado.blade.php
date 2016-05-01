@@ -108,7 +108,7 @@
                                 <?php $previousData = $object->getStateButton();
                                     $nextData = $object->getStateButton(false);?>
                                 <span data-toggle="tooltip" title="Cancelar"><button type="button" data-toggle="modal" data-target="#modalCancelOrder" class="btn btn-danger btn-sm modalCancelOrder {{ ($previousData) ? '' : 'disabled' }}" data-id="{{$object->id}}" data-state="{{$previousData['id_estado']}}">
-                                    <i class="fa fa-trash-o"></i>
+                                    <i class="fa fa-close"></i>
                                 </button></span>
                                 
                                 @if($nextData)
