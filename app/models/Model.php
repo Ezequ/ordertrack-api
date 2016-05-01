@@ -3,7 +3,7 @@
 abstract class Model extends \Eloquent
 {
 
-	const PAGINATOR = 10;
+	const PAGINATOR = 20;
 
 	protected $allowedFilters = array();
 
