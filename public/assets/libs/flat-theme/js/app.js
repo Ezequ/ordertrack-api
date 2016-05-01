@@ -35,6 +35,7 @@ $(function() {
     "columnDefs": [
         { width: '3%', targets: 0 }
     ],
+      "aaSorting": [],
     //fixedColumns: true,
     "language": {
            "sProcessing":     "Procesando...",
