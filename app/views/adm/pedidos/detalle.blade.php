@@ -1,67 +1,76 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Pedido #{{$order->id}} - Cliente: {{$order->id_cliente}}</h3>
-            </div>
-            <div class="panel-body">
-                <span>Cliente: </span><span style="font-weight: bold">{{$order->id_cliente}}</span><br>
-                <span>Estado: </span><span style="font-weight: bold">{{$order->id_estado}}</span><br>
-                <span>Comentarios: </span><span style="font-weight: bold">{{$order->comentarios}}</span><br>
-                <span>Fecha creacion: </span><span style="font-weight: bold">{{$order->created_at}}</span><br>
-                <span>Fecha ultima actualizacion: </span><span style="font-weight: bold">{{$order->updated_at}}</span><br>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover tablesorter" style="table-layout: fixed;width: 100% !important;">
-                <thead>
-                    <tr>
-                        <th>Nombre producto</th>
-                        <th>Marca</th>
-                        <th>Precio unitario</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                <?php $totalItems = 0;$totalPrice = 0; ?>
-                    @foreach($products as $product)
+<div class="modal-body card">
+
+    <div class="card-body">
+
+        <div>
+            <div class="sub-title">Información del pedido</div>
+            <div>
+                <span class="col-sm-3 col-md-3"><b>N° Pedido:</b></span> <span>{{$order->id}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Cliente:</b></span> <span>{{$order->id_cliente}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Estado:</b></span> <span>{{$order->id_estado}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Comentarios:</b></span> <span>{{$order->comentarios}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Fecha creación:</b></span> <span>{{$order->created_at}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Fecha última actualización:</b></span> <span>{{$order->updated_at}}</span><br>
+
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <div class="sub-title">Listado de productos</div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover tablesorter" style="table-layout: fixed;width: 100% !important;">
+                    <thead>
                         <tr>
-                            <?php $totalItems += $product->cantidad;$totalPrice += $product->precio * $product->cantidad; ?>
-                            <th>{{$product->nombre}}</th>
-                            <th>{{$product->marca}}</th>
-                            <th>${{$product->precio}}</th>
-                            <th>{{$product->cantidad}}</th>
-                            <th>${{$product->precio * $product->cantidad}}</th>
+                            <th class="text-center">Código</th>
+                            <th>Nombre producto</th>
+                            <th>Marca</th>
+                            <th class="text-center">Precio unitario</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Subtotal</th>
+
                         </tr>
-                    @endforeach
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>{{$totalItems}}</th>
-                        <th>${{$totalPrice}}</th>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <?php $totalItems = 0;$totalPrice = 0; ?>
+                        @foreach($products as $product)
+                            <tr>
+                                <?php $totalItems += $product->cantidad;$totalPrice += $product->precio * $product->cantidad; ?>
+                                <th class="text-center">{{$product->id}}</th>
+                                <th>{{$product->nombre}}</th>
+                                <th>{{$product->marca}}</th>
+                                <th class="text-center">${{$product->precio}}</th>
+                                <th class="text-center">{{$product->cantidad}}</th>
+                                <th class="text-center">${{$product->precio * $product->cantidad}}</th>
+                            </tr>
+                        @endforeach
+                        <tr style="border-top: 2px solid #ddd !important;">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-center" style="font-size: 1.5em">{{$totalItems}}</th>
+                            <th class="text-center" style="font-size: 1.5em">${{$totalPrice}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cerrar</button>
-        <button class="btn btn-info" style="float: right;margin-top: 0px;" onclick="modalChangeValue()">Cambiar estado</button>
-        <div class="form-group" style="float: right;margin-right: 15px">
-            <select class="form-control" id="modalstate" name="modalstate" orderid="{{$order->id}}">
-                @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
-                    <option value="{{$code}}" {{$order->id_estado == $name ? 'selected' : ''}}>{{$name}}</option>
-                @endforeach
-            </select>
-        </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cerrar</button>
+    <button class="btn btn-info" style="float: right;margin-top: 0px;" onclick="modalChangeValue()">Cambiar estado</button>
+    <div class="form-group" style="float: right;margin-right: 15px">
+        <select class="form-control" id="modalstate" name="modalstate" orderid="{{$order->id}}">
+            @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                <option value="{{$code}}" {{$order->id_estado == $name ? 'selected' : ''}}>{{$name}}</option>
+            @endforeach
+        </select>
     </div>
 </div>
+
+
+
+
+

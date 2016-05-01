@@ -4,10 +4,10 @@
             <button type="button" class="navbar-expand-toggle">
                 <i class="fa fa-bars icon"></i>
             </button>
-            <!--<ol class="breadcrumb navbar-breadcrumb">
-                <li>Dashboard</li>
-                <li class="active">Dashboard</li>
-            </ol>-->
+            <ol class="breadcrumb navbar-breadcrumb">
+                <li>{{$sectionName}}</li>
+                <li class="active">{{$subSectionName}}</li>
+            </ol>
             <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                 <i class="fa fa-th icon"></i>
             </button>

@@ -3,6 +3,9 @@
 */
 class UsuarioControllerAdm extends AdminController
 {
+	protected $sectionName =  "Usuarios";
+	protected $subSectionName =  "Listado de usuarios";
+
 	public $name = "usuario";
 
 	public function getListado()

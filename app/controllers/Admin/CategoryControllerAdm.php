@@ -3,6 +3,9 @@
 */
 class CategoryControllerAdm extends AdminController
 {
+	protected $sectionName =  "Categorías";
+	protected $subSectionName =  "Listado de categorías";
+
 	public $name = "categoria";
 
 	protected $nameList = "categorias";

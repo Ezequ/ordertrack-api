@@ -15,16 +15,16 @@
             <ul class="nav navbar-nav">
                 <?php $i=0 ?>
                 @foreach(UrlsAdm::getMenu() as $index => $value)
-                <li class="panel panel-default dropdown">
+                <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#dropdown-element-{{ $i }}">
-                        <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}}</span>
+                        <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}} {{ $sectionName}}</span>
                     </a>
                     <!-- Dropdown level 1 -->
                     <div id="dropdown-element-{{ $i }}" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul class="nav navbar-nav">
                                 @foreach($value['submenu'] as $name =>  $href)
-                                <li><a href="{{$href}}">{{$name}}</a></li>
+                                <li class=""><a href="{{$href}}">{{$name}}</a></li>
                                 @endforeach
                             </ul>
                         </div>

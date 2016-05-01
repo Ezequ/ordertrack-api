@@ -27,6 +27,13 @@ $(function() {
   return $('.datatable').DataTable({
     "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
     "paging":   false,
+    "info" : false,
+    "scrollX":        true,
+    "scrollCollapse": true,
+    "columnDefs": [
+        { width: '3%', targets: 0 }
+    ],
+    fixedColumns: true,
     "language": {
            "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",

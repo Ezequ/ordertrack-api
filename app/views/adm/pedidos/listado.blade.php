@@ -1,89 +1,124 @@
 @extends('adm.templates.template')
 @section('content')
+<div class="page-title">
+    <span class="title">{{$subSectionName}}</span>
+</div>
 <div class="row">
     <div class="col-xs-12">
         <div class="card">
+            <!-- <div class="card-header">
+                <div class="card-title">
+                    <div class="title">Filtrar listado</div>
+                </div>
+            </div> -->
+            <div class="card-body">
+                <form class="form-inline" action="{{UrlsAdm::getPedidos()}}" method="get">
+                    <div class="form-group form-group-sm">
+                        <label class="">Estado</label>
+                        <select class="form-control" id="id_estado" name="id_estado" >
+                            <option value="">Elija un estado</option>
+                            @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                                <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="">Cliente</label>
+                        <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="">Vendedor</label>
+                        <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="">Desde</label>
+                        <input type="text" class="form-control datepicker" placeholder="Desde" name="fecha_confirmacion>" value="{{Input::get('fecha_confirmacion>')}}">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="">Hasta</label>
+                        <input type="text" class="form-control datepicker" placeholder="Hasta" name="fecha_confirmacion<" value="{{Input::get('fecha_confirmacion<')}}">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">       
+        <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <div class="title">Listado de {{$nameList}}</div>
+                    <div class="title">Pedidos</div>
                 </div>
             </div>
             <div class="card-body">
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">Filtros</div>
+               <!-- <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="{{UrlsAdm::getPedidos()}}" method="get">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <select class="form-control" id="id_estado" name="id_estado" >
-                                            <option value="">Estado</option>
-                                            @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
-                                                <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control datepicker" placeholder="Desde" name="fecha_confirmacion>" value="{{Input::get('fecha_confirmacion>')}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control datepicker" placeholder="Hasta" name="fecha_confirmacion<" value="{{Input::get('fecha_confirmacion<')}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success" style="width: 100%;margin-top: 0px">Buscar</button>
-                                    </div>
-                                </div>
+                        <form class="form-inline" action="{{UrlsAdm::getPedidos()}}" method="get">
+                            <div class="form-group form-group-sm">
+                                <label class="">Estado</label>
+                                <select class="form-control" id="id_estado" name="id_estado" >
+                                    <option value="">Elija un estado</option>
+                                    @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+                                        <option value="{{$code}}" {{$code == Input::get('id_estado') ? 'selected'  : ''}}>{{$name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <label class="">Cliente</label>
+                                <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <label class="">Vendedor</label>
+                                <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <label class="">Desde</label>
+                                <input type="text" class="form-control datepicker" placeholder="Desde" name="fecha_confirmacion>" value="{{Input::get('fecha_confirmacion>')}}">
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <label class="">Hasta</label>
+                                <input type="text" class="form-control datepicker" placeholder="Hasta" name="fecha_confirmacion<" value="{{Input::get('fecha_confirmacion<')}}">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
-                </div>
-                    <table class="datatable table table-hover">
-                        <thead>
+                </div>    -->       
+                <table class="datatable table table-hover table-striped dt-responsive display responsive nowrap">
+                    <thead>
+                    <tr>
+                        @foreach($fields as $index => $field)
+                            <th class="header">{{$index}}</th>
+                        @endforeach
+                        <th class="header text-center" style="width: 10%;">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($objects as $object)
                         <tr>
                             @foreach($fields as $index => $field)
-                                <th class="header">{{$index}}</th>
+                                <td>{{$object->$field}}</td>
                             @endforeach
-                            <th class="header">Acciones</th>
+                            <td class="text-left">
+                                <button type="button" class="btn btn-info btn-sm" onclick="viewDetail('{{$object->id}}')" data-toggle="tooltip" title="Ver detalle">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                
+                                <?php $previousData = $object->getStateButton();
+                                    $nextData = $object->getStateButton(false);?>
+                                <button type="button" data-toggle="modal" data-target="#modalCancelOrder" class="btn btn-danger btn-sm modalCancelOrder {{ ($previousData) ? '' : 'disabled' }}" data-id="{{$object->id}}" data-state="{{$previousData['id_estado']}}" data-toggle="tooltip" title="Cancelar">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                                
+                                @if($nextData)
+                                    <a href="#" type="button" class="btn btn-success btn-sm" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">{{$nextData['nombre']}}</a>
+                                @endif
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($objects as $object)
-                            <tr>
-                                @foreach($fields as $index => $field)
-                                    <td>{{$object->$field}}</td>
-                                @endforeach
-                                <td>
-                                    <div class="botones_columna">
-                                        <button type="button" class="btn btn-primary" onclick="viewDetail('{{$object->id}}')">Ver detalle</button>
-                                        <?php $previousData = $object->getStateButton();
-                                            $nextData = $object->getStateButton(false);?>
-                                        @if($nextData)
-                                            <a href="#" class="btn btn-default change-status" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">{{$nextData['nombre']}}</a>
-                                        @endif
-                                        @if($previousData)
-                                            <a href="#" class="btn btn-default change-status" onclick="cancelOrder('{{$object->id}}','{{$previousData['id_estado']}}')">{{$previousData['nombre']}}</a>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -94,19 +129,45 @@
         {{method_exists($objects, 'links') ? $objects->appends(Input::except('page'))->links() : ''}}
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- Modal: View order details -->
+<div class="modal fade bs-example-modal-lg modal-success" id="myModal" tabindex="-1" role="success" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalle del pedido</h4>
+            </div>
+            <div class="modal-content-bis">
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Modal: Cancel order -->
+<div class="modal fade modal-danger" id="modalCancelOrder" tabindex="-1" role="danger" aria-labelledby="modalCancelOrder" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cancelar pedido</h4>
+            </div>
+            <div class="modal-body">
+                Se cancelará el pedido N° <span id="orderId"></span>, ¿desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                <button id="modalCancelOrderConfirm" type="button" class="btn btn-danger">Confirmar cancelación</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @endsection
 @section('scripts')
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    
 <script type="text/javascript">
     function changeStatus(id,status)
     {
@@ -126,7 +187,7 @@
             url: urlDetail + id,
             context: document.body
         }).done(function(response) {
-            modal = $('.modal-body');
+            modal = $('#myModal .modal-content-bis');
             modal.empty();
             modal.append(response);
             /* $("#modalstate").attr("orderid", id);*/
@@ -147,20 +208,27 @@
 
     $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
 
-    function cancelOrder(id,state)
-    {
-        var strconfirm = confirm("¿Seguro deseas eliminar el pedido numero "+id+"?");
-        if (strconfirm == true)
-        {
-            changeStatus(id,state);
-        }
-    }
+
+    $('.modalCancelOrder').on('click', function(e) {
+        if($(this).hasClass('disabled')) {
+            e.stopPropagation();
+        }  
+    });
+
+    $(document).on("click", ".modalCancelOrder", function () {
+         var orderId = $(this).data('id');
+         var orderState = $(this).data('state');
+         $("#modalCancelOrder .modal-body #orderId").html(orderId);
+
+         $('#modalCancelOrderConfirm').off('click').on('click', function(e) {
+              $('#modalCancelOrder').modal('hide');
+             changeStatus(orderId,orderState);
+        });
+    });
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
 
 </script>
-<style>
-    .change-status
-    {
-        width: 150px;
-    }
-</style>
 @endsection

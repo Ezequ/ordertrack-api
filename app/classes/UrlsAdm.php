@@ -91,28 +91,28 @@ class UrlsAdm
 			"Pedidos" => array(
 				"icon" => "shopping-cart",
 				"submenu" => array(
-					"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
-					"Listar pedidos" => "/adm/pedido",
+					"Listado de pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
+					"Listado de pedidos" => "/adm/pedido",
 				)
 			),
 			"Productos" => array(
 				"icon" => "cubes",
 				"submenu" => array(
-					"Listar productos" => "/adm/producto",
+					"Listado de productos" => "/adm/producto",
 					"Crear producto" => "/adm/producto/crear",
 				)
 			),
-			"Categorias" => array(
+			"Categorías" => array(
 				"icon" => "tag",
 				"submenu" => array(
-					"Listar categorias" => "/adm/categoria",
-					"Crear categoria" => "/adm/categoria/crear",
+					"Listado de categorías" => "/adm/categoria",
+					"Crear categoría" => "/adm/categoria/crear",
 				)
 			),
 			"Usuarios" => array(
 				"icon" => "users",
 				"submenu" => array(
-					"Listar usuarios" => "/adm/usuario",
+					"Listado de usuarios" => "/adm/usuario",
 					"Crear usuario" => "/adm/usuario/crear",
 				)
 			)

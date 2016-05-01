@@ -15,6 +15,9 @@ abstract class AdminController extends BaseController
 				->with('model', $this->getModel())
 				->with("objects", $objects)
 				->with("nameList", $this->nameList)
+				->with("sectionName", $this->sectionName)
+				->with("subSectionName", $this->subSectionName)
+				->with("nameList", $this->nameList)
 				->with("name", $this->name)
 				->with("buttons", $buttons)
 				->with("tamCol", $tamCol)
@@ -34,7 +37,9 @@ abstract class AdminController extends BaseController
 				   ->with("name", $this->name)
 				   ->with("back", $back)
 				   ->with("filters", $filters)
-				   ->with("url", $url);
+				   ->with("url", $url)
+				   ->with("sectionName", $this->sectionName)
+				   ->with("subSectionName", $this->subSectionName);
 		}
 	}
 
@@ -49,7 +54,9 @@ abstract class AdminController extends BaseController
 				   ->with("object", $object)
 				   ->with("name", $this->name)
 				   ->with("back", $back)
-				   ->with("url", $url);
+				   ->with("url", $url)
+				   ->with("sectionName", $this->sectionName)
+				   ->with("subSectionName", $this->subSectionName);
 		}
 	}
 

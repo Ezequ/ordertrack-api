@@ -3,8 +3,10 @@
 */
 class PedidosControllerAdm extends AdminController
 {
-	public $name = "pedido";
+	protected $sectionName =  "Pedidos";
+	protected $subSectionName =  "Listado de pedidos";
 
+	public $name = "pedido";
 	protected $nameList =  "pedidos";
 
 	public function getListado()

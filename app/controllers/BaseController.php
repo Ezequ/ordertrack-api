@@ -2,6 +2,9 @@
 
 class BaseController extends Controller {
 
+	protected $sectionName =  "";
+	protected $subSectionName =  "";
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

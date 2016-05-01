@@ -15,3 +15,13 @@
 	font-size: 1.7em;
 	font-style: normal;
 }
+
+table.dataTable.no-footer,
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+	border-bottom: 0px solid #111 !important;
+}
+
+.modal-body.card {
+	margin: 0 !important;
+	padding: 0 !important;
+}

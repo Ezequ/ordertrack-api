@@ -3,6 +3,9 @@
 */
 class ProductsControllerAdm extends AdminController
 {
+	protected $sectionName =  "Productos";
+	protected $subSectionName =  "Listado de productos";
+
 	public $name = "producto";
 
 	protected $nameList =  "productos";

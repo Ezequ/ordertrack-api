@@ -5,7 +5,9 @@ class HomeControllerAdm extends BaseController
 {
 	public function getHome()
 	{
-		return View::make('adm.home.index');
+		return View::make('adm.home.index')
+			    ->with("sectionName", $this->sectionName)
+				->with("subSectionName", $this->subSectionName);
 	}
 
 	public function getLogin()
