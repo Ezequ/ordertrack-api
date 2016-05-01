@@ -24,14 +24,17 @@ $(function() {
 });
 
 $(function() {
-  return $('.datatable').DataTable({
+  var dt = $('.datatable').DataTable({
     "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
     "paging":   false,
     "info" : false,
-    "responsive": true,
-    "bAutoWidth":false, 
-    "scrollX":        true,
-    "scrollCollapse": true,
+    /*"responsive": true,*/
+    "responsive": {
+        details: true
+    },
+    "autoWidth":false, 
+    /*"scrollX":        true,*/
+    /*"scrollCollapse": true,*/
     "columnDefs": [
         { width: '3%', targets: 0 }
     ],
@@ -61,6 +64,9 @@ $(function() {
             }
         }
   });
+
+
+  return dt;
 });
 
 $(function() {
