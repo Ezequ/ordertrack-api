@@ -63,7 +63,12 @@
     <button class="btn btn-info" style="float: right;margin-top: 0px;" onclick="modalChangeValue()">Cambiar estado</button>
     <div class="form-group" style="float: right;margin-right: 15px">
         <select class="form-control" id="modalstate" name="modalstate" orderid="{{$order->id}}">
-            @foreach(OrderStatesDefinition::getDefinition() as $code => $name)
+            <?php $previousData = $order->getStateButton();
+            $nextData = $order->getStateButton(false);
+            $states[$nextData['id_estado']] = $nextData['nombre'];
+            $states[$previousData['id_estado']] = $previousData['nombre'];
+            ?>
+            @foreach($states as $code => $name)
                 <option value="{{$code}}" {{$order->id_estado == $name ? 'selected' : ''}}>{{$name}}</option>
             @endforeach
         </select>
