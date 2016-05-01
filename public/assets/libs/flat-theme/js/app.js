@@ -28,11 +28,8 @@ $(function() {
     "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
     "paging":   false,
     "info" : false,
-    /*"responsive": true,*/
-    "responsive": {
-        details: true
-    },
-    "autoWidth":false, 
+    "responsive": true,
+    "bAutoWidth":false, 
     /*"scrollX":        true,*/
     /*"scrollCollapse": true,*/
     "columnDefs": [
