@@ -15,7 +15,7 @@ class ClientTableSeeder extends Seeder {
 				'telefono' =>  $faker->phoneNumber,
 				'observaciones' => $faker->paragraph(),
 				'id_vendedor' => rand(1,5),
-				'fecha_visita' => date('Y-m-d', strtotime('-' . rand(0,2).' days')),
+				'fecha_visita' => date('Y-m-d', strtotime('+' . rand(0,6).' days')),
 			));
 		}
 	}
