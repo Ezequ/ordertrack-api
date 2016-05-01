@@ -17,7 +17,7 @@
                 @foreach(UrlsAdm::getMenu() as $index => $value)
                 <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#dropdown-element-{{ $i }}">
-                        <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}} {{ $sectionName}}</span>
+                        <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}}</span>
                     </a>
                     <!-- Dropdown level 1 -->
                     <div id="dropdown-element-{{ $i }}" class="panel-collapse collapse">
