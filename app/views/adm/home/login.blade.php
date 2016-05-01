@@ -23,8 +23,8 @@
 				</div>
 				@endif
 				<form id="form1" name="form1" method="post" action="{{UrlsAdm::postLogin()}}">
-				    <input  type="text" name="email"  value="" placeholder="Email" required autofocus />
-				    <input type="password" name="password" value=""  placeholder="Contraseña" required />
+				    <input  type="text" name="email" id="email"  value="" placeholder="Email" required autofocus />
+				    <input type="password" name="password" id="password" value=""  placeholder="Contraseña" required />
 				    <button type="submit" >Ingresar</button>
 			    </form>
 			</div>
