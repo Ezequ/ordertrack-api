@@ -75,7 +75,12 @@ class PedidosControllerAdm extends AdminController
 		foreach ($orderProductsFilters as $index => $orderProduct) {
 			$ids[] = $orderProduct->id;
 		}
-		return Order::whereIn('id', $ids)->where('id_estado', '<>', Order::ACTIVE_STATE)->paginate(Model::PAGINATOR);
+		$order = Order::whereIn('id', $ids)
+			->where('id_estado', '<>', Order::ACTIVE_STATE);
+		if(Input::get('orderby')){
+			$order->orderBy(Input::get('orderby'), Input::get('orientation'));
+		}
+		return $order->paginate(Model::PAGINATOR);
 	}
 
 }

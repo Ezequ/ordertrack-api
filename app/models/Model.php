@@ -41,7 +41,7 @@ abstract class Model extends \Eloquent
 				continue;
 			}
 			if ($name = self::explodeFilter($filterName, ">")){
-				$filters[] = array('name' => $name, 'compare' => ">", 'value' => $value);
+				$filters[] = array('name' => $name, 'compare' => ">=", 'value' => $value);
 				continue;
 			}
 			if ($name = self::explodeFilter($filterName, "<")){
