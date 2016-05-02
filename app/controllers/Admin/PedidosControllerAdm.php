@@ -76,10 +76,8 @@ class PedidosControllerAdm extends AdminController
 			$ids[] = $orderProduct->id;
 		}
 		$order = Order::whereIn('id', $ids)
-			->where('id_estado', '<>', Order::ACTIVE_STATE);
-		if(Input::get('orderby')){
-			$order->orderBy(Input::get('orderby'), Input::get('orientation'));
-		}
+			->where('id_estado', '<>', Order::ACTIVE_STATE)
+			->orderBy(Input::get('orderby', 'fecha_confirmacion'), Input::get('orientation','desc'));
 		return $order->paginate(Model::PAGINATOR);
 	}
 
