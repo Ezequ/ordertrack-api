@@ -119,14 +119,9 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{method_exists($objects, 'links') ? $objects->appends(Input::except('page'))->links() : ''}}
             </div>
         </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-{{$tamCol}}">
-        {{method_exists($objects, 'links') ? $objects->appends(Input::except('page'))->links() : ''}}
     </div>
 </div>
 <!-- Modal: View order details -->
