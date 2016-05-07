@@ -94,6 +94,7 @@ return array(
 	*/
 
 	'providers' => array(
+		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
@@ -149,7 +150,7 @@ return array(
 	*/
 
 	'aliases' => array(
-
+		'QrCode'			=> 'SimpleSoftwareIO\QrCode\Facades\QrCode',
 		'App'               => 'Illuminate\Support\Facades\App',
 		'Artisan'           => 'Illuminate\Support\Facades\Artisan',
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
