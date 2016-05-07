@@ -4,15 +4,15 @@ class ClientsControllerAdm extends AdminController
     protected $sectionName =  "Clientes";
     protected $subSectionName =  "Listado de clientes";
 
-    public $name = "pedido";
-    protected $nameList =  "pedidos";
+    public $name = "cliente";
+    protected $nameList =  "clientes";
 
     public function getListado()
     {
         /* nombre acciones habilitadas*/
         $buttons = array('detalle' => null);
         /* nombre => campo en base de datos	*/
-        $fields = array('id' => 'id', 'Nombre y apellido' => 'apenom', 'Vendedor' => 'id_vendedor' ,
+        $fields = array('id' => 'id', 'Razón social' => 'razon_social', 'Vendedor' => 'id_vendedor' ,
             'Telefono' => 'telefono', 'Direccion' => 'direccion', "Fecha visita programada" => "fecha_visita",
             );
         /*	listar(campos,nombre,botones,vista,tamtabla);	*/
