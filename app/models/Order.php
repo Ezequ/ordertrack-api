@@ -59,6 +59,11 @@ class Order extends Model{
 		}
 		if(!$existsErrors || $force){
 			$this->fecha_confirmacion =	date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
+			$client = Client::find($this->id_cliente);
+			if($client){
+				$client->fecha_ultima_visita = date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
+				$client->save();
+			}
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
