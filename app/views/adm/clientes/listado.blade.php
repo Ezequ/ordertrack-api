@@ -67,7 +67,8 @@
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR">
                                     <i class="fa fa-eye"></i>
                                 </button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente"
+                                onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
                                     <i class="fa fa-edit"></i>
                                 </button>
                             </td>

@@ -36,6 +36,11 @@ class UrlsAdm
 		return "/adm/pedido";
 	}
 
+	public static function getClientEdit($id)
+	{
+		return "/adm/cliente/editar/{$id}";
+	}
+
 	public static function getMenu()
 	{
 		return array(
