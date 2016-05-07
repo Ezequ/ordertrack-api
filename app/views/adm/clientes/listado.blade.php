@@ -64,7 +64,7 @@
                                 <td>{{$object->$field}}</td>
                             @endforeach
                             <td class="text-left">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="printimage()">
                                     <i class="fa fa-eye"></i>
                                 </button>
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente"
@@ -89,5 +89,11 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+        function printimage(){
+            var URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Escudo_San_Lorenzo_de_Santa_Ana.svg/635px-Escudo_San_Lorenzo_de_Santa_Ana.svg.png";
+            var W = window.open(URL);
+            W.window.print();
+        }
     </script>
 @endsection

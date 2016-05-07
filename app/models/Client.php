@@ -58,8 +58,13 @@ class Client extends Model {
 			"&sensor=false&region=" . urlencode($region));
 		$json = json_decode($json);
 		$return = array();
-		$return['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-		$return['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+		try{
+			$return['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+			$return['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+		} catch(Exception $e) {
+			$return['lat'] = "";
+			$return['long'] = "";
+		}
 		return $return;
 	}
 	
