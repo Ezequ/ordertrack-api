@@ -1,9 +1,10 @@
 @extends('adm.templates.template')
 @section('content')
-<div id="page-wrapper">
+<div class="page-title">
+    <span class="title">{{$subSectionName}}</span>
+</div>
 <?php
   $f = new Formularios();
-  $f->cabecera(ucfirst($name),'Complete el siguiente formulario para modificar.'); 
   $f->inicioForm('post',$url);
   foreach ($object->getInputsForEdit() as $key => $input) 
   {
@@ -12,11 +13,10 @@
   	}
   	$f->addGenericInput($input['type'], $input['data1'],  $input['data2'],  $input['data3'],  $input['data4'],  $input['data5']);
   }
-  $f->addSubmit('Modificar','aceptar','aceptar');
+  $f->addSubmit('Crear','aceptar','aceptar');
   $f->addBack($back);
   $f->finForm();
   $f->generarForm(); 
   //require_once("views/layout/result.phtml");
 ?>
-</div>
 @endsection

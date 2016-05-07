@@ -36,9 +36,9 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 	Route::get('/pedido/changeStatus', 'PedidosControllerAdm@changeStatus');
 	/*	Clientes	*/
 	Route::get('/cliente', 'ClientsControllerAdm@getListado');
-	Route::get('/cliente/crear', 'ClientsControllerAdm@getCreate');
-	Route::get('/cliente/editar/{id}', 'ClientsControllerAdm@getEdit');
-	Route::post('/cliente/editar/{id}', 'ClientsControllerAdm@postEdit');
-	Route::post('/cliente/crear', 'ClientsControllerAdm@postCreate');
+	Route::get('/cliente/crear', 'ClientsNewControllerAdm@getCreate');
+	Route::get('/cliente/editar/{id}', 'ClientsEditControllerAdm@getEdit');
+	Route::post('/cliente/editar/{id}', 'ClientsEditControllerAdm@postEdit');
+	Route::post('/cliente/crear', 'ClientsNewControllerAdm@postCreate');
 	Route::get('/cliente/borrar/{id}', 'ClientsControllerAdm@getDelete');
 });
