@@ -87,6 +87,13 @@ class UrlsAdm
 				"Listar usuarios" => "/adm/usuario",
 				"Crear usuario" => "/adm/usuario/crear",
 				),*/
+			"Clientes" => array(
+				"icon" => "suitcase",
+				"submenu" => array(
+					"Listado de clientes" => "/adm/cliente",
+					"Crear cliente" => "/adm/cliente/crear"
+				)
+			),
 
 			"Pedidos" => array(
 				"icon" => "shopping-cart",
