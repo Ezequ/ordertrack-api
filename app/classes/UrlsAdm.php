@@ -41,6 +41,11 @@ class UrlsAdm
 		return "/adm/cliente/editar/{$id}";
 	}
 
+	public static function getClientPrintQr($id)
+	{
+		return "/adm/cliente/imprimir/{$id}";
+	}
+
 	public static function getMenu()
 	{
 		return array(

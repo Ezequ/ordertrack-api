@@ -31,4 +31,13 @@ class ClientsControllerAdm extends AdminController
         return $objects;
     }
 
+
+
+    public function getPrint($id)
+    {
+        if($id){
+            return View::make('adm.clientes.imprimir')->with('id',$id);
+		}
+    }
+
 }

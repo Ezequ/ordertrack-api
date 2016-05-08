@@ -64,7 +64,7 @@
                                 <td>{{$object->$field}}</td>
                             @endforeach
                             <td class="text-left">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="printimage({{$object->id}})">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="OpenInNewTab('{{UrlsAdm::getClientPrintQr($object->id)}}')">
                                     <i class="fa fa-eye"></i>
                                 </button>
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente"
@@ -73,7 +73,6 @@
                                 </button>
                             </td>
                         </tr>
-                        <img style="display:none" id="qr-{{$object->id}}" src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(500)->generate($object->id)) }} ">
                     @endforeach
                     </tbody>
                 </table>
@@ -91,9 +90,10 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
 
-        function printimage(id){
-            pwin = window.open(document.getElementById("qr-"+id).src,"_blank");
-            pwin.onload = function () {console.log("asd");window.print();}
+        function OpenInNewTab(url)
+        {
+            var win = window.open(url, '_blank');
+            win.focus();
         }
     </script>
 @endsection
