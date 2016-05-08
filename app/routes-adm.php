@@ -42,4 +42,5 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
 	Route::post('/cliente/crear', 'ClientsNewControllerAdm@postCreate');
 	Route::get('/cliente/borrar/{id}', 'ClientsControllerAdm@getDelete');
 	Route::get('/cliente/imprimir/{id}', 'ClientsControllerAdm@getPrint');
+	Route::get('/cliente/delete/{id}', 'ClientsControllerAdm@getDelete');
 });

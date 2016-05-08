@@ -71,6 +71,10 @@
                                 onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
                                     <i class="fa fa-edit"></i>
                                 </button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Eliminar cliente"
+                                        onclick="window.location='{{UrlsAdm::getClientDelete($object->id)}}'">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach

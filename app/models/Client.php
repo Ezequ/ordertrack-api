@@ -2,12 +2,12 @@
 
 class Client extends Model {
 	protected $fillable = ['apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
-							'razon_social', 'cod_cliente', 'fecha_ultima_visita'];
+							'razon_social', 'cod_cliente', 'fecha_ultima_visita','estado'];
 
 	protected $table = "clientes";
 
 	protected $allowedFilters = array('apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
-		'razon_social', 'cod_cliente');
+		'razon_social', 'cod_cliente', 'estado');
 
 	public $timestamps = false;
 
@@ -25,6 +25,7 @@ class Client extends Model {
 		$inputs[] = array("type" => 'select', 'data1' => 'Vendedor', 'data2' => 'id_vendedor', 'data3' => SellerDefinition::getDefinition(), 'data4' => $this->id_vendedor);
 		$inputs[] = array("type" => 'common', 'data1' => 'Codigo cliente', 'data2' => 'cod_cliente', 'data3' => $this->cod_cliente);
 		$inputs[] = array("type" => 'text', 'data1' => 'Observaciones', 'data2' => 'observaciones', 'data3' => $this->observaciones);
+		$inputs[] = array("type" => 'hidden', 'data1' => 'estado', 'data2' => ClientsStatesDefinition::STATE_NORMAL);
 		return $inputs;
 	}
 

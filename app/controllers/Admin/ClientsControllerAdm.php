@@ -26,7 +26,9 @@ class ClientsControllerAdm extends AdminController
 
     public function getObjectsToList()
     {
-        $objects = Client::getList(Input::all(),true);
+        $data = Input::all();
+        $data['estado>'] = ClientsStatesDefinition::STATE_NORMAL; // Exclude clients with state 0
+        $objects = Client::getList($data,true);
         $objects = SellerDefinition::convertObjectListFieldToDefinition($objects, 'id_vendedor');
         return $objects;
     }
@@ -38,6 +40,16 @@ class ClientsControllerAdm extends AdminController
         if($id){
             return View::make('adm.clientes.imprimir')->with('id',$id);
 		}
+    }
+
+    public function getDelete($id)
+    {
+        $client = Client::find($id);
+        if ($client){
+            $client->estado = ClientsStatesDefinition::STATE_DELETED;
+            $client->save();
+        }
+        return Redirect::back();
     }
 
 }

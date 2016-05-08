@@ -46,6 +46,11 @@ class UrlsAdm
 		return "/adm/cliente/imprimir/{$id}";
 	}
 
+	public static function getClientDelete($id)
+	{
+		return "/adm/cliente/delete/{$id}";
+	}
+
 	public static function getMenu()
 	{
 		return array(
