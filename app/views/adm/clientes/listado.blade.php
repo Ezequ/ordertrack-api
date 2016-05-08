@@ -65,7 +65,7 @@
                             @endforeach
                             <td class="text-left">
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="OpenInNewTab('{{UrlsAdm::getClientPrintQr($object->id)}}')">
-                                    <i class="fa fa-printgi"></i>
+                                    <i class="fa fa-print"></i>
                                 </button>
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente"
                                 onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
