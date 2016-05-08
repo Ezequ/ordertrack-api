@@ -39,15 +39,19 @@ class Client extends Model {
 		static::saving(function($model)
 		{
 			$latlong = self::getLatLong($model->direccion);
-			$model->latitud = $latlong['lat'];
-			$model->longitud = $latlong['long'];
+			if ($latlong){
+				$model->latitud = $latlong['lat'];
+				$model->longitud = $latlong['long'];
+			}
 		});
 
 		static::updating(function($model)
 		{
 			$latlong = self::getLatLong($model->direccion);
-			$model->latitud = $latlong['lat'];
-			$model->longitud = $latlong['long'];
+			if ($latlong){
+				$model->latitud = $latlong['lat'];
+				$model->longitud = $latlong['long'];
+			}
 		});
 	}
 
@@ -63,8 +67,7 @@ class Client extends Model {
 			$return['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
 			$return['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 		} catch(Exception $e) {
-			$return['lat'] = "";
-			$return['long'] = "";
+			$return = null;
 		}
 		return $return;
 	}
