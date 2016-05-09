@@ -28,7 +28,7 @@ class AddUltimaVisitaToClients extends Migration {
 	{
 		Schema::table('clientes', function(Blueprint $table)
 		{
-			$table->drop("fecha_ultima_visita");
+			$table->dropColumn("fecha_ultima_visita");
 		});
 	}
 
