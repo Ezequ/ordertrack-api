@@ -71,17 +71,18 @@ class PedidosControllerAdm extends AdminController
 	public function getFilteredOrders()
 	{
 		$filters = Input::all();
-		if (Auth::user()->isSeller()){
-			$filters['id_vendedor'] = Auth::user()->id_vendedor;
-		}
 		$orderProductsFilters = OrdersProducts::getList($filters);
 		$ids = array();
 		foreach ($orderProductsFilters as $index => $orderProduct) {
 			$ids[] = $orderProduct->id;
 		}
 		$order = Order::whereIn('id', $ids)
-			->where('id_estado', '<>', Order::ACTIVE_STATE)
-			->orderBy(Input::get('orderby', 'fecha_confirmacion'), Input::get('orientation','desc'));
+			->where('id_estado', '<>', Order::ACTIVE_STATE);
+
+		if (Auth::user()->isSeller()){
+			$order->where('id_vendedor', Auth::user()->id);
+		}
+		$order->orderBy(Input::get('orderby', 'fecha_confirmacion'), Input::get('orientation','desc'));
 		return $order->paginate(Model::PAGINATOR);
 	}
 
