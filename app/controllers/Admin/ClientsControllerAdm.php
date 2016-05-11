@@ -27,6 +27,9 @@ class ClientsControllerAdm extends AdminController
     public function getObjectsToList()
     {
         $data = Input::all();
+        if (Auth::user()->isSeller()){
+            $data['id_vendedor'] = Auth::user()->id;
+        }
         $data['estado>'] = ClientsStatesDefinition::STATE_NORMAL; // Exclude clients with state 0
         $objects = Client::getList($data,true);
         $objects = SellerDefinition::convertObjectListFieldToDefinition($objects, 'id_vendedor');
