@@ -70,7 +70,11 @@ class PedidosControllerAdm extends AdminController
 
 	public function getFilteredOrders()
 	{
-		$orderProductsFilters = OrdersProducts::getList(Input::all());
+		$filters = Input::all();
+		if (Auth::user()->isSeller()){
+			$filters['id_vendedor'] = Auth::user()->id_vendedor;
+		}
+		$orderProductsFilters = OrdersProducts::getList($filters);
 		$ids = array();
 		foreach ($orderProductsFilters as $index => $orderProduct) {
 			$ids[] = $orderProduct->id;

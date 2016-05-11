@@ -59,5 +59,10 @@ class User extends Model implements UserInterface, RemindableInterface {
 		return in_array($this->rol,explode(",",$allowedRols));
 	}
 
+	public function isSeller()
+	{
+		return $this->rol == RolsDefinition::SELLER;
+	}
+
 
 }

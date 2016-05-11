@@ -26,10 +26,12 @@
                         <label class="">Cliente</label>
                         <input type="text" class="form-control" placeholder="Cliente" name="razon_social%" value="{{Input::get('razon_social%')}}">
                     </div>
+                    @if(!Auth::user()->isSeller())
                     <div class="form-group form-group-sm">
                         <label class="">Vendedor</label>
                         <input type="text" class="form-control" placeholder="Vendedor" name="nombre_usuario%" value="{{Input::get('nombre_usuario%')}}">
                     </div>
+                    @endif
                     <div class="form-group form-group-sm">
                         <label class="">Desde</label>
                         <input type="text" class="form-control datepicker" placeholder="Desde" name="fecha_confirmacion>" value="{{Input::get('fecha_confirmacion>')}}">
