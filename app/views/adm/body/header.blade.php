@@ -25,7 +25,7 @@
                     <li>
                         <div class="profile-info">
                             <h4 class="username">{{Auth::user()->nombre_usuario}}</h4>
-                            <p>Administrador</p>
+                            <p>{{RolsDefinition::getNameById(Auth::user()->rol)}}</p>
                             <div class="btn-group margin-bottom-2x" role="group">
                                 <a href="{{UrlsAdm::getUserData()}}" type="button" class="btn btn-default"><i class="fa fa-user"></i> Perfil</a>
                                 <a href="{{UrlsAdm::getLogout()}}" type="button" class="btn btn-default"><i class="fa fa-sign-out"></i> Cerrar sesión</a>

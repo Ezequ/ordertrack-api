@@ -34,4 +34,15 @@ class Definition
         return null;
     }
 
+    public static function getNameById($id)
+    {
+        $called = get_called_class();
+        $definition = $called::getDefinition();
+        if (isset($definition[$id])){
+            return $definition[$id];
+        } else {
+            return "";
+        }
+    }
+
 }
