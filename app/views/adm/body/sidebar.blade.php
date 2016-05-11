@@ -20,21 +20,23 @@
                 </li>-->
                 <?php $i=0 ?>
                 @foreach(UrlsAdm::getMenu() as $index => $value)
-                <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
-                    <a data-toggle="collapse" href="#dropdown-element-{{ $i }}">
-                        <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}}</span>
-                    </a>
-                    <!-- Dropdown level 1 -->
-                    <div id="dropdown-element-{{ $i }}" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <ul class="nav navbar-nav">
-                                @foreach($value['submenu'] as $name =>  $href)
-                                <li class=""><a href="{{$href}}">{{$name}}</a></li>
-                                @endforeach
-                            </ul>
+                    @if(Auth::user()->hasAccess($value['allowed-rols']))
+                    <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
+                        <a data-toggle="collapse" href="#dropdown-element-{{ $i }}">
+                            <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}}</span>
+                        </a>
+                        <!-- Dropdown level 1 -->
+                        <div id="dropdown-element-{{ $i }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    @foreach($value['submenu'] as $name =>  $href)
+                                    <li class=""><a href="{{$href}}">{{$name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                    @endif
                 <?php $i++ ?>
                 @endforeach
             </ul>

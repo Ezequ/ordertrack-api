@@ -54,5 +54,10 @@ class User extends Model implements UserInterface, RemindableInterface {
 		});
 	}
 
+	public function hasAccess($allowedRols)
+	{
+		return in_array($this->rol,explode(",",$allowedRols));
+	}
+
 
 }

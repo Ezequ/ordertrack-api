@@ -54,63 +54,17 @@ class UrlsAdm
 	public static function getMenu()
 	{
 		return array(
-			/*"Home" => array(
-				"Listar sliders" => "/adm/homeslider",
-				"Crear slider" => "/adm/homeslider/crear",
-				),
-			"Familias" => array(
-				"Listar familias" => "/adm/presupuestador",
-				"Crear familia" => "/adm/presupuestador/crear",
-				),
-
-
-			"Promociones" => array(
-				"Listar productos" => "/adm/promocion",
-				"Crear producto" => "/adm/promocion/crear",
-				),
-			"Descargas" => array(
-				"Listar descargas" => "/adm/descarga",
-				"Crear descarga" => "/adm/descarga/crear",
-				),
-			"Datos de secciones" => array(
-				"Listar secciones" => "/adm/seccion",
-				),
-			"Metadata" => array(
-				"Listar metadata" => "/adm/metadata",
-				),*/
-
-			/*"Imagenes generales" => array(
-				"Listar imagenes generales" => "/adm/imagenes",
-				),*/
-
-			/*"Pedidos" => array(
-				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
-
-			"Pedidos" => array(
-/*				"Listar pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
-				"Listar pedidos" => "/adm/pedido",
-			),
-			"Productos" => array(
-				"Listar productos" => "/adm/producto",
-				"Crear producto" => "/adm/producto/crear",
-			),
-			"Categorias" => array(
-				"Listar categorias" => "/adm/categoria",
-				"Crear categoria" => "/adm/categoria/crear",
-			),
-			"Usuarios" => array(
-				"Listar usuarios" => "/adm/usuario",
-				"Crear usuario" => "/adm/usuario/crear",
-				),*/
 			"Clientes" => array(
 				"icon" => "suitcase",
+				"allowed-rols" => "1,2",
 				"submenu" => array(
 					"Listado de clientes" => "/adm/cliente",
-					"Crear cliente" => "/adm/cliente/crear"
+					"Crear cliente" => "/adm/cliente/crear",
 				)
 			),
 
 			"Pedidos" => array(
+				"allowed-rols" => "1,2",
 				"icon" => "shopping-cart",
 				"submenu" => array(
 					"Listado de pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
@@ -118,6 +72,7 @@ class UrlsAdm
 				)
 			),
 			"Productos" => array(
+				"allowed-rols" => "2",
 				"icon" => "cubes",
 				"submenu" => array(
 					"Listado de productos" => "/adm/producto",
@@ -125,6 +80,7 @@ class UrlsAdm
 				)
 			),
 			"Categorías" => array(
+				"allowed-rols" => "2",
 				"icon" => "tag",
 				"submenu" => array(
 					"Listado de categorías" => "/adm/categoria",
@@ -132,6 +88,7 @@ class UrlsAdm
 				)
 			),
 			"Usuarios" => array(
+				"allowed-rols" => "2",
 				"icon" => "users",
 				"submenu" => array(
 					"Listado de usuarios" => "/adm/usuario",
