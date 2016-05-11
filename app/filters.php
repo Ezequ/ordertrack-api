@@ -102,3 +102,20 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('rol',function()
+{
+	$user = Auth::user();
+	$uri = Request::path();
+	$parts = explode('/', $uri);
+	if (count($parts) == 1){
+		// case uri => /adm
+		return;
+	} else if (count($parts) > 1){
+		$module = $parts[1];
+		$rols = UrlsAdm::getAllowedRolsByModule($module);
+		if (!UrlsAdm::uriAllowedByAnyLoggedUser($uri) && !$user->hasAccess($rols)){
+			return Redirect::to('/adm');
+		}
+	}
+});

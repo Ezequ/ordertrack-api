@@ -57,6 +57,7 @@ class UrlsAdm
 			"Clientes" => array(
 				"icon" => "suitcase",
 				"allowed-rols" => "1,2",
+				'module' => 'cliente',
 				"submenu" => array(
 					"Listado de clientes" => "/adm/cliente",
 					"Crear cliente" => "/adm/cliente/crear",
@@ -66,6 +67,7 @@ class UrlsAdm
 			"Pedidos" => array(
 				"allowed-rols" => "1,2",
 				"icon" => "shopping-cart",
+				'module' => 'pedido',
 				"submenu" => array(
 					"Listado de pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
 					"Listado de pedidos" => "/adm/pedido?" . self::getOrdersCustomFilters(),
@@ -74,6 +76,7 @@ class UrlsAdm
 			"Productos" => array(
 				"allowed-rols" => "2",
 				"icon" => "cubes",
+				'module' => 'producto',
 				"submenu" => array(
 					"Listado de productos" => "/adm/producto",
 					"Crear producto" => "/adm/producto/crear",
@@ -82,6 +85,7 @@ class UrlsAdm
 			"Categorías" => array(
 				"allowed-rols" => "2",
 				"icon" => "tag",
+				"module" => 'categoria',
 				"submenu" => array(
 					"Listado de categorías" => "/adm/categoria",
 					"Crear categoría" => "/adm/categoria/crear",
@@ -90,6 +94,7 @@ class UrlsAdm
 			"Usuarios" => array(
 				"allowed-rols" => "2",
 				"icon" => "users",
+				'module' => 'usuario',
 				"submenu" => array(
 					"Listado de usuarios" => "/adm/usuario",
 					"Crear usuario" => "/adm/usuario/crear",
@@ -113,6 +118,31 @@ class UrlsAdm
 			$to = date('Y-m-d', strtotime('next Saturday', strtotime($currentDate)));
 		}
 		return "fecha_confirmacion>=" . $from . "&fecha_confirmacion<=" . $to . "&orderby=fecha_confirmacion&orientation=desc";
+	}
+
+	public static function getAllowedRolsByModule($module)
+	{
+		foreach (self::getMenu() as $index => $item) {
+			if ($item['module'] == $module){
+				return isset($item['allowed-rols']) ? $item['allowed-rols'] : '0';
+			}
+		}
+	}
+
+	public static function uriAllowedByAnyLoggedUser($uri)
+	{
+		foreach (self::getExceptionsUris() as $exceptionUri) {
+			if (strpos($exceptionUri, $uri) !== false )
+				return true;
+		}
+		return false;
+	}
+
+	public static function getExceptionsUris()
+	{
+		return array(
+			'adm/logout'
+		);
 	}
 
 

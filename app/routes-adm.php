@@ -1,7 +1,7 @@
 <?php
 Route::get('/adm/login', 'HomeControllerAdm@getLogin');
 Route::post('/adm/login', 'HomeControllerAdm@postLogin');
-Route::group(array('prefix' => 'adm', 'before' => 'auth'), function()
+Route::group(array('prefix' => 'adm', 'before' => 'auth|rol'), function()
 {
 	Route::get('/logout', 'HomeControllerAdm@getLogout');
 	/*	Home	*/
