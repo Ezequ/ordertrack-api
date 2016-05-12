@@ -67,11 +67,11 @@
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="OpenInNewTab('{{UrlsAdm::getClientPrintQr($object->id)}}')">
                                     <i class="fa fa-print"></i>
                                 </button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar cliente"
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar"
                                 onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Eliminar cliente"
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Eliminar"
                                         onclick="window.location='{{UrlsAdm::getClientDelete($object->id)}}'">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
