@@ -46,6 +46,11 @@
                 <div class="card-title">
                     <div class="title">Clientes</div>
                 </div>
+                <div class="pull-right card-action">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-link btn-circle" href="/adm/cliente/crear" data-toggle="tooltip" title="Nuevo"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class="datatable table table-hover table-striped dt-responsive display responsive nowrap">
