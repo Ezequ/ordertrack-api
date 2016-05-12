@@ -44,10 +44,8 @@ html {
     <p class="note">Deberá presentar el código QR al vendedor cuando este concurra a realizar un pedido. Dicho código es único e intransferible. Sin el mismo, el vendedor se encontrará imposibilitado de emitir pedido alguno.</p>
 </html>
 <script>
-    $(document).ready(function()
-    {
-       window.print();
-        document.getElementById('header').style.display = 'none';
-        document.getElementById('footer').style.display = 'none';
+    $(document).ready(function() {
+        // Send page to printer
+        window.print(); 
     });
 </script>

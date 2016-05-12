@@ -64,7 +64,7 @@
                                 <td>{{$object->$field}}</td>
                             @endforeach
                             <td class="text-left">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="OpenInNewTab('{{UrlsAdm::getClientPrintQr($object->id)}}')">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="printQRCode('{{UrlsAdm::getClientPrintQr($object->id)}}')">
                                     <i class="fa fa-print"></i>
                                 </button>
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar"
@@ -90,14 +90,15 @@
 @endsection
 @section('scripts')
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         });
 
-        function OpenInNewTab(url)
-        {
-            var win = window.open(url, '_blank');
-            win.focus();
+        function printQRCode(url) {
+            $("<iframe>")
+                .hide()
+                .attr("src", url)
+                .appendTo("body");
         }
     </script>
 @endsection
