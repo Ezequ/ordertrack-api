@@ -15,17 +15,20 @@ class ProductsControllerAdm extends AdminController
 		/* nombre acciones habilitadas*/
 		$buttons = array(
 			'editar' => array(
-				'title' => 'Editar',
-				'href' => null,
-				'icon' => 'edit',
-				'type' => 'info'
+				'title'				=> 'Editar',
+				'href'				=> null,
+				'icon'				=> 'edit',
+				'type'				=> 'info',
+				'confirmation'		=> false,
+				'confirmationType'	=> null
 			), 
 			'borrar' => array(
-				'title' => 'Eliminar',
-				'href' => null,
-				'icon' => 'trash-o',
-				'type' => 'danger'
-
+				'title' 			=> 'Eliminar',
+				'href'				=> null,
+				'icon'				=> 'trash-o',
+				'type'				=> 'danger',
+				'confirmation'		=> true,
+				'confirmationType'	=> 'remove'
 			)
 		);
 		
