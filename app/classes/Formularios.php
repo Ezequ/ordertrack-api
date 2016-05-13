@@ -27,31 +27,22 @@ class Formularios
 	public function inicioForm($metodo,$action)
 	{
 		$this->form .= '
-					<div class="row">
-			          <div class="col-lg-12">
-			              <div class="col-lg-6">
-			                <form role="form" method="'.$metodo.'" action="'.$action.'">
-						';
+		    <form role="form" method="'.$metodo.'" action="'.$action.'">
+		';
 	}
 	
 	public function inicioFormFile($metodo,$action)
 	{
 		$this->form .= '
-					<div class="row">
-			          <div class="col-lg-12">
-			              <div class="col-lg-6">
-			                <form role="form" method="'.$metodo.'" action="'.$action.'" enctype="multipart/form-data">
-						';
+			<form role="form" method="'.$metodo.'" action="'.$action.'" enctype="multipart/form-data">
+		';
 	}
 
 	public function finForm()
 	{
 		$this->form .= '
-								</form>
-							</div></div>
-          				</div><!-- /.row -->
-
-						';
+			</form>
+		';
 	}
 
 	public function generarForm()
@@ -86,9 +77,9 @@ class Formularios
 	{
 		$this->form .=  '
 			<div class="form-group">
-                <label>'.$label.'</label>
-                <textarea class="form-control" rows="5" name="'.$name.'">'.$value.'</textarea>
-              </div>
+              <label>'.$label.'</label>
+              <textarea class="form-control" rows="5" name="'.$name.'">'.$value.'</textarea>
+            </div>
         ';
 	}
 
@@ -127,10 +118,10 @@ class Formularios
         ';
 	}
 
-	public function addBack($url ="#", $label = "volver", $moreUrl = "")
+	public function addBack($url ="#", $label = "Volver", $moreUrl = "")
 	{
 		$this->form .=  '
-			<a class="btn btn-default" href="'.$url.'">'.$label.'</a>
+			<a class="btn btn-danger" href="'.$url.'">'.$label.'</a>
         ';
 	}
 
@@ -147,7 +138,7 @@ class Formularios
 		//ej script: onchange="javascript:id_superior_onChange(this.value);"
 		$this->form .=  '
 			<div class="form-group">
-                <label>'.$label.'</label>
+                  <label>'.$label.'</label>
 	              <select class="form-control" name="'.$name.'" onchange="javascript:'.$script.'">
 	              	<option value="0"></option>
 				  	';
