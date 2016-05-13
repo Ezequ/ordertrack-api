@@ -106,15 +106,17 @@ class Formularios
 	public function addCheckBox($label,$name,$value,$checked)
 	{
 		$this->form .=  '
-			<div class="checkbox">
-                <label>
-                  <input type="checkbox" value="'.$value.'" name="'.$name.'" ';
+			<div class="form-group">
+              <div class="checkbox3 checkbox-success checkbox-inline checkbox-check  checkbox-circle">
+				  <input type="checkbox" id="'.$name.'" value="'.$value.'" name="'.$name.'" ';
                   if($checked){$this->form .= 'checked';}
         			
-        			$this->form .=  ' >                      
-                  '.$label.'
-                </label>
-              </div>
+        			$this->form .=  '>
+				  <label for="'.$name.'">
+				    '.$label.'
+				  </label>
+				</div>
+			</div>
         ';
 	}
 
