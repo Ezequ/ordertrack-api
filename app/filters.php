@@ -113,8 +113,9 @@ Route::filter('rol',function()
 		return;
 	} else if (count($parts) > 1){
 		$module = $parts[1];
+		$action = isset($parts[2]) ? $parts[2] : "";
 		$rols = UrlsAdm::getAllowedRolsByModule($module);
-		if (!UrlsAdm::uriAllowedByAnyLoggedUser($uri) && !$user->hasAccess($rols)){
+		if (!UrlsAdm::uriAllowedByAnyLoggedUser($uri) && !$user->hasAccess($rols, $action)){
 			return Redirect::to('/adm');
 		}
 	}

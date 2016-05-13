@@ -54,9 +54,11 @@ class User extends Model implements UserInterface, RemindableInterface {
 		});
 	}
 
-	public function hasAccess($allowedRols)
+	public function hasAccess($allowedRols, $action = "")
 	{
-		return in_array($this->rol,explode(",",$allowedRols));
+		$rolHasAccess = in_array($this->rol,explode(",",$allowedRols));
+		$rolHasAccessToAction = !($this->isSeller() && ($action == "crear" || $action == "editar" || $action == "borrar" || $action == "delete"));
+		return $rolHasAccess && $rolHasAccessToAction;
 	}
 
 	public function isSeller()
