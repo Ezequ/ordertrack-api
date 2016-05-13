@@ -13,7 +13,7 @@ class ClientsControllerAdm extends AdminController
         $buttons = array('detalle' => null);
         /* nombre => campo en base de datos	*/
         $fields = array('id' => 'id', 'Razón social' => 'razon_social', 'Vendedor' => 'id_vendedor' ,
-            'Telefono' => 'telefono', 'Direccion' => 'direccion', "Fecha visita programada" => "fecha_visita",
+            'Telefono' => 'telefono', 'Direccion' => 'direccion', "Fecha vis." => "fecha_visita",
             );
         /*	listar(campos,nombre,botones,vista,tamtabla);	*/
         return parent::getList($fields,$buttons,"adm.clientes.listado",'12');
