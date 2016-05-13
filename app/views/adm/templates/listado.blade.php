@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<!-- Modal: Cancel order -->
+<!-- Modal: Confirmation REMOVE -->
 <div class="modal fade modal-danger" id="modalConfirm_remove" tabindex="-1" role="danger" aria-labelledby="modalConfirm_remove" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

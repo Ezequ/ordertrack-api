@@ -76,10 +76,13 @@
                                 onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Eliminar"
-                                        onclick="window.location='{{UrlsAdm::getClientDelete($object->id)}}'">
+                                <span data-toggle="tooltip" title="Eliminar">
+                                <button type="button" class="btn btn-danger btn-sm modalConfirm_remove"
+                                        data-toggle="modal" data-target="#modalConfirm_remove"
+                                        data-url="{{ UrlsAdm::getClientDelete($object->id) }}">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
+                                </span>
                             </td>
                         </tr>
                     @endforeach
@@ -91,6 +94,24 @@
     </div>
 </div>
 
+<!-- Modal: Confirmation REMOVE -->
+<div class="modal fade modal-danger" id="modalConfirm_remove" tabindex="-1" role="danger" aria-labelledby="modalConfirm_remove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Eliminar registro</h4>
+            </div>
+            <div class="modal-body">
+                Se eliminará el registro, ¿desea continuar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                <button id="modaleConfirmBtn_remove" type="button" class="btn btn-danger">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 @section('scripts')
@@ -105,5 +126,30 @@
                 .attr("src", url)
                 .appendTo("body");
         }
+
+
+        // Confirmation modal: REMOVE
+
+        $('.modalConfirm_remove').on('click', function(e) {
+            if($(this).hasClass('disabled')) {
+                e.stopPropagation();
+            }
+        });
+
+        $(document).on("click", ".modalConfirm_remove", function () {
+             var url = $(this).data('url');
+
+             $('#modaleConfirmBtn_remove').off('click').on('click', function(e) {
+                $('#modalConfirm_remove').modal('hide');
+                 modalAction_remove(url);
+            });
+        });
+
+        function modalAction_remove(url) {
+            window.location.href = url;
+        }
+
+        //END Confirmation modal: REMOVE
+
     </script>
 @endsection
