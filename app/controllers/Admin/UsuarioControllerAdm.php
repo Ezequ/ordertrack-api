@@ -11,7 +11,22 @@ class UsuarioControllerAdm extends AdminController
 	public function getListado()
 	{
 		/* nombre acciones habilitadas*/
-		$buttons = array('editar' => null, 'borrar' => null);
+		$buttons = array(
+			'editar' => array(
+				'title' => 'Editar',
+				'href' => null,
+				'icon' => 'edit',
+				'type' => 'info'
+			), 
+			'borrar' => array(
+				'title' => 'Eliminar',
+				'href' => null,
+				'icon' => 'trash-o',
+				'type' => 'danger'
+
+			)
+		);
+
 		/* nombre => campo en base de datos	*/
 		$fields = array('id' => 'id','Nombre' => 'nombre_usuario','Email' => 'email', 'rol' => 'rol');
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/

@@ -1,7 +1,11 @@
 @extends('adm.templates.template')
 @section('content')
-<div id="page-wrapper">
-    <div class="row">
+<div class="page-title">
+    <span class="title">{{$subSectionName}}</span>
+</div>
+
+
+   <?php /* <div class="row">
         <div class="col-md-{{$tamCol}}">
             <?php
             $f = new Formularios();
@@ -25,11 +29,24 @@
             }
             ?>
         </div>
-    </div>
-    <div class="row">
-		<div class="col-lg-{{$tamCol}}">
-			<div class="table-responsive">
-                <table class="table table-bordered table-hover tablesorter" style="table-layout: fixed">
+    </div> */ ?>
+
+
+<div class="row">
+    <div class="col-xs-12">       
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="title">{{ $sectionName }}</div>
+                </div>
+                <div class="pull-right card-action">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-link btn-circle" href="/adm/{{ $name }}/crear" data-toggle="tooltip" title="Nuevo"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="datatable table table-hover table-striped dt-responsive display responsive nowrap">
                   	<thead>
 	                    <tr>
                             @foreach($fields as $index => $field)
@@ -42,27 +59,31 @@
                     @foreach($objects as $object)
                         <tr>
                             @foreach($fields as $index => $field)
-                                <th>{{$object->$field}}</th>
+                                <td>{{$object->$field}}</td>
                             @endforeach
-                            <th>
+                            <td class="text-center col-md-1">
                                 <div class="botones_columna">
-                                    @foreach($buttons as $nameButton => $href)
-                                        <a id="{{$nameButton}}" style="margin-left:15px" href="{{$href or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}" class="btn btn-default">{{$nameButton}}</a>
+                                    @foreach($buttons as $nameButton => $btnData)
+                                        <a type="button" id="{{$nameButton}}" href="{{$btnData['href'] or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}" class="btn btn-{{ $btnData['type'] }} btn-sm" data-toggle="tooltip" title="{{ $btnData['title'] }}">
+                                            <i class="fa fa-{{ $btnData['icon'] }}"></i>
+                                        </a>
                                     @endforeach
                                 </div>
-                            </th>	
+                            </td>	
                         </tr>
                     @endforeach
 			    	</tbody>
               	</table>
+                {{method_exists($objects, 'links') ? $objects->links() : ''}}
             </div>
-		</div>
-	</div>
-
-    <div class="row">
-        <div class="col-lg-{{$tamCol}}">
-            {{method_exists($objects, 'links') ? $objects->links() : ''}}
         </div>
     </div>
-</div><!-- /#page-wrapper -->
+</div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection

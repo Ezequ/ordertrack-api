@@ -3,9 +3,9 @@
 <div class="page-title">
     <span class="title">{{$subSectionName}}</span>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-xs-12">
-        <div class="card">
+        <div class="card"> -->
             <?php /*<div class="card-body">
                 <form class="form-inline" action="{{UrlsAdm::getPedidos()}}" method="get">
                     <div class="form-group form-group-sm">
@@ -36,9 +36,9 @@
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </form>
             </div> */?>
-        </div>
+<!--         </div>
     </div>
-</div>
+</div> -->
 <div class="row">
     <div class="col-xs-12">       
         <div class="card">
