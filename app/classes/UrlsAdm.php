@@ -60,7 +60,6 @@ class UrlsAdm
 				'module' => 'cliente',
 				"submenu" => array(
 					"Listado de clientes" => "/adm/cliente",
-					"Crear cliente" => "/adm/cliente/crear",
 				)
 			),
 

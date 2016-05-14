@@ -70,7 +70,7 @@ abstract class AdminController extends BaseController
 			$object->save();
 			if($object->id) 
 			{
-				$url = "/adm/".$this->name."/editar/$object->id";
+				$url = "/adm/".$this->name;
 				return Redirect::to($url);	
 			}
 			else
@@ -94,7 +94,7 @@ abstract class AdminController extends BaseController
 			$result = $object->update(Input::all());
 			if($result) $message = "Operación exitosa ! ";
 			else $message = "No se pudo completar la operación";
-			return Redirect::back()->with('message',$message)->with('result',$result);
+			return Redirect::to('/adm/'.$this->name)->with('message',$message)->with('result',$result);
 		}
 		else
 		{
