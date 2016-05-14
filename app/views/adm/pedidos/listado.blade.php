@@ -106,7 +106,7 @@
                                 <button type="button" class="btn btn-info btn-sm" onclick="viewDetail('{{$object->id}}')" data-toggle="tooltip" title="Ver detalle">
                                     <i class="fa fa-eye"></i>
                                 </button>
-                                
+                                @if(!Auth::user()->isSeller())
                                 <?php $previousData = $object->getStateButton();
                                     $nextData = $object->getStateButton(false);?>
                                 <span data-toggle="tooltip" title="Cancelar"><button type="button" data-toggle="modal" data-target="#modalCancelOrder" class="btn btn-danger btn-sm modalCancelOrder {{ ($previousData) ? '' : 'disabled' }}" data-id="{{$object->id}}" data-state="{{$previousData['id_estado']}}">
@@ -115,6 +115,7 @@
                                 
                                 @if($nextData)
                                     <a href="#" type="button" class="btn btn-success btn-sm" onclick="changeStatus('{{$object->id}}','{{$nextData['id_estado']}}')">{{$nextData['nombre']}}</a>
+                                @endif
                                 @endif
                             </td>
                         </tr>

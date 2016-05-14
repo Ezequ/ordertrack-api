@@ -56,7 +56,8 @@
 
     </div>
 </div>
-<div class="modal-footer">
+@if(!Auth::user()->isSeller())
+    <div class="modal-footer">
     <?php $definition = OrderStatesDefinition::getDefinition(); ?>
     <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left;">Cerrar</button>
     @if($order->id_estado != $definition[Order::SHIPPING_STATE] && $order->id_estado != $definition[Order::CANCELED_STATE])
@@ -75,6 +76,7 @@
     </div>
     @endif
 </div>
+@endif
 
 
 

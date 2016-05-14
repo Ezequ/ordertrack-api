@@ -47,9 +47,11 @@
                     <div class="title">Clientes</div>
                 </div>
                 <div class="pull-right card-action">
+                    @if(!Auth::user()->isSeller())
                     <div class="btn-group" role="group">
                         <a type="button" class="btn btn-link btn-circle" href="/adm/cliente/crear" data-toggle="tooltip" title="Nuevo"><i class="fa fa-plus"></i></a>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
@@ -72,6 +74,7 @@
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Imprimir QR" onclick="printQRCode('{{UrlsAdm::getClientPrintQr($object->id)}}')">
                                     <i class="fa fa-print"></i>
                                 </button>
+                                @if(!Auth::user()->isSeller())
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar"
                                 onclick="window.location='{{UrlsAdm::getClientEdit($object->id)}}'">
                                     <i class="fa fa-edit"></i>
@@ -82,6 +85,7 @@
                                         data-url="{{ UrlsAdm::getClientDelete($object->id) }}">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
+                                @endif
                                 </span>
                             </td>
                         </tr>
