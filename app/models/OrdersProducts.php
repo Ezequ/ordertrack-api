@@ -11,12 +11,12 @@ class OrdersProducts extends Model
     {
         $model = DB::table('ordenes')
                 ->leftJoin('clientes', 'ordenes.id_cliente', '=', 'clientes.id')
-                ->leftJoin('users', 'users.id', '=', 'clientes.id_vendedor')
+                ->leftJoin('users', 'ordenes.id_vendedor', "=", 'users.id')
                 ->select('ordenes.id');
 
         $filtersToCompare =  self::getFilters($filters);
         foreach ($filtersToCompare as $filter){
-            if (in_array($filter['name'],$this->allowedFilters ) && $filter['value'] != ""){
+            if (in_array($filter['name'],$this->allowedFilters ) && $filter['value'] != "" && $filter['value'] != "%%"){
                 $model = $model->where($filter['name'],$filter['compare'], $filter['value']);
             }
         }

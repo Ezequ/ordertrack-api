@@ -137,9 +137,19 @@ class OrdersController extends \BaseController {
 			->first();
 		if ($order) {
 			return $order->toJson();
-
 		} else {
-			return Response::make('No se encontró la orden', 500);
+			$order = Order::where('id_cliente', $id)
+				->where(function($query)
+				{
+					$query->orWhere('id_estado', Order::CONFIRM_STATE);
+				})
+				->orderBy('updated_at', 'desc')
+				->first();
+			if ($order){
+				return $order->toJson();
+			} else {
+				return Response::make('No se encontró la orden', 500);
+			}
 		}
 	}
 
