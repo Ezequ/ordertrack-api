@@ -24,7 +24,7 @@
                 }
                 $f->addHiddenInput("id", $object->id);
                 $f->addBack($back);
-                $f->addSubmit('Actualizar','aceptar','aceptar');
+                $f->addSubmit('Guardar','aceptar','aceptar');
                 $f->finForm();
                 $f->generarForm(); 
                 //require_once("views/layout/result.phtml");
