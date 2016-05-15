@@ -4,9 +4,16 @@ class Formularios
 {
 	public $form;
 
+	public $errors = null;
+
 	public function __construct() {
 			$this->form 			= '';
 		}
+
+	public function setErrors($errors)
+	{
+		$this->errors = $errors;
+	}
 		
 	public function cabecera($titulo,$msg)
 	{
@@ -60,7 +67,7 @@ class Formularios
 	public function addLinkButton($label,$link)
 	{
 		$this->form .=  '
-		<div class="form-group" style="display:-webkit-inline-box;">
+		<div class="form-group $this->getErrorClass($name)" style="display:-webkit-inline-box;">
 			<div class="botones_columna"><a class="btn btn-default"  href="'.$link.'">'.$label.'</a></div>
 		</div>
         ';
@@ -76,7 +83,7 @@ class Formularios
 	public function addTextArea($label,$name,$value)
 	{
 		$this->form .=  '
-			<div class="form-group">
+			<div class="form-group $this->getErrorClass($name)">
               <label>'.$label.'</label>
               <textarea class="form-control" rows="5" name="'.$name.'">'.$value.'</textarea>
             </div>
@@ -86,7 +93,7 @@ class Formularios
 	public function addInput($label,$name,$value,$type, $placeholder = "Ingrese dato")
 	{
 		$this->form .=  '
-			<div class="form-group">
+			<div class="form-group' . $this->getErrorClass($name) . '">
                 <label>'.$label.'</label>
                 <input type="'.$type.'" class="form-control" placeholder="'.$placeholder.'" name="'.$name.'" value="'.$value.'">
               </div>
@@ -96,7 +103,7 @@ class Formularios
 	public function addInputFecha($label,$name,$value)
 	{
 		$this->form .=  '
-			<div class="form-group">
+			<div class="form-group $this->getErrorClass($name)">
                 <label>'.$label.'</label>
                 <input type="date" class="form-control" placeholder="Ingrese fecha dd/mm/aa" name="'.$name.'" value="'.$value.'">
               </div>
@@ -106,7 +113,7 @@ class Formularios
 	public function addCheckBox($label,$name,$value,$checked)
 	{
 		$this->form .=  '
-			<div class="form-group">
+			<div class="form-group $this->getErrorClass($name)">
               <div class="checkbox3 checkbox-success checkbox-inline checkbox-check  checkbox-circle">
 				  <input type="checkbox" id="'.$name.'" value="'.$value.'" name="'.$name.'" ';
                   if($checked){$this->form .= 'checked';}
@@ -139,7 +146,7 @@ class Formularios
 		$selected = "";
 		//ej script: onchange="javascript:id_superior_onChange(this.value);"
 		$this->form .=  '
-			<div class="form-group">
+			<div class="form-group $this->getErrorClass($name) $this->getErrorClass($name)">
                   <label>'.$label.'</label>
 	              <select class="form-control" name="'.$name.'" onchange="javascript:'.$script.'">
 	              	<option value="0"></option>
@@ -180,5 +187,11 @@ class Formularios
 			default:
 				break;
 		}
+	}
+
+	public function getErrorClass($name)
+	{
+		if ($this->errors->has($name))
+			return " has-error";
 	}
 }

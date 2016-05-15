@@ -14,7 +14,7 @@ class Client extends Model {
 		'razon_social'             => 'required',
 		'direccion'             => 'required',
 		'id_vendedor'             => 'not_in:0',
-		'cod_cliente'             => 'required|unique:clientes',
+		'cod_cliente'             => 'required|unique:clientes,cod_cliente,{id}',
 	);
 
 	public static $messages = array(
