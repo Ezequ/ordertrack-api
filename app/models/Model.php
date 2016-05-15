@@ -11,8 +11,8 @@ abstract class Model extends \Eloquent
 
 	public static $messages = array(
 		'required'      => 'El atributo :attribute es requerido.',
-		'email.unique'  => 'Ya existe un usuario con ese email',
-		'email.email'	=> 'El formato de email es incorrecto'
+		'email.unique'  => 'Ya existe un usuario con ese email.',
+		'email.email'	=> 'El formato de email es incorrecto.'
 	);
 
 	/* List custom method */

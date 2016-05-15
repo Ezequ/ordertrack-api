@@ -13,8 +13,16 @@ class Client extends Model {
 	public static $rules = array(
 		'razon_social'             => 'required',
 		'direccion'             => 'required',
-		'id_vendedor'             => 'required',
+		'id_vendedor'             => 'not_in:0',
+		'cod_cliente'             => 'required',
 		//'email'            => 'required|email|unique:clientes',
+	);
+
+	public static $messages = array(
+		'required'      => 'El atributo :attribute es requerido.',
+		'email.unique'  => 'Ya existe un usuario con ese email',
+		'id_vendedor.not_in'	=> 'El vendedor asignado es inválido.',
+		'cod_cliente.required'  => 'El atributo código de cliente es requerido.'
 	);
 
 	public $timestamps = false;
