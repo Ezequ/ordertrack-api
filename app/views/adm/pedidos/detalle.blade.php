@@ -36,9 +36,9 @@
                                 <th class="text-center">{{$product->id}}</th>
                                 <th>{{$product->nombre}}</th>
                                 <th>{{$product->marca}}</th>
-                                <th class="text-center">${{$product->precio}}</th>
+                                <th class="text-center">${{PriceHelper::getPrice($product->precio)}}</th>
                                 <th class="text-center">{{$product->cantidad}}</th>
-                                <th class="text-center">${{$product->precio * $product->cantidad}}</th>
+                                <th class="text-center">${{PriceHelper::getPrice($product->precio * $product->cantidad)}}</th>
                             </tr>
                         @endforeach
                         <tr style="border-top: 2px solid #ddd !important;">
