@@ -191,7 +191,7 @@ class Formularios
 
 	public function getErrorClass($name)
 	{
-		if ($this->errors->has($name))
+		if ($this->errors && $this->errors->has($name))
 			return " has-error";
 	}
 }
