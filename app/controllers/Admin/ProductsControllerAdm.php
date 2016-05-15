@@ -48,6 +48,7 @@ class ProductsControllerAdm extends AdminController
 	{
 		$objects = $this->getModel()->getList(Input::all(),true);
 		$objects = YesNoDefinition::convertObjectListFieldToDefinition($objects,'activo');
+		$objects = ProductsPricesDefinition::convertObjectListFieldToDefinition($objects,'precio');
 		return $objects;
 	}
 

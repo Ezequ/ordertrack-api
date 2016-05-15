@@ -47,7 +47,7 @@
                             <th></th>
                             <th></th>
                             <th class="text-center" style="font-size: 1.5em">{{$totalItems}}</th>
-                            <th class="text-center" style="font-size: 1.5em">${{$totalPrice}}</th>
+                            <th class="text-center" style="font-size: 1.5em">${{PriceHelper::getPrice($totalPrice)}}</th>
                         </tr>
                     </tbody>
                 </table>
