@@ -67,7 +67,8 @@ abstract class AdminController extends BaseController
  		$result = false;
 		if($object)
 		{
-			$validation = \Illuminate\Support\Facades\Validator::make($data, $object::$rules, $object::$messages);
+			$rules = $this->customRule($object::$rules,$object->id);
+			$validation = \Illuminate\Support\Facades\Validator::make($data, $rules, $object::$messages);
 			if ($validation->fails()){
 				return Redirect::back()->withErrors($validation)->withInput($data);
 			}
@@ -96,7 +97,8 @@ abstract class AdminController extends BaseController
  		$object = $this->getObjectToModify($id);
 		if($object)
 		{
-			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules, $object::$messages);
+			$rules = $this->customRule($object::$rules,$object->id);
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $rules, $object::$messages);
 			if ($validation->fails()){
 				return Redirect::back()->withErrors($validation)->withInput(Input::all());
 			}
@@ -157,4 +159,11 @@ abstract class AdminController extends BaseController
 		return $inputFilters;
 	}
 
+	protected function customRule($rules,$id)
+	{
+		foreach ( $rules as $index => $rule) {
+			$rules[$index] = str_replace("{self::id}",$id,$rule);
+		}
+		return $rules;
+	}
 }
