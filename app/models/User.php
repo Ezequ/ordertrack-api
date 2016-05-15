@@ -14,13 +14,15 @@ class User extends Model implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 	protected $allowedFilters = array('email', 'nombre_usuario','rol');
 
+	public static $rules = array(
+		'nombre_usuario'             => 'required',
+		'email'            => 'required|email|unique:users',
+	);
+
+
+
 
 	protected $fillable = array('nombre_usuario','email','password','rol');
-
-	public function getTodayClients()
-	{
-
-	}
 
 
 	public function getInputsForEdit()

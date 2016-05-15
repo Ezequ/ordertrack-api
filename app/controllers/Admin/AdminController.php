@@ -66,7 +66,7 @@ abstract class AdminController extends BaseController
  		$result = false;
 		if($object)
 		{
-			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules);
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules, $object::$messages);
 			if ($validation->fails()){
 				return Redirect::back()->withErrors($validation)->withInput(Input::all());
 			}
@@ -95,7 +95,7 @@ abstract class AdminController extends BaseController
  		$object = $this->getObjectToModify($id);
 		if($object)
 		{
-			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules);
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules, $object::$messages);
 			if ($validation->fails()){
 				return Redirect::back()->withErrors($validation)->withInput(Input::all());
 			}
