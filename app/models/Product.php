@@ -5,8 +5,21 @@ class Product extends Model {
 
 	protected $table = 'productos';
 
+	public static $rules = array(
+		'stock'             => 'required|integer|min:1',
+		'precio'             => 'required|integer|min:1',
+		'categoria'             => 'not_in:0',
+		'nombre'             => 'required',
+	);
+
 	protected $allowedFilters = array('categoria', 'descripcion', 'marca', 'stock', 'precio','nombre');
 
+	public static $messages = array(
+		'min'			=> 'El valor del :atribute debe ser mínimo 1',
+		'integer'			=> 'El valor del :atribute debe ser un entero',
+		'required'      => 'El atributo :attribute es requerido.',
+		'categoria.not_in'	=> 'La categoría asignada es inválida.',
+	);
 
 	public function getInputsForEdit()
 	{
