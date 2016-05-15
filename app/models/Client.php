@@ -18,10 +18,10 @@ class Client extends Model {
 	);
 
 	public static $messages = array(
-		'required'      => 'El atributo :attribute es requerido.',
+		'required'      => 'El campo :attribute es requerido.',
 		'email.unique'  => 'Ya existe un usuario con ese email',
 		'id_vendedor.not_in'	=> 'El vendedor asignado es inválido.',
-		'cod_cliente.required'  => 'El atributo código de cliente es requerido.',
+		'cod_cliente.required'  => 'El campo código de cliente es requerido.',
 		'cod_cliente.unique'	=> 'El código cliente ya existe.',
 	);
 

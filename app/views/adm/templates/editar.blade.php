@@ -12,6 +12,7 @@
                 </div>
             </div>
             <div class="card-body">
+                @include("adm.templates.result")
               <?php
                 $f = new Formularios();
                 if (isset($errors) && $errors){
@@ -37,5 +38,4 @@
     </div>
 </div>
 @include("adm.templates.images")
-@include("adm.templates.result")
 @endsection

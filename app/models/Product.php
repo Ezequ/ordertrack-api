@@ -17,7 +17,7 @@ class Product extends Model {
 	public static $messages = array(
 		'min'			=> 'El valor del :atribute debe ser mínimo 1',
 		'integer'			=> 'El valor del :atribute debe ser un entero',
-		'required'      => 'El atributo :attribute es requerido.',
+		'required'      => 'El campo :attribute es requerido.',
 		'categoria.not_in'	=> 'La categoría asignada es inválida.',
 	);
 
