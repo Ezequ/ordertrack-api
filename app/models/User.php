@@ -15,14 +15,24 @@ class User extends Model implements UserInterface, RemindableInterface {
 	protected $allowedFilters = array('email', 'nombre_usuario','rol');
 
 	public static $rules = array(
-		'nombre_usuario'             => 'required',
-		'email'            => 'required|email|unique:users',
+		'nombre_usuario'    => 'required',
+		'email'             => 'required|email|unique:users',
+		'password' 			=> 'required|min:6',
+		'rol'               => 'not_in:0',
 	);
 
 
-
-
 	protected $fillable = array('nombre_usuario','email','password','rol');
+
+	public static $messages = array(
+		'not_in'			=> 'El rol seleccionado es inválido.',
+		'integer'			=> 'El valor del :atribute debe ser un entero',
+		'required'      => 'El atributo :attribute es requerido.',
+		'password.min'	=> 'La contraseña debe tener al menos 6 dígitos',
+		'email.unique'  => 'Ya existe un usuario con ese email.',
+		'email.email'	=> 'El formato de email es incorrecto.'
+	);
+
 
 
 	public function getInputsForEdit()
