@@ -29,14 +29,14 @@ $(function() {
     "paging":   false,
     "info" : false,
     "responsive": true,
-    "bAutoWidth":false, 
-    /*"scrollX":        true,*/
+    "bAutoWidth":true, 
+    "scrollX":        true,
     /*"scrollCollapse": true,*/
     "columnDefs": [
         { width: '3%', targets: 0 }
     ],
-      "aaSorting": [],
-    //fixedColumns: true,
+    "aaSorting": [],
+    fixedColumns: true,
     "language": {
            "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",
