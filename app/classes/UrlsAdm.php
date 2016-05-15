@@ -68,7 +68,6 @@ class UrlsAdm
 				"icon" => "shopping-cart",
 				'module' => 'pedido',
 				"submenu" => array(
-					"Listado de pedidos" => "/adm/pedido?id_estado=" . Order::CONFIRM_STATE,
 					"Listado de pedidos" => "/adm/pedido?" . self::getOrdersCustomFilters(),
 				)
 			),
@@ -78,7 +77,6 @@ class UrlsAdm
 				'module' => 'producto',
 				"submenu" => array(
 					"Listado de productos" => "/adm/producto",
-					"Crear producto" => "/adm/producto/crear",
 				)
 			),
 			"Categorías" => array(
@@ -87,7 +85,6 @@ class UrlsAdm
 				"module" => 'categoria',
 				"submenu" => array(
 					"Listado de categorías" => "/adm/categoria",
-					"Crear categoría" => "/adm/categoria/crear",
 				)
 			),
 			"Usuarios" => array(
@@ -96,7 +93,6 @@ class UrlsAdm
 				'module' => 'usuario',
 				"submenu" => array(
 					"Listado de usuarios" => "/adm/usuario",
-					"Crear usuario" => "/adm/usuario/crear",
 				)
 			)
 		);
