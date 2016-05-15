@@ -83,7 +83,7 @@ class Formularios
 	public function addTextArea($label,$name,$value)
 	{
 		$this->form .=  '
-			<div class="form-group $this->getErrorClass($name)">
+			<div class="form-group ' . $this->getErrorClass($name) . '">
               <label>'.$label.'</label>
               <textarea class="form-control" rows="5" name="'.$name.'">'.$value.'</textarea>
             </div>
@@ -146,7 +146,7 @@ class Formularios
 		$selected = "";
 		//ej script: onchange="javascript:id_superior_onChange(this.value);"
 		$this->form .=  '
-			<div class="form-group $this->getErrorClass($name) $this->getErrorClass($name)">
+			<div class="form-group' . $this->getErrorClass($name) . '">
                   <label>'.$label.'</label>
 	              <select class="form-control" name="'.$name.'" onchange="javascript:'.$script.'">
 	              	<option value="0"></option>

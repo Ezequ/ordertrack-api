@@ -14,6 +14,9 @@
             <div class="card-body">
               <?php
                 $f = new Formularios();
+                if (isset($errors) && $errors){
+                    $f->setErrors($errors);
+                }
                 $f->inicioForm('post',$url);
                 foreach ($object->getInputsForEdit() as $key => $input) 
                 {
