@@ -55,4 +55,11 @@ class ClientsControllerAdm extends AdminController
         return Redirect::back();
     }
 
+    public function postCreate($data = null)
+    {
+        $data = Input::all();
+        $data['fecha_visita'] = date("Y-m-d");
+        return parent::postCreate($data);
+    }
+
 }

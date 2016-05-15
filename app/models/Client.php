@@ -15,7 +15,6 @@ class Client extends Model {
 		'direccion'             => 'required',
 		'id_vendedor'             => 'not_in:0',
 		'cod_cliente'             => 'required',
-		//'email'            => 'required|email|unique:clientes',
 	);
 
 	public static $messages = array(

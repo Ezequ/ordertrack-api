@@ -60,17 +60,18 @@ abstract class AdminController extends BaseController
 		}
 	}
 
-	public function postCreate()
+	public function postCreate($data = null)
 	{
+		$data = $data ? $data : Input::all();
  		$object =  $this->getModel();
  		$result = false;
 		if($object)
 		{
-			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules, $object::$messages);
+			$validation = \Illuminate\Support\Facades\Validator::make($data, $object::$rules, $object::$messages);
 			if ($validation->fails()){
-				return Redirect::back()->withErrors($validation)->withInput(Input::all());
+				return Redirect::back()->withErrors($validation)->withInput($data);
 			}
-			$object->fill(Input::all());
+			$object->fill($data);
 			$object->save();
 			if($object->id) 
 			{
