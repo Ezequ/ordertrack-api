@@ -160,9 +160,11 @@ class Formularios
 	{
 		switch ($input) {
 			case 'common':
+				$data3 = Input::old($data2) !== null ? Input::old($data2) : $data3;
 				return $this->addInput($data1,$data2,$data3,$data4,$data5);	//($label,$name,$value,$type, $placeholder = "Ingrese dato")
 				break;
 			case 'text':
+				$data3 = Input::old($data2) !== null ? Input::old($data2) : $data3;
 				return $this->addTextArea($data1,$data2,$data3); // ($label,$name,$value)
 				break;
 			case "checkbox":
@@ -172,6 +174,7 @@ class Formularios
 				return $this->addHiddenInput($data1,$data2); // ($name,$value)
 				break;
 			case 'select':
+				$data4 = Input::old($data2) !== null ? Input::old($data2) : $data4;
 				return $this->addComboBox($data1, $data2,$data3, $data4,$data5);//($label,$name,$arr,$seleccionada,$script);
 				break;
 			default:

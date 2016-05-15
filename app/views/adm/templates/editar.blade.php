@@ -34,4 +34,5 @@
     </div>
 </div>
 @include("adm.templates.images")
+@include("adm.templates.result")
 @endsection

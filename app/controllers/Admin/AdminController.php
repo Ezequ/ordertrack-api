@@ -66,6 +66,10 @@ abstract class AdminController extends BaseController
  		$result = false;
 		if($object)
 		{
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules);
+			if ($validation->fails()){
+				return Redirect::back()->withErrors($validation)->withInput(Input::all());
+			}
 			$object->fill(Input::all());
 			$object->save();
 			if($object->id) 
@@ -91,6 +95,10 @@ abstract class AdminController extends BaseController
  		$object = $this->getObjectToModify($id);
 		if($object)
 		{
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $object::$rules);
+			if ($validation->fails()){
+				return Redirect::back()->withErrors($validation)->withInput(Input::all());
+			}
 			$result = $object->update(Input::all());
 			if($result) $message = "Operación exitosa ! ";
 			else $message = "No se pudo completar la operación";

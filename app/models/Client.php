@@ -9,6 +9,14 @@ class Client extends Model {
 	protected $allowedFilters = array('apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 		'razon_social', 'cod_cliente', 'estado');
 
+
+	public static $rules = array(
+		'razon_social'             => 'required',
+		'direccion'             => 'required',
+		'id_vendedor'             => 'required',
+		//'email'            => 'required|email|unique:clientes',
+	);
+
 	public $timestamps = false;
 
 	public function getFechaVisitaAttribute($value)

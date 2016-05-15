@@ -9,6 +9,7 @@ abstract class Model extends \Eloquent
 
 	protected $_paginatation = self::PAGINATOR;
 
+
 	/* List custom method */
 
 	public function _getList($filters = array(),$paginate = false)
