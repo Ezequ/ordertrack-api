@@ -66,6 +66,7 @@
                                     @foreach($buttons as $nameButton => $btnData)
                                         <span data-toggle="tooltip" title="{{ $btnData['title'] }}">
                                             <a type="button" 
+                                            href="{{ $btnData['href'] or '/adm/'.$name.'/'.$nameButton.'/'.$object->id}}
                                             id="{{ $nameButton }}" 
                                             data-id="{{ $object->id }}" data-module="{{ $name }}" data-althref="{{ $btnData['href'] }}"
                                             class="btn btn-{{ $btnData['type'] }} btn-sm {{ ($btnData['confirmation']) ? ('modalConfirm_' . $btnData['confirmationType']) : '' }}" 
