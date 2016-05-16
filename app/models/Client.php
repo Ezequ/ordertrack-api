@@ -75,14 +75,13 @@ class Client extends Model {
 	}
 
 	static function getLatLong($address){
-
-		$address = str_replace(" ", "+", $address);
-		$region = "Buenos Aires";
-		$json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=" . urlencode($address) .
-			"&sensor=false&region=" . urlencode($region));
-		$json = json_decode($json);
-		$return = array();
 		try{
+			$address = str_replace(" ", "+", $address);
+			$region = "Buenos Aires";
+			$json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=" . urlencode($address) .
+				"&sensor=false&region=" . urlencode($region));
+			$json = json_decode($json);
+			$return = array();
 			$return['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
 			$return['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 		} catch(Exception $e) {
