@@ -1,6 +1,9 @@
 <?php
 
 class Client extends Model {
+
+	protected  $_paginatation = 99999999;
+
 	protected $fillable = ['apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 							'razon_social', 'cod_cliente', 'fecha_ultima_visita','estado'];
 

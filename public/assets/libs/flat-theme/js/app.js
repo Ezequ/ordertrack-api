@@ -23,15 +23,16 @@ $(function() {
   return $('.match-height').matchHeight();
 });
 
-$(function() {
+/*$(function() {
   var dt = $('.datatable').DataTable({
     "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
-    "paging":   false,
+    "paging":   true,
+    "pagingType": "full_numbers",
     "info" : false,
     "responsive": true,
     "bAutoWidth":true, 
     "scrollX":        true,
-    /*"scrollCollapse": true,*/
+    //"scrollCollapse": true,
     "columnDefs": [
         { width: '3%', targets: 0 }
     ],
@@ -65,7 +66,7 @@ $(function() {
 
 
   return dt;
-});
+});*/
 
 $(function() {
   return $(".side-menu .nav .dropdown").on('show.bs.collapse', function() {
