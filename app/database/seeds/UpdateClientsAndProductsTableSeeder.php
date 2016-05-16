@@ -15,10 +15,9 @@ class UpdateClientsAndProductsTableSeeder extends Seeder {
 		foreach ($clients as $index => $client) {
 			$lat = rand(0,10000) / 1000000;
 			$long = rand(0,10000) / 1000000;
-			$state = rand(0,3);
 			$client->latitud = -34.6031351+ $lat;
 			$client->longitud = -58.4234919 + $long;
-			$client->estado = $state;
+			$client->estado = ClientsStatesDefinition::STATE_NORMAL;
 			$client->save();
 		}
 	}
