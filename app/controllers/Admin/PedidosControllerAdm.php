@@ -63,6 +63,12 @@ class PedidosControllerAdm extends AdminController
 			if(Input::get('status') == Order::CONFIRM_STATE){
 				$order->fecha_confirmacion =	date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 			}
+			if (Input::get('status') == Order::BUILDING_STATE){
+				$result = $order->updateStock();
+				if ($result != ""){
+					return $result;
+				}
+			}
 			$order->save();
 		}
 		return "";

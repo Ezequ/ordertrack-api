@@ -45,12 +45,7 @@ class Order extends Model{
 	public function confirmOrder($force = false)
 	{
 		$products = self::getProductsByOrder($this->id);
-		$productsError = array();
-		foreach ($products as $index => $product) {
-			if($product->cantidad > $product->stock){
-				$productsError[] = $product->nombre . " - " . $product->marca;
-			}
-		}
+		$productsError = $this->checkStocks($products);
 		$existsErrors = count($productsError) > 0;
 		if($existsErrors) {
 			$errors = "Los siguientes productos superan al stock pedido: ";
@@ -87,5 +82,36 @@ class Order extends Model{
 		}
 	}
 
+	public function updateStock()
+	{
+		$products = self::getProductsByOrder($this->id);
+		$productsError = $this->checkStocks($products);
+		$existsErrors = count($productsError) > 0;
+		if($existsErrors) {
+			$errors = "No se puede verificar el pedido N°{$this->id} ya que los siguientes productos superan al stock pedido: ";
+			$stringProducts = implode("", $productsError);
+			return $errors . $stringProducts;
+		} else {
+			foreach ($products as $index => $product) {
+				$productModel = Product::find($product->id);
+				if ($productModel){
+					$productModel->stock = $productModel->stock - $product->cantidad;
+					$productModel->save();
+				}
+			}
+		}
+		return "";
+	}
+
+	protected function checkStocks($products)
+	{
+		$productsError = array();
+		foreach ($products as $index => $product) {
+			if($product->cantidad > $product->stock){
+				$productsError[] = "\n* " . $product->nombre . " - " . $product->marca;
+			}
+		}
+		return $productsError;
+	}
 
 }

@@ -173,8 +173,12 @@
         $.ajax({
             url: urlStatus + "?id=" + id + "&status=" + status,
             context: document.body
-        }).done(function() {
-            location.reload();
+        }).done(function(data) {
+            if (!data || data == "")
+            {location.reload();}
+            else {
+               alert(data);
+            }
         });
     }
 
