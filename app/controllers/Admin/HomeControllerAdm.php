@@ -31,10 +31,10 @@ class HomeControllerAdm extends BaseController
 			if (Auth::attempt($credentials,true)) {
 				return Redirect::to(UrlsAdm::getViewHome());
 			} else {
-				return Redirect::back()->with("message", "Contraseña incorrecta")->with('result', 0);
+				return Redirect::back()->with("message", "Los datos son incorrectos.")->with('result', 0);
 			}
 		}
-		else return Redirect::back()->with("message", "Usuario no existente")->with('result', 0);
+		else return Redirect::back()->with("message", "Los datos son incorrectos.")->with('result', 0);
 	}
 
 	public function getObjectsToList()
