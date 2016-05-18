@@ -22,8 +22,9 @@
                             <th class="text-center">Código</th>
                             <th>Nombre producto</th>
                             <th>Marca</th>
+                            <th class="text-center">Stock disponible</th>
                             <th class="text-center">Precio unitario</th>
-                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Cantidad pedida</th>
                             <th class="text-center">Subtotal</th>
 
                         </tr>
@@ -36,12 +37,14 @@
                                 <th class="text-center">{{$product->id}}</th>
                                 <th>{{$product->nombre}}</th>
                                 <th>{{$product->marca}}</th>
+                                <th class="text-center">{{$product->stock}}</th>
                                 <th class="text-center">${{PriceHelper::getPrice($product->precio)}}</th>
                                 <th class="text-center">{{$product->cantidad}}</th>
                                 <th class="text-center">${{PriceHelper::getPrice($product->precio * $product->cantidad)}}</th>
                             </tr>
                         @endforeach
                         <tr style="border-top: 2px solid #ddd !important;">
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
