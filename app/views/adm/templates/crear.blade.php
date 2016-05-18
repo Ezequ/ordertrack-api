@@ -18,6 +18,10 @@
                 if (isset($errors) && $errors){
                     $f->setErrors($errors);
                 }
+                if (isset($object::$rules))
+                {
+                    $f->setRules($object::$rules);
+                }
                 $f->inicioForm('post',$url);
                 foreach ($object->getInputsForEdit() as $key => $input) 
                 {

@@ -16,7 +16,7 @@ class Client extends Model {
 	public static $rules = array(
 		'razon_social'             => 'required',
 		'direccion'             => 'required',
-		'id_vendedor'             => 'not_in:0',
+		'id_vendedor'             => 'required|not_in:0',
 		'cod_cliente'             => 'required|unique:clientes,cod_cliente,{self::id}',
 	);
 

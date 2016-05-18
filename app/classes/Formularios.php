@@ -6,6 +6,8 @@ class Formularios
 
 	public $errors = null;
 
+	public $_rules = null;
+
 	public function __construct() {
 			$this->form 			= '';
 		}
@@ -84,7 +86,7 @@ class Formularios
 	{
 		$this->form .=  '
 			<div class="form-group ' . $this->getErrorClass($name) . '">
-              <label>'.$label.'</label>
+              <label>'.$label. $this->getRequired($name) .'</label>
               <textarea class="form-control" rows="5" name="'.$name.'">'.$value.'</textarea>
             </div>
         ';
@@ -94,7 +96,7 @@ class Formularios
 	{
 		$this->form .=  '
 			<div class="form-group' . $this->getErrorClass($name) . '">
-                <label>'.$label.'</label>
+                <label>'.$label. $this->getRequired($name) .'</label>
                 <input type="'.$type.'" class="form-control" placeholder="'.$placeholder.'" name="'.$name.'" value="'.$value.'">
               </div>
         ';
@@ -104,7 +106,7 @@ class Formularios
 	{
 		$this->form .=  '
 			<div class="form-group $this->getErrorClass($name)">
-                <label>'.$label.'</label>
+                <label>'.$label. $this->getRequired($name) .'</label>
                 <input type="date" class="form-control" placeholder="Ingrese fecha dd/mm/aa" name="'.$name.'" value="'.$value.'">
               </div>
         ';
@@ -120,7 +122,7 @@ class Formularios
         			
         			$this->form .=  '>
 				  <label for="'.$name.'">
-				    '.$label.'
+				    '.$label. $this->getRequired($name) .'
 				  </label>
 				</div>
 			</div>
@@ -147,7 +149,7 @@ class Formularios
 		//ej script: onchange="javascript:id_superior_onChange(this.value);"
 		$this->form .=  '
 			<div class="form-group' . $this->getErrorClass($name) . '">
-                  <label>'.$label.'</label>
+                  <label>'.$label. $this->getRequired($name) .'</label>
 	              <select class="form-control" name="'.$name.'" onchange="javascript:'.$script.'">
 	              	<option value="0"></option>
 				  	';
@@ -193,5 +195,19 @@ class Formularios
 	{
 		if ($this->errors && $this->errors->has($name))
 			return " has-error";
+	}
+
+	public function setRules($rules)
+	{
+		$this->_rules = $rules;
+	}
+
+	public function getRequired($name)
+	{
+		if (isset($this->_rules[$name]) && strpos($this->_rules[$name],"required") !== false){
+			return '<font style="color:red"> *</font>';
+		} else {
+			return "";
+		}
 	}
 }
