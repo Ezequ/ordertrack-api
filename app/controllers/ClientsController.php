@@ -9,7 +9,9 @@ class ClientController extends \BaseController {
 	 */
 	public function index()
 	{
-		$clients = Client::getList(Input::all());
+		$data = Input::all();
+		$data['estado>'] = ClientsStatesDefinition::STATE_NORMAL;
+		$clients = Client::getList($data);
 		return $clients->toJson();
 	}
 
@@ -91,6 +93,7 @@ class ClientController extends \BaseController {
 		$today = date('Y-m-d');
 		$clients = Client::where('id_vendedor',$sellerId)
 				->where('fecha_visita', $today)
+				->where('estado','>=',ClientsStatesDefinition::STATE_NORMAL)
 				->get();
 		return $clients->toJson();
 	}

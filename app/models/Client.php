@@ -1,6 +1,9 @@
 <?php
 
 class Client extends Model {
+
+	protected  $_paginatation = 99999999;
+
 	protected $fillable = ['apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 							'razon_social', 'cod_cliente', 'fecha_ultima_visita','estado'];
 
@@ -18,10 +21,10 @@ class Client extends Model {
 	);
 
 	public static $messages = array(
-		'required'      => 'El atributo :attribute es requerido.',
+		'required'      => 'El campo :attribute es requerido.',
 		'email.unique'  => 'Ya existe un usuario con ese email',
 		'id_vendedor.not_in'	=> 'El vendedor asignado es inválido.',
-		'cod_cliente.required'  => 'El atributo código de cliente es requerido.',
+		'cod_cliente.required'  => 'El campo código de cliente es requerido.',
 		'cod_cliente.unique'	=> 'El código cliente ya existe.',
 	);
 
@@ -72,14 +75,13 @@ class Client extends Model {
 	}
 
 	static function getLatLong($address){
-
-		$address = str_replace(" ", "+", $address);
-		$region = "Buenos Aires";
-		$json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=" . urlencode($address) .
-			"&sensor=false&region=" . urlencode($region));
-		$json = json_decode($json);
-		$return = array();
 		try{
+			$address = str_replace(" ", "+", $address);
+			$region = "Buenos Aires";
+			$json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=" . urlencode($address) .
+				"&sensor=false&region=" . urlencode($region));
+			$json = json_decode($json);
+			$return = array();
 			$return['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
 			$return['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 		} catch(Exception $e) {

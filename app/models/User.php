@@ -27,7 +27,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	public static $messages = array(
 		'not_in'			=> 'El rol seleccionado es inválido.',
 		'integer'			=> 'El valor del :atribute debe ser un entero',
-		'required'      => 'El atributo :attribute es requerido.',
+		'required'      => 'El campo :attribute es requerido.',
 		'password.min'	=> 'La contraseña debe tener al menos 6 dígitos',
 		'email.unique'  => 'Ya existe un usuario con ese email.',
 		'email.email'	=> 'El formato de email es incorrecto.'
