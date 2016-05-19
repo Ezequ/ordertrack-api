@@ -18,7 +18,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 		'nombre_usuario'    => 'required',
 		'email'             => 'required|email|unique:users,email,{self::id}',
 		'password' 			=> 'sometimes|min:6',
-		'rol'               => 'not_in:0',
+		'rol'               => 'required|not_in:0',
 	);
 
 

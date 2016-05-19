@@ -8,7 +8,7 @@ class Product extends Model {
 	public static $rules = array(
 		'stock'             => 'required|integer|min:1',
 		'precio'             => 'required|integer|min:1',
-		'categoria'             => 'not_in:0',
+		'categoria'             => 'required|not_in:0',
 		'nombre'             => 'required',
 	);
 
