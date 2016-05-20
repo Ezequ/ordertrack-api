@@ -94,6 +94,12 @@ class UrlsAdm
 				"submenu" => array(
 					"Listado de usuarios" => "/adm/usuario",
 				)
+			),
+			"Agenda" => array(
+				'allowed-rols' => "2",
+				"submenu" => array(),
+				'module'  => "agenda",
+				'icon' 	=> ""
 			)
 		);
 	}
