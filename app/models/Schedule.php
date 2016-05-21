@@ -55,8 +55,9 @@ class Schedule extends Model {
 		return $customerScheduled->save();
 	}
 
-	public static function getCustomersScheduled($dayFrom = null, $dayTo = null,$seller = null)
+	public static function getCustomersScheduled($dayFrom = null, $dayTo = null,$seller = null,$returnCollection = true)
 	{
+		$return = null;
 		$query = DB::table('agenda')
 					->leftJoin('clientes', 'agenda.id_cliente', '=', 'clientes.id');
 		$fromTo = self::getFromAndToFromThisWeek();
@@ -67,7 +68,12 @@ class Schedule extends Model {
 		if ($seller){
 			$query->where('id_vendedor',$seller);
 		}
-		return $query->get();
+		if ($returnCollection){
+			$return = $query->get();
+		} else {
+			$return = $query;
+		}
+		return $return;
 	}
 
 	public static function getCustomersNotScheduled($customers,$seller)
