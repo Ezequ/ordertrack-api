@@ -10,9 +10,31 @@ class ClientController extends \BaseController {
 	public function index()
 	{
 		$data = Input::all();
-		$data['estado>'] = ClientsStatesDefinition::STATE_NORMAL;
-		$clients = Client::getList($data);
-		return $clients->toJson();
+
+		if (!isset($data['fecha_visita'])){
+			$data['fecha_visita'] = null;	
+		}
+
+		$query = Schedule::getCustomersScheduled($data['fecha_visita'],$data['fecha_visita'],$data['id_vendedor'],false);
+		
+		if (isset($data['razon_social%'])){
+			$query->where('razon_social', 'LIKE', '%'.$data['razon_social%'].'%');
+		}
+
+		if (isset($data['cod_cliente%'])){
+			$query->where('cod_cliente', 'LIKE', '%'.$data['cod_cliente%'].'%');
+		}
+
+		if (isset($data['orderby'])){
+			$orientation = isset($data['orientation']) ? $data['orientation'] : 'asc';
+			$query = $query->orderBy($orderBy,$orientation);
+		}
+		
+		
+		$clients = $query->where('estado','>=',ClientsStatesDefinition::STATE_NORMAL)->get();
+
+
+		return Response::json($clients);
 	}
 
 
