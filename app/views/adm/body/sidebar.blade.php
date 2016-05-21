@@ -22,9 +22,11 @@
                 @foreach(UrlsAdm::getMenu() as $index => $value)
                     @if(Auth::user()->hasAccess($value['allowed-rols']))
                     <li class="panel panel-default dropdown {{ ($sectionName == $index) ? 'active' : '' }}">
-                        <a data-toggle="collapse" href="#dropdown-element-{{ $i }}">
+                        <a <?php if($value['href'] == '') { ?>data-toggle="collapse" <?php } else { ?> class="sidebar-item-no-submenu" <?php } ?>
+                           href="{{ ($value['href'] != '') ? $value['href'] : '#dropdown-element-'.$i }}" >
                             <span class="icon fa fa-{{ $value['icon'] }}"></span><span class="title">{{$index}}</span>
                         </a>
+                        @if($value['href'] == '')
                         <!-- Dropdown level 1 -->
                         <div id="dropdown-element-{{ $i }}" class="panel-collapse collapse">
                             <div class="panel-body">
@@ -35,6 +37,7 @@
                                 </ul>
                             </div>
                         </div>
+                        @endif
                     </li>
                     @endif
                 <?php $i++ ?>

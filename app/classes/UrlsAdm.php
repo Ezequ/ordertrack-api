@@ -54,52 +54,57 @@ class UrlsAdm
 	public static function getMenu()
 	{
 		return array(
-			"Clientes" => array(
-				"icon" => "suitcase",
-				"allowed-rols" => "1,2",
+			'Clientes' => array(
+				'icon' => 'suitcase',
+				'allowed-rols' => '1,2',
 				'module' => 'cliente',
-				"submenu" => array(
-					"Listado de clientes" => "/adm/cliente",
+				'href' => '',
+				'submenu' => array(
+					'Listado de clientes' => '/adm/cliente',
 				)
 			),
-
-			"Pedidos" => array(
-				"allowed-rols" => "1,2",
-				"icon" => "shopping-cart",
+			'Agenda' => array(
+				'allowed-rols' => '2',
+				'icon' 	=> 'calendar',
+				'module'  => 'agenda',
+				'href' => '/adm/agenda',
+				'submenu' => array()
+			),
+			'Pedidos' => array(
+				'allowed-rols' => '1,2',
+				'icon' => 'shopping-cart',
 				'module' => 'pedido',
-				"submenu" => array(
-					"Listado de pedidos" => "/adm/pedido?" . self::getOrdersCustomFilters(),
+				'href' => '',
+				'submenu' => array(
+					'Listado de pedidos' => '/adm/pedido?' . self::getOrdersCustomFilters(),
 				)
 			),
-			"Productos" => array(
-				"allowed-rols" => "2",
-				"icon" => "cubes",
+			'Productos' => array(
+				'allowed-rols' => '2',
+				'icon' => 'cubes',
 				'module' => 'producto',
-				"submenu" => array(
-					"Listado de productos" => "/adm/producto",
+				'href' => '',
+				'submenu' => array(
+					'Listado de productos' => '/adm/producto',
 				)
 			),
-			"Categorías" => array(
-				"allowed-rols" => "2",
-				"icon" => "tag",
-				"module" => 'categoria',
-				"submenu" => array(
-					"Listado de categorías" => "/adm/categoria",
+			'Categorías' => array(
+				'allowed-rols' => '2',
+				'icon' => 'tag',
+				'module' => 'categoria',
+				'href' => '',
+				'submenu' => array(
+					'Listado de categorías' => '/adm/categoria',
 				)
 			),
-			"Usuarios" => array(
-				"allowed-rols" => "2",
-				"icon" => "users",
+			'Usuarios' => array(
+				'allowed-rols' => '2',
+				'icon' => 'users',
 				'module' => 'usuario',
-				"submenu" => array(
-					"Listado de usuarios" => "/adm/usuario",
+				'href' => '',
+				'submenu' => array(
+					'Listado de usuarios' => '/adm/usuario',
 				)
-			),
-			"Agenda" => array(
-				'allowed-rols' => "2",
-				"submenu" => array(),
-				'module'  => "agenda",
-				'icon' 	=> ""
 			)
 		);
 	}
