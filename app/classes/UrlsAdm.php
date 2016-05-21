@@ -6,6 +6,11 @@ class UrlsAdm
 		return "/adm/login";	
 	}
 
+	public static function getSchedule()
+	{
+		return "/adm/agenda";
+	}
+
 	public static function getLogout()
 	{
 		return "/adm/logout";
