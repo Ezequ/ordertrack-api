@@ -126,8 +126,9 @@ table.dataTable.no-footer,
 }
 
 .agenda .cell .content {
-    display:table-cell;
+    /*display:table-cell;*/
     padding: 5px;
+    width: 100%;
 }
 
 .agenda .cell .content a.btn {

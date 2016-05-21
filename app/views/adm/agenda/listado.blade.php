@@ -38,7 +38,7 @@
                                 <div class="agenda seven-cols">
                                     <div class='table'>
                                         <div class='row'>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="1">
                                                 <div class="header">
                                                     <h1>Domingo<h1>
                                                     <h2>22/05/2016</h2>
@@ -50,52 +50,58 @@
                                                     <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="2">
                                                 <div class="header">
                                                     <h1>Lunes<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-monday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="3">
                                                 <div class="header">
                                                     <h1>Martes<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-tuesday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="4">
                                                 <div class="header">
                                                     <h1>Miércoles<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-wednesday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="5">
                                                 <div class="header">
                                                     <h1>Jueves<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-thursday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="6">
                                                 <div class="header">
                                                     <h1>Viernes<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-friday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
-                                            <div class='cell col-md-1'>
+                                            <div class='cell col-md-1 day' data-day="7">
                                                 <div class="header">
                                                     <h1>Sábado<h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-saturday">
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +145,7 @@
     </button>
 
     <div class="form-inline ">
-        <select class="form-control">
+        <select class="week-day form-control">
           <<option value="1">Domingo</option>
           <<option value="2">Lunes</option>
           <<option value="3">Martes</option>
@@ -185,6 +191,20 @@ $elements.each(function () {
         container: $('body'), // This is just so the btn-group doesn't get messed up... also makes sorting the z-index issue easier
         content: $('#content').html()
     });
+
+
+    $element.on('click', function() {
+        var client_assigned = $element.data('assigned');
+        var $tip = $element.data('bs.popover').tip();
+
+        if(client_assigned) {
+            $tip.find('button.remove').prop('disabled', false);
+
+            $week_day = $element.closest('.day').data('day');
+            $select = $tip.find('.week-day');
+            $select.val($week_day);
+        }
+    });
     
     $element.on('shown.bs.popover', function () {
 
@@ -192,7 +212,6 @@ $elements.each(function () {
             $activePopover.hide();
         }*/
 
-        var client_assigned = $element.data("assigned");
         var popover = $element.data('bs.popover');
         /*$activePopover = popover;*/
 
@@ -200,9 +219,13 @@ $elements.each(function () {
 
             var $tip = popover.tip();
 
-            if(client_assigned) {
+            /*if(client_assigned) {
                 $tip.find('button.remove').prop('disabled', false);
-            }
+
+                $week_day = $element.closest('.day').data('day');
+                $select = $tip.find('.week-day');
+                $select.val($week_day);
+            }*/
 
             $tip.find('.close').bind('click', function () {
                 /*$activePopover = null;*/
