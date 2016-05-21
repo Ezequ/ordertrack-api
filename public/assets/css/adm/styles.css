@@ -42,3 +42,7 @@ table.dataTable.no-footer,
 .btn-circle:hover {
     background-color: #419C6F;
 }
+
+.sidebar-item-no-submenu::after {
+    content: "" !important;
+}
