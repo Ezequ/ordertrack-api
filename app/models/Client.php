@@ -4,7 +4,7 @@ class Client extends Model {
 
 	protected  $_paginatation = 99999999;
 
-	protected $fillable = ['apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
+	protected $fillable = ['apenom','dia_visita_defecto' ,'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 							'razon_social', 'cod_cliente', 'fecha_ultima_visita','estado'];
 
 	protected $table = "clientes";
@@ -42,6 +42,7 @@ class Client extends Model {
 		$inputs[] = array("type" => 'common', 'data1' => 'Dirección', 'data2' => 'direccion', 'data3' => $this->direccion);
 		$inputs[] = array("type" => 'common', 'data1' => 'Teléfono', 'data2' => 'telefono', 'data3' => $this->telefono);
 		$inputs[] = array("type" => 'select', 'data1' => 'Vendedor', 'data2' => 'id_vendedor', 'data3' => SellerDefinition::getDefinition(), 'data4' => $this->id_vendedor);
+		$inputs[] = array("type" => 'select', 'data1' => 'Dia de visita por defecto', 'data2' => 'dia_visita_defecto', 'data3' => WeekDaysDefinition::getDefinition(), 'data4' => $this->dia_visita_defecto);
 		$inputs[] = array("type" => 'common', 'data1' => 'Código cliente', 'data2' => 'cod_cliente', 'data3' => $this->cod_cliente);
 		$inputs[] = array("type" => 'text', 'data1' => 'Observaciones', 'data2' => 'observaciones', 'data3' => $this->observaciones);
 		$inputs[] = array("type" => 'hidden', 'data1' => 'estado', 'data2' => ClientsStatesDefinition::STATE_NORMAL);
