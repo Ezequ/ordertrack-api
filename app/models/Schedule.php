@@ -10,9 +10,9 @@ class Schedule extends Model {
 
 	public $timestamps = false;
 
-	public static function getFromAndToFromThisWeek()
+	public static function getFromAndToFromThisWeek($date = null)
 	{
-		$currentDate = date('Y-m-d');
+		$currentDate = $date ? $date : date('Y-m-d');
 		$date = strtolower(date("l", strtotime($currentDate)));
 		if ($date == "sunday") {
 			$from = date('Y-m-d');
@@ -29,10 +29,15 @@ class Schedule extends Model {
 
 	public static function saveCustomerScheduleForThisWeek($idCustomer,$dateSchedule,$dateVisited)
 	{
-		if (!$idCustomer){
+		if (!$idCustomer || !$dateSchedule){
 			return null;
+		} else {
+			$client = Client::find($idCustomer);
+			if (!$client){
+				return null;
+			}
 		}
-		$fromTo = self::getFromAndToFromThisWeek();
+		$fromTo = self::getFromAndToFromThisWeek($dateSchedule);
 		$customerScheduled = Schedule::where('id_cliente', $idCustomer)
 			->where('fecha_visita_programada', "<=", $fromTo['to'])
 			->where('fecha_visita_programada', ">=", $fromTo['from'])
@@ -63,6 +68,19 @@ class Schedule extends Model {
 			$query->where('id_vendedor',$seller);
 		}
 		return $query->get();
+	}
+
+	public static function getCustomersNotScheduled($customers,$seller)
+	{
+		$ids = array();
+		foreach ($customers as $index => $customer) {
+			$ids[] = $customer->id_cliente;
+		}
+		$customers = Client::whereNotIn('id',$ids);
+		if ($seller){
+			$customers->where('id_vendedor',$seller);
+		}
+		return $customers->get();
 	}
 
 }
