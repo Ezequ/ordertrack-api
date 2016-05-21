@@ -4,15 +4,16 @@ class ScheduleController extends AdminController
 
     public function saveScheduleCustomer()
     {
-        Schedule::saveCustomerScheduleForThisWeek(Input::get('id'), Input::get('fecha_visita_programada'),
+        $customer = Schedule::saveCustomerScheduleForThisWeek(Input::get('id'), Input::get('fecha_visita_programada'),
             Input::get('fecha_visita_concretada'));
+        return json_encode($customer);
 
     }
 
     public function getCustomerScheduled()
     {
         $list = Schedule::getCustomersScheduled(Input::get('from'),Input::get('to'),Input::get('id'));
-        var_dump($list);
+        return json_encode($list);
     }
     
     public function getModel()
