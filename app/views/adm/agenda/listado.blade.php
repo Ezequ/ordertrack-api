@@ -44,10 +44,10 @@
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-sunday">
-                                                    <a id="buttonClient" type="button" class="btn btn-default btn-sm agenda-event disabled">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event disabled">Juan Pérez</a>
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
+                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
                                                 </div>
                                             </div>
                                             <div class='cell col-md-1'>
@@ -113,13 +113,13 @@
                                         <a type="button" class="btn btn-link btn-sm btn-circle pull-right" href="" data-toggle="tooltip" title="Asignar días por defecto"><i class="fa fa-random"></i></a>
                                     </header>
                                     <div class="agenda-clients-list">
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
         <button type="button" class="btn btn-info btn-sm save" data-toggle="tooltip" title="Guardar" >
             <i class="fa fa-save"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm save" data-toggle="tooltip" title="Eliminar asignación" >
+        <button type="button" class="btn btn-danger btn-sm remove" disabled="disabled" data-toggle="tooltip" title="Eliminar asignación" >
             <i class="fa fa-calendar-times-o"></i>
         </button>
     </div>
@@ -192,11 +192,17 @@ $elements.each(function () {
             $activePopover.hide();
         }*/
 
+        var client_assigned = $element.data("assigned");
         var popover = $element.data('bs.popover');
         /*$activePopover = popover;*/
 
         if (typeof popover !== "undefined") {
+
             var $tip = popover.tip();
+
+            if(client_assigned) {
+                $tip.find('button.remove').prop('disabled', false);
+            }
 
             $tip.find('.close').bind('click', function () {
                 /*$activePopover = null;*/
