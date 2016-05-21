@@ -11,6 +11,10 @@
 
 }
 
+.margin-left {
+    margin-left: 10px;
+}
+
 .app-container .content-container .side-menu .navbar-nav li a .icon {
 	font-size: 1.7em;
 	font-style: normal;
@@ -42,6 +46,15 @@ table.dataTable.no-footer,
 .btn-circle:hover {
     background-color: #419C6F;
 }
+.btn-circle.btn-sm {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 4px 4px;
+    font-size: 15px;
+    line-height: 0;
+    border-radius: 50%;
+}
 
 .sidebar-item-no-submenu::after {
     content: "" !important;
@@ -51,45 +64,160 @@ table.dataTable.no-footer,
  * Agenda
  */
 
-.agenda .agenda-column {
-    background-color: #ddd;
-    border: 1px solid #ccc;
+.agenda {
+
 }
 
-.agenda .agenda-column .agenda-header p {
+.card.card-agenda {
+    overflow: initial;
+}
+
+.agenda .table {
+    display:table;
+    table-layout:fixed;
+    height:100%;
+    width:100%;
+    max-height:100%;
+    padding: 0;
+}
+.agenda .row {
+    display:table-row;
+}
+
+.agenda .row > [class*="col-"] {
+    margin-bottom: 0;
+}
+
+.agenda .cell {
+    display:table-cell;
+    border-right: 1px solid #eee;
+}
+
+.agenda .cell:last-child {
+    border-right: none;
+}
+
+.agenda .cell .header {
+    background-color: #fefeee;
+    padding: 5px;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.agenda .cell .header h1,
+.agenda .cell .header h2 {
     padding: 0;
     margin: 0;
     width: 100%;
     text-align: center;
 }
 
-@media (min-width: 768px){
-  .agenda.seven-cols .col-md-1,
-  .agenda.seven-cols .col-sm-1,
-  .agenda.seven-cols .col-lg-1  {
+.agenda .cell .header h1 {
+    font-size: 13px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.agenda .cell .header h2 {
+    font-size: 11px;
+    color: #999;
+    font-weight: bold;
+}
+
+.agenda .cell .content {
+    display:table-cell;
+    padding: 5px;
+}
+
+.agenda .cell .content a.btn {
     width: 100%;
-    *width: 100%;
-  }
+}
+
+@media (min-width: 768px){
+    .agenda.seven-cols .col-md-1,
+    .agenda.seven-cols .col-sm-1,
+    .agenda.seven-cols .col-lg-1  {
+        width: 100%;
+        /**width: 100%;*/
+        float: none;
+        padding-right: 0;
+        padding-left: 0;
+    }
 }
 
 @media (min-width: 992px) {
-  .agenda.seven-cols .col-md-1,
-  .agenda.seven-cols .col-sm-1,
-  .agenda.seven-cols .col-lg-1 {
-    width: 14.285714285714285714285714285714%;
-    *width: 14.285714285714285714285714285714%;
-  }
+    .agenda.seven-cols .col-md-1,
+    .agenda.seven-cols .col-sm-1,
+    .agenda.seven-cols .col-lg-1 {
+        width: 14.285714285714285714285714285714%;
+        /**width: 14.285714285714285714285714285714%;*/
+    }
+}
+
+@media (max-width: 720px) {
+    .agenda .cell {
+        display: block;
+        border-right: none;
+    }
+
+    .agenda .cell .content a.btn {
+        width: auto;
+    }
 }
 
 /**
- *  The following is not really needed in this case
- *  Only to demonstrate the usage of @media for large screens
+ *  @media for large screens
  */    
 @media (min-width: 1200px) {
-  .agenda.seven-cols .col-md-1,
-  .agenda.seven-cols .col-sm-1,
-  .agenda.seven-cols .col-lg-1 {
-    width: 14.285714285714285714285714285714%;
-    *width: 14.285714285714285714285714285714%;
-  }
+    .agenda.seven-cols .col-md-1,
+    .agenda.seven-cols .col-sm-1,
+    .agenda.seven-cols .col-lg-1 {
+        width: 14.285714285714285714285714285714%;
+        *width: 14.285714285714285714285714285714%;
+    }
+}
+
+/* Make the well behave for the demo */
+.popover {
+    padding: 0;
+}
+
+ .popover-demo {
+    margin-top: 5em
+}
+/* Popover styles */
+ .popover .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.popover-title {
+    padding-right: 30px;
+}
+
+.popover.bottom>.arrow:after {
+    border-bottom-color: #F7F7F7;
+}
+
+
+.agenda-clients header {
+    background-color: #fefeee;
+    color: #555;
+    font-size: 13px;
+    font-weight: bold;
+    height: 40px;
+    padding: 0px 5px 0px 5px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+    line-height: 40px;
+}
+
+.agenda-clients-list {
+    min-height: 100px;
+    padding: 5px;
+}
+
+button.agenda-event {
+
 }
