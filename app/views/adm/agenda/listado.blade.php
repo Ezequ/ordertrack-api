@@ -30,9 +30,11 @@
         </div>
     </div>
 @endsection
+@section('scripts')
 <script>
     function submit()
     {
         submit();
     }
 </script>
+@endsection

@@ -3,7 +3,7 @@ class ScheduleController extends AdminController
 {
 
     public $subSectionName = "Agenda";
-
+    public $sectionName = "Agenda";
     public function saveScheduleCustomer()
     {
         $customer = Schedule::saveCustomerScheduleForThisWeek(Input::get('id'), Input::get('fecha_visita_programada'),
