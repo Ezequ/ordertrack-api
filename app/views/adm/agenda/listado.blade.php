@@ -40,7 +40,7 @@
                                         <div class='row'>
                                             <div class='cell col-md-1 day' data-day="1">
                                                 <div class="header">
-                                                    <h1>Domingo<h1>
+                                                    <h1>Domingo</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-sunday">
@@ -52,7 +52,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="2">
                                                 <div class="header">
-                                                    <h1>Lunes<h1>
+                                                    <h1>Lunes</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-monday">
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="3">
                                                 <div class="header">
-                                                    <h1>Martes<h1>
+                                                    <h1>Martes</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-tuesday">
@@ -70,7 +70,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="4">
                                                 <div class="header">
-                                                    <h1>Miércoles<h1>
+                                                    <h1>Miércoles</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-wednesday">
@@ -79,7 +79,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="5">
                                                 <div class="header">
-                                                    <h1>Jueves<h1>
+                                                    <h1>Jueves</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-thursday">
@@ -88,7 +88,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="6">
                                                 <div class="header">
-                                                    <h1>Viernes<h1>
+                                                    <h1>Viernes</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-friday">
@@ -97,7 +97,7 @@
                                             </div>
                                             <div class='cell col-md-1 day' data-day="7">
                                                 <div class="header">
-                                                    <h1>Sábado<h1>
+                                                    <h1>Sábado</h1>
                                                     <h2>22/05/2016</h2>
                                                 </div>
                                                 <div class="content container-saturday">
