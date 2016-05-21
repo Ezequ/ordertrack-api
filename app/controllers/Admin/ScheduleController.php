@@ -14,14 +14,18 @@ class ScheduleController extends AdminController
 
     public function getCustomerScheduled()
     {
+        $sellerId = Input::get('id');
         $fromto = $this->getFromAndToFromFilters();
         $from = isset($fromto['from']) ? $fromto['from'] : null;
         $to = isset($fromto['to']) ? $fromto['to'] : null;
-        $list = Schedule::getCustomersScheduled($from,$to,Input::get('id'));
+        $customers = Schedule::getCustomersScheduled($from,$to,$sellerId);
+        $notScheduledCustomers = Schedule::getCustomersNotScheduled($customers,$sellerId);
         return View::make('adm.agenda.listado')
+            ->with('notScheduledCustomers',$notScheduledCustomers)
             ->with("from",$from)
+            ->with("sellerId", $sellerId)
             ->with("to",$to)
-            ->with("customers", $list)
+            ->with("customers", $customers)
             ->with("sectionName", $this->sectionName)
             ->with("subSectionName", $this->subSectionName);
     }

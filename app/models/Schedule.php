@@ -70,4 +70,17 @@ class Schedule extends Model {
 		return $query->get();
 	}
 
+	public static function getCustomersNotScheduled($customers,$seller)
+	{
+		$ids = array();
+		foreach ($customers as $index => $customer) {
+			$ids[] = $customer->id_cliente;
+		}
+		$customers = Client::whereNotIn('id',$ids);
+		if ($seller){
+			$customers->where('id_vendedor',$seller);
+		}
+		return $customers->get();
+	}
+
 }
