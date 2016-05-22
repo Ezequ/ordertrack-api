@@ -1,7 +1,7 @@
 <?php
 
 class Discount extends Model {
-	protected $fillable = ['fecha_inicio', 'fecha_fin', 'sin_limites', 'cant_bultos_min', 'cant_bultos_max','descripcion'];
+	protected $fillable = ['fecha_inicio', 'fecha_fin', 'sin_limites', 'cant_bultos_min', 'cant_bultos_max','descripcion','descuento'];
 
 	protected $table = 'descuentos';
 
