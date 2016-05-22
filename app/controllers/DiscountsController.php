@@ -11,7 +11,14 @@ class DiscountsController extends \BaseController {
 	public function index()
 	{
 		$data = Input::all();
-		$discounts = Discount::getList($data);
+		$today = date('Y-m-d');
+
+		
+		$discounts = Discount::where(function ($query) use ($today)  {
+    		$query->where('fecha_inicio', '<=', $today)
+          		  ->where('fecha_fin', '>=', $today);
+		})->orWhere('sin_limites', '=', 'true')->get();
+		
 		return $discounts->toJson();
 	}
 
