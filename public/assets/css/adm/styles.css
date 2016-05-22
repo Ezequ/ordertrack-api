@@ -91,6 +91,7 @@ table.dataTable.no-footer,
 .agenda .cell {
     display:table-cell;
     border-right: 1px solid #eee;
+
 }
 
 .agenda .cell:last-child {
@@ -129,6 +130,7 @@ table.dataTable.no-footer,
     /*display:table-cell;*/
     padding: 5px;
     width: 100%;
+    min-height: 400px;
 }
 
 .agenda .cell .content a.btn {
@@ -163,6 +165,10 @@ table.dataTable.no-footer,
     .agenda .cell {
         display: block;
         border-right: none;
+    }
+
+    .agenda .cell .content {
+        min-height: 50px;
     }
 
     .agenda .cell .content a.btn {
