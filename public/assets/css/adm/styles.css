@@ -133,6 +133,9 @@ table.dataTable.no-footer,
 
 .agenda .cell .content a.btn {
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 @media (min-width: 768px){
@@ -216,9 +219,11 @@ table.dataTable.no-footer,
 
 .agenda-clients-list {
     min-height: 100px;
+    max-height: 400px;
+    overflow: scroll;
     padding: 5px;
 }
 
-button.agenda-event {
-
+..agenda-clients-list a.btn.agenda-event {
+    width: 100%;
 }
