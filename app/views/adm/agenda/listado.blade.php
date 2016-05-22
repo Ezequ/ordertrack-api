@@ -12,7 +12,7 @@
                     <form class="form-inline" action="{{UrlsAdm::getSchedule()}}" method="get" id="filters">
                         <div class="form-group form-group-lg">
                             <label class="">Semana: </label>
-                            <select class="form-control" id="from" name="from" onchange="submit()">
+                            <select class="form-control" id="from" name="from" onchange="submitForm()">
                                 @foreach(DatesHelper::getAllYearWeeks() as $firstDay => $week)
                                     <option value="{{$firstDay}}" {{$firstDay == Input::get('from') ? 'selected'  : ''}}>{{$week}}</option>
                                 @endforeach
@@ -20,7 +20,8 @@
                         </div>
                         <div class="form-group form-group-lg margin-left">
                             <label class="">Vendedor: </label>
-                            <select class="form-control" id="id" name="id" onchange="submit()">
+                            <select class="form-control" id="id" name="id" onchange="submitForm()">
+                                <option value="0" {{0 == Input::get('id') ? 'selected'  : ''}}>Seleccione un vendedor</option>
                                 @foreach(SellerDefinition::getDefinition() as $id => $name)
                                     <option value="{{$id}}" {{$id == Input::get('id') ? 'selected'  : ''}}>{{$name}}</option>
                                 @endforeach
@@ -30,7 +31,7 @@
                 </div>
 
                 <div class="sub-title"></div>
-
+                @if(Input::get('id') && Input::get('id') != 0)
                 <div class="row">
                     <div class="col-xs-12 col-md-9">
                         <div class="card primary card-agenda">
@@ -75,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
             </div>
         </div>
     </div>
@@ -111,8 +112,11 @@ $(document).ready(function() {
 });
 
 
-function submit() {
-    submit();
+function submitForm() {
+    seller = $("#id").val();
+    if(seller != 0){
+        $("#filters").submit();
+    }
 }
 
 
