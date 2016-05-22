@@ -59,4 +59,17 @@ class ScheduleController extends AdminController
         }
         return $days;
     }
+
+    public function deleteScheduleCustomer()
+    {
+        $id = Input::get('id');
+        $date = Input::get('date');
+        $schedule = Schedule::where('id_cliente', $id)
+                  ->where('fecha_visita_programada', $date)->first();
+        if($schedule){
+            $schedule->delete();
+        }
+        return json_encode(true);
+
+    }
 }

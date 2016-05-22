@@ -46,7 +46,7 @@
                                                     </div>
                                                     <div class="content container-{{$day['name']}}">
                                                         @foreach($day['customers'] as $customer)
-                                                            <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}">{{$customer->razon_social}}</a>
+                                                            <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}</a>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -135,11 +135,13 @@ $elements.each(function () {
     $element.on('click', function() {
         var client_assigned = $element.data('assigned');
         var customer_id = $element.data('customer');
+        var date = $element.data('date');
         var $tip = $element.data('bs.popover').tip();
         var tip0 = $tip[0];
         if (tip0){
             $("#"+tip0.id).find('.save').attr("customer",customer_id);
             $("#"+tip0.id).find('.remove').attr("customer",customer_id);
+            $("#"+tip0.id).find('.remove').attr("date",date);
         }
         if(client_assigned) {
             $tip.find('button.remove').prop('disabled', false);
@@ -173,6 +175,7 @@ $elements.each(function () {
 
             $tip.find('.close').bind('click', function () {
                 /*$activePopover = null;*/
+
                 popover.hide();
             });
 
@@ -206,6 +209,27 @@ $elements.each(function () {
                     destination = 'div1';
                 else
                     destination = 'div2';
+            });
+
+            $tip.find('.remove').bind('click', function () {
+                customer_id = this.getAttribute('customer');
+                dateat = this.getAttribute('date');
+                $.ajax({
+                    url: "{{UrlsAdm::getDeleteScheduleUrl()}}",
+                    data: {
+                        format: 'json',
+                        id: customer_id,
+                        date: dateat,
+                    },
+                    error: function() {
+                        console.log("asdasd");
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        location.reload();
+                    },
+                    type: 'GET'
+                });
             });
         }
     });
