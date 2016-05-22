@@ -224,6 +224,6 @@ table.dataTable.no-footer,
     padding: 5px;
 }
 
-..agenda-clients-list a.btn.agenda-event {
+.agenda-clients-list a.btn.agenda-event {
     width: 100%;
 }
