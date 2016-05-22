@@ -44,9 +44,9 @@
                                                         <h1>{{$day['name']}}</h1>
                                                         <h2>{{$date}}</h2>
                                                     </div>
-                                                    <div class="content container-{{$day['name']}}">
+                                                    <div id="container_{{$date}}" class="content container_{{$date}}">
                                                         @foreach($day['customers'] as $customer)
-                                                            <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}</a>
+                                                            <a id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}</a>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -67,7 +67,7 @@
                                     </header>
                                     <div class="agenda-clients-list">
                                         @foreach($notScheduledCustomers as $customer)
-                                            <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default btn-sm agenda-event agenda-popover" data-customer="{{$customer->id}}" >{{$customer->razon_social}}</a>
+                                            <a id="buttonClient-{{$customer->id}}" type="button" data-assigned="false" class="btn btn-default btn-sm agenda-event agenda-popover" data-customer="{{$customer->id}}" >{{$customer->razon_social}}</a>
                                         @endforeach
                                     </div>
                                 </div>
@@ -192,11 +192,16 @@ $elements.each(function () {
                         fecha_visita_programada: date,
                     },
                     error: function() {
-                        console.log("asdasd");
+                        alert("No hay sido posible realizar la modificación");
                     },
                     success: function(data) {
-                        console.log(data);
-                        location.reload();
+                        customer = jQuery.parseJSON(data);
+                        customer_id = customer.id_cliente;
+                        date = customer.fecha_visita_programada;
+                        button = $("#buttonClient-"+customer_id);
+                        container = $("#container_"+date);
+                        button.attr("data-date",date);
+                        button.appendTo(container);
                     },
                     type: 'GET'
                 });
@@ -222,11 +227,12 @@ $elements.each(function () {
                         date: dateat,
                     },
                     error: function() {
-                        console.log("asdasd");
+                        alert('No se ha podido eliminar.');
                     },
                     success: function(data) {
-                        console.log(data);
-                        location.reload();
+                        button = $("#buttonClient-"+customer_id);
+                        button.remove();
+                        popover.hide();
                     },
                     type: 'GET'
                 });
