@@ -82,7 +82,7 @@ class Schedule extends Model {
 		foreach ($customers as $index => $customer) {
 			$ids[] = $customer->id_cliente;
 		}
-		$customers = Client::whereNotIn('id',$ids);
+		$customers = Client::whereNotIn('id',$ids)->where('estado','>=' ,ClientsStatesDefinition::STATE_NORMAL);
 		if ($seller){
 			$customers->where('id_vendedor',$seller);
 		}

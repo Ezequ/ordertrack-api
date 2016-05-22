@@ -27,7 +27,7 @@ class ClientController extends \BaseController {
 
 		if (isset($data['orderby'])){
 			$orientation = isset($data['orientation']) ? $data['orientation'] : 'asc';
-			$query = $query->orderBy($orderBy,$orientation);
+			$query = $query->orderBy($data['orderby'],$orientation);
 		}
 		
 		

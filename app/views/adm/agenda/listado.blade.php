@@ -38,72 +38,19 @@
                                 <div class="agenda seven-cols">
                                     <div class='table'>
                                         <div class='row'>
-                                            <div class='cell col-md-1 day' data-day="1">
-                                                <div class="header">
-                                                    <h1>Domingo</h1>
-                                                    <h2>22/05/2016</h2>
+                                            @foreach($days as $date => $day)
+                                                <div class='cell col-md-1 day' data-day="{{$date}}">
+                                                    <div class="header">
+                                                        <h1>{{$day['name']}}</h1>
+                                                        <h2>{{$date}}</h2>
+                                                    </div>
+                                                    <div class="content container-{{$day['name']}}">
+                                                        @foreach($day['customers'] as $customer)
+                                                            <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}">{{$customer->razon_social}}</a>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
-                                                <div class="content container-sunday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event disabled">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="2">
-                                                <div class="header">
-                                                    <h1>Lunes</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-monday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="3">
-                                                <div class="header">
-                                                    <h1>Martes</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-tuesday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="4">
-                                                <div class="header">
-                                                    <h1>Miércoles</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-wednesday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="5">
-                                                <div class="header">
-                                                    <h1>Jueves</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-thursday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="6">
-                                                <div class="header">
-                                                    <h1>Viernes</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-friday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
-                                            <div class='cell col-md-1 day' data-day="7">
-                                                <div class="header">
-                                                    <h1>Sábado</h1>
-                                                    <h2>22/05/2016</h2>
-                                                </div>
-                                                <div class="content container-saturday">
-                                                    <a id="buttonClient" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event agenda-popover">Juan Pérez</a>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -119,13 +66,9 @@
                                         <a type="button" class="btn btn-link btn-sm btn-circle pull-right" href="" data-toggle="tooltip" title="Asignar días por defecto"><i class="fa fa-random"></i></a>
                                     </header>
                                     <div class="agenda-clients-list">
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
-                                        <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover">Juan Pérez</a>
+                                        @foreach($notScheduledCustomers as $customer)
+                                            <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover" data-customer="{{$customer->id}}" >{{$customer->razon_social}}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -146,13 +89,9 @@
 
     <div class="form-inline ">
         <select class="week-day form-control">
-          <<option value="1">Domingo</option>
-          <<option value="2">Lunes</option>
-          <<option value="3">Martes</option>
-          <<option value="4">Miércoles</option>
-          <<option value="5">Jueves</option>
-          <<option value="6">Viernes</option>
-          <<option value="7">Sábado</option>
+            @foreach($days as $date => $day)
+                <option value="{{$date}}">{{$day['name']}}</option>
+            @endforeach
         </select>
         <button type="button" class="btn btn-info btn-sm save" data-toggle="tooltip" title="Guardar" >
             <i class="fa fa-save"></i>
@@ -195,8 +134,13 @@ $elements.each(function () {
 
     $element.on('click', function() {
         var client_assigned = $element.data('assigned');
+        var customer_id = $element.data('customer');
         var $tip = $element.data('bs.popover').tip();
-
+        var tip0 = $tip[0];
+        if (tip0){
+            $("#"+tip0.id).find('.save').attr("customer",customer_id);
+            $("#"+tip0.id).find('.remove').attr("customer",customer_id);
+        }
         if(client_assigned) {
             $tip.find('button.remove').prop('disabled', false);
 
@@ -235,7 +179,24 @@ $elements.each(function () {
             $tip.find('.save').bind('click', function () {
                 /*$activePopover = null;*/
                 popover.hide();
-                
+                customer_id = this.getAttribute('customer');
+                date = this.previousElementSibling.value;
+                $.ajax({
+                    url: "{{UrlsAdm::getSaveScheduleUrl()}}",
+                    data: {
+                        format: 'json',
+                        id: customer_id,
+                        fecha_visita_programada: date,
+                    },
+                    error: function() {
+                        console.log("asdasd");
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        location.reload();
+                    },
+                    type: 'GET'
+                });
                 // Change position of client
                 /*var fragment = document.createDocumentFragment();
                 fragment.appendChild(document.getElementById('buttonClient'));
@@ -249,6 +210,7 @@ $elements.each(function () {
         }
     });
 });
+
 
 </script>
 @endsection
