@@ -201,7 +201,8 @@ $elements.each(function () {
                         button = $("#buttonClient-"+customer_id);
                         container = $("#container_"+date);
                         button.attr("data-date",date);
-                        button.appendTo(container);
+                        button.attr('data-assigned', true);
+                        button.appendTo(container).show("slide",{},"1000");
                     },
                     type: 'GET'
                 });
@@ -231,7 +232,9 @@ $elements.each(function () {
                     },
                     success: function(data) {
                         button = $("#buttonClient-"+customer_id);
-                        button.remove();
+                        container = $(".agenda-clients-list");
+                        button.attr('data-assigned', false);
+                        button.appendTo(container).show("slide");
                         popover.hide();
                     },
                     type: 'GET'
