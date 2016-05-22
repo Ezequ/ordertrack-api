@@ -21,6 +21,7 @@ class CreateDescuentosTable extends Migration {
 			$table->string('descripcion')->nullable();
 			$table->integer('cant_bultos_min');
 			$table->integer('cant_bultos_max');
+			$table->integer('descuento');
 			$table->timestamps();
 		});
 	}
