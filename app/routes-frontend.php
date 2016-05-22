@@ -16,6 +16,7 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('orders', 'OrdersController');
 Route::resource('report', 'ReportController');
 Route::get('report/getReport/{id}', 'ReportController@getReport');
+Route::resource('discount', 'DiscountsController');
 Route::group(array('before' => 'tokenauth'), function()
 {
  Route::get('/', 'HomeController@showHome');
