@@ -20,9 +20,12 @@ class ScheduleController extends AdminController
         $to = isset($fromto['to']) ? $fromto['to'] : null;
         $customers = Schedule::getCustomersScheduled($from,$to,$sellerId);
         $notScheduledCustomers = Schedule::getCustomersNotScheduled($customers,$sellerId);
+        $days = DatesHelper::getDatesColumnsSchedule($from,$to);
+        $days = $this->addCustomersToDays($days,$customers);
         return View::make('adm.agenda.listado')
             ->with('notScheduledCustomers',$notScheduledCustomers)
             ->with("from",$from)
+            ->with("days",$days)
             ->with("sellerId", $sellerId)
             ->with("to",$to)
             ->with("customers", $customers)
@@ -45,5 +48,28 @@ class ScheduleController extends AdminController
             $fromto = Schedule::getFromAndToFromThisWeek($plusday);
         }
         return $fromto;
+    }
+
+    protected function addCustomersToDays($days,$customers)
+    {
+        foreach ($customers as $index => $customer) {
+            if (isset($days[$customer->fecha_visita_programada])){
+                $days[$customer->fecha_visita_programada]['customers'][] = $customer;
+            }
+        }
+        return $days;
+    }
+
+    public function deleteScheduleCustomer()
+    {
+        $id = Input::get('id');
+        $date = Input::get('date');
+        $schedule = Schedule::where('id_cliente', $id)
+                  ->where('fecha_visita_programada', $date)->first();
+        if($schedule){
+            $schedule->delete();
+        }
+        return json_encode(true);
+
     }
 }

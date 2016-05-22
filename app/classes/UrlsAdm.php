@@ -26,6 +26,16 @@ class UrlsAdm
 		return "/adm";	
 	}
 
+	public static function getSaveScheduleUrl()
+	{
+		return "/adm/agenda/agendar-cliente";
+	}
+
+	public static function getDeleteScheduleUrl()
+	{
+		return "/adm/agenda/eliminar-cliente";
+	}
+
 	public static function getChangeStatus()
 	{
 		return "/adm/pedido/changeStatus";
