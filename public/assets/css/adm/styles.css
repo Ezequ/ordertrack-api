@@ -220,7 +220,7 @@ table.dataTable.no-footer,
 .agenda-clients-list {
     min-height: 100px;
     max-height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 5px;
 }
 
