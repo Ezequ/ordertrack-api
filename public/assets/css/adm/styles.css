@@ -130,7 +130,7 @@ table.dataTable.no-footer,
     /*display:table-cell;*/
     padding: 5px;
     width: 100%;
-    min-height: 400px;
+    min-height: 300px;
 }
 
 .agenda .cell .content a.btn {
@@ -225,7 +225,7 @@ table.dataTable.no-footer,
 
 .agenda-clients-list {
     min-height: 100px;
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: scroll;
     padding: 5px;
 }

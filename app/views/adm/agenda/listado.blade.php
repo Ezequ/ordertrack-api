@@ -67,7 +67,7 @@
                                     </header>
                                     <div class="agenda-clients-list">
                                         @foreach($notScheduledCustomers as $customer)
-                                            <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default agenda-event agenda-popover" data-customer="{{$customer->id}}" >{{$customer->razon_social}}</a>
+                                            <a id="buttonClient" type="button" data-assigned="false" class="btn btn-default btn-sm agenda-event agenda-popover" data-customer="{{$customer->id}}" >{{$customer->razon_social}}</a>
                                         @endforeach
                                     </div>
                                 </div>
