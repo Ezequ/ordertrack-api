@@ -52,7 +52,8 @@ class Schedule extends Model {
 		if ($dateVisited){
 			$customerScheduled->fecha_visita_concretada = $dateVisited;
 		}
-		return $customerScheduled->save();
+		$customerScheduled->save();
+        return $customerScheduled;
 	}
 
 	public static function getCustomersScheduled($dayFrom = null, $dayTo = null,$seller = null,$returnCollection = true)
