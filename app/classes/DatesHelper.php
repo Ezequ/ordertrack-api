@@ -49,4 +49,9 @@ class DatesHelper
             case 6: return "Sábado"; break;
         }
     }
+
+    public function getDayFromWeekByName($name)
+    {
+
+    }
 }

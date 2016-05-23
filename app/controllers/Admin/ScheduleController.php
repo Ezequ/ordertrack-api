@@ -72,4 +72,24 @@ class ScheduleController extends AdminController
         return json_encode(true);
 
     }
+
+    public function setDefaultCustomers()
+    {
+        $sellerId = Input::get('id');
+        $from = Input::get('from');
+        $to = Input::get('to');
+        $customers = Schedule::getCustomersScheduled($from,$to,$sellerId);
+        $notScheduledCustomers = Schedule::getCustomersNotScheduled($customers,$sellerId);
+        foreach ($notScheduledCustomers as $index => $notScheduledCustomer) {
+            $defaultDay = $notScheduledCustomer->dia_visita_defecto;
+            if($defaultDay){
+                if($defaultDay == 7){
+                    $defaultDay = 0;
+                }
+                $day = date('Y-m-d', strtotime($from . " +{$defaultDay} day"));
+                Schedule::saveCustomerScheduleForThisWeek($notScheduledCustomer->id, $day,null);
+            }
+        }
+        return Redirect::to(UrlsAdm::getSchedule() . "?id={$sellerId}&from={$from}");
+    }
 }

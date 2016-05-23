@@ -64,7 +64,9 @@
                                 <div class="agenda-clients">
                                     <header>
                                         <span>Clientes sin asignar</span>
-                                        <a type="button" class="btn btn-link btn-sm btn-circle pull-right" href="" data-toggle="tooltip" title="Asignar días por defecto"><i class="fa fa-random"></i></a>
+                                        @if(Input::get('from') && Input::get('id'))
+                                        <a type="button" class="btn btn-link btn-sm btn-circle pull-right" href="{{UrlsAdm::getDefaultSchedule($from,$to, Input::get('id'))}}" data-toggle="tooltip" title="Asignar días por defecto"><i class="fa fa-random"></i></a>
+                                        @endif
                                     </header>
                                     <div class="agenda-clients-list">
                                         @foreach($notScheduledCustomers as $customer)

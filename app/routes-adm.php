@@ -47,4 +47,5 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth|rol'), function()
 	Route::get('/agenda/agendar-cliente', 'ScheduleController@saveScheduleCustomer');
 	Route::get('/agenda/eliminar-cliente', 'ScheduleController@deleteScheduleCustomer');
 	Route::get('/agenda', 'ScheduleController@getCustomerScheduled');
+	Route::get('/agenda/agenda-defecto', 'ScheduleController@setDefaultCustomers');
 });

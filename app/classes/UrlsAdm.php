@@ -36,6 +36,11 @@ class UrlsAdm
 		return "/adm/agenda/eliminar-cliente";
 	}
 
+	public static function getDefaultSchedule($from,$to,$seller)
+	{
+		return "/adm/agenda/agenda-defecto?from={$from}&to={$to}&id={$seller}";
+	}
+
 	public static function getChangeStatus()
 	{
 		return "/adm/pedido/changeStatus";
