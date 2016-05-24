@@ -39,7 +39,7 @@ class PedidosControllerAdm extends AdminController
 		if ($order){
 			$order = ClientsDefinition::convertObjectFieldToDefinition($order,'id_cliente');
 			$order = OrderStatesDefinition::convertObjectFieldToDefinition($order, 'id_estado');
-			$products = $order->getProductsByOrder($order->id);
+			$products = json_decode($order->orden_confirmada);
 			$view = View::make('adm.pedidos.detalle')
 					->with('products',$products)
 					->with('order', $order);

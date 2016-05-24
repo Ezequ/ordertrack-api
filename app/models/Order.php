@@ -60,6 +60,7 @@ class Order extends Model{
 				$client->fecha_ultima_visita = date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 				$client->save();
 			}
+			$this->orden_confirmada = json_encode($products);
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
 		$this->save();
