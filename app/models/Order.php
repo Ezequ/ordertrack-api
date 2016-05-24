@@ -114,4 +114,9 @@ class Order extends Model{
 		return $productsError;
 	}
 
+	public static function setSubtotals($ordersProduct)
+	{
+		
+	}
+
 }
