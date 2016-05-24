@@ -23,6 +23,7 @@ class Order extends Model{
 			->leftJoin('productos', 'productos_ordenes.id_producto', '=', 'productos.id')
 			->whereNotNull('productos.id')
 			->get();
+		$productsOrder = self::setSubtotals($productsOrder);
 		return $productsOrder;
 	}
 
@@ -116,7 +117,16 @@ class Order extends Model{
 
 	public static function setSubtotals($ordersProduct)
 	{
-		
+		$returnOrderProducts = array();
+		foreach ($ordersProduct as $index => $item) {
+			$discountNumber = Product::getDiscount($item->cantidad,$item->descuento_1_min,$item->descuento_2_min,$item->descuento_3_min,$item->descuento_4_min,$item->descuento_5_min);
+			$discount = $item->$discountNumber;
+			$item->subtotal_sin_descuento = $item->cantidad * $item->precio;
+			$item->descuento_realizado = $item->subtotal_sin_descuento * ($discount) / 100;
+			$item->subtotal_con_descuento = $item->subtotal_sin_descuento - $item->descuento_realizado;
+			$returnOrderProducts[] = $item;
+		}
+		return $returnOrderProducts;
 	}
 
 }

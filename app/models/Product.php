@@ -32,6 +32,29 @@ class Product extends Model {
 		return $inputs;
 	}
 
+	public static function getDiscount($cant,$d1 = 0, $d2 = 0, $d3 = 0, $d4 = 0, $d5 = 0)
+	{
+		$disc["descuento_1"] = $d1;$disc["descuento_2"] = $d2;$disc["descuento_3"] = $d3;$disc["descuento_4"] = $d4;$disc["descuento_5"] = $d5;
+		asort($disc);
+		$cant = (int)$cant;
+		foreach ($disc as $index => $item) {
+			if ($cant > (int)$item){
+				continue;
+			} else {
+				return $index;
+			}
+		}
+		return $index;
+	}
+
+	public function cmp($a, $b)
+	{
+		if ($a == $b) {
+			return 0;
+		}
+		return ($a < $b) ? -1 : 1;
+	}
+
 
 
 }
