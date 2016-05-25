@@ -112,15 +112,11 @@ class ReportController extends \BaseController {
 			->where('ordenes.fecha_confirmacion', "=", $today)
 			->sum('productos_ordenes.cantidad');
 
-		$query = DB::table('ordenes')
-			->selectRaw('ordenes.id, productos.id, productos_ordenes.cantidad, productos.precio')
+		$totalMoney = DB::table('ordenes')
 			->where('ordenes.id_vendedor', $id)
-			->leftJoin('productos_ordenes', 'ordenes.id', '=', 'productos_ordenes.id_orden')
-			->leftJoin('productos', 'productos_ordenes.id_producto', '=', 'productos.id')
-			->whereNotNull('productos.id')
-			->where('ordenes.fecha_confirmacion', "=", $today);
+			->where('ordenes.fecha_confirmacion', "=", $today)
+			->sum('total');
 
-		$totalMoney = $query->get();
 
 		$report = array(
 			'clientsOnRoute'      => $clientsOnRoute,
