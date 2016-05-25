@@ -88,6 +88,7 @@ class ReportController extends \BaseController {
 	public function getReport($id)
 	{
 		$today = date('Y-m-d');
+		$tomorrow = date("Y-m-d", strtotime('tomorrow'));
 		$query = DB::table('agenda')->join('clientes', 'agenda.id_cliente', '=', 'clientes.id');
 		$query->where('fecha_visita_concretada', "=", $today);
 		$query->where('fecha_visita_programada', "=", $today);
@@ -109,12 +110,14 @@ class ReportController extends \BaseController {
 			->leftJoin('productos_ordenes', 'ordenes.id', '=', 'productos_ordenes.id_orden')
 			->leftJoin('productos', 'productos_ordenes.id_producto', '=', 'productos.id')
 			->whereNotNull('productos.id')
-			->where('ordenes.fecha_confirmacion', "=", $today)
+			->where('ordenes.fecha_confirmacion', ">=", $today)
+			->where('ordenes.fecha_confirmacion', "<", $tomorrow)
 			->sum('productos_ordenes.cantidad');
 
 		$totalMoney = DB::table('ordenes')
 			->where('ordenes.id_vendedor', $id)
-			->where('ordenes.fecha_confirmacion', "=", $today)
+			->where('ordenes.fecha_confirmacion', ">=", $today)
+			->where('ordenes.fecha_confirmacion', "<", $tomorrow)
 			->sum('total');
 
 
