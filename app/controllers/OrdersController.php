@@ -73,8 +73,9 @@ class OrdersController extends \BaseController {
 		$order = Order::create($data);
 		if($order){
 			$idCustomer = $order->id_cliente;
+			$fromto = Schedule::getFromAndToFromThisWeek();
 			Schedule::where('id_cliente',$idCustomer)
-						->where('fecha_visita_programada', "<=", date('Y-m-d'))
+						->where('fecha_visita_programada', "<=", $fromto['to'])
 						->whereNull('fecha_visita_concretada')
 						->update(array('fecha_visita_concretada' => date('Y-m-d'), 'id_orden' => $order->id, 'pedido_hecho' => true));
 			return json_encode($order);
