@@ -16,6 +16,7 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('orders', 'OrdersController');
 Route::resource('report', 'ReportController');
 Route::get('report/getReport/{id}', 'ReportController@getReport');
+Route::post('client/noOrderComment', 'ClientController@noOrderComment');
 Route::resource('discount', 'DiscountsController');
 Route::group(array('before' => 'tokenauth'), function()
 {

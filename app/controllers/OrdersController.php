@@ -76,7 +76,7 @@ class OrdersController extends \BaseController {
 			Schedule::where('id_cliente',$idCustomer)
 						->where('fecha_visita_programada', "<=", date('Y-m-d'))
 						->whereNull('fecha_visita_concretada')
-						->update(array('fecha_visita_concretada' => date('Y-m-d')));
+						->update(array('fecha_visita_concretada' => date('Y-m-d'), 'id_orden' => $order->id, 'pedido_hecho' => true));
 			return json_encode($order);
 		} else {
 			return Response::make('No se encontró la orden', 500);

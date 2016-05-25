@@ -4,7 +4,7 @@ class Schedule extends Model {
 
 	protected  $_paginatation = 99999999;
 
-	protected $fillable = ['id_cliente', 'fecha_visita_programada', 'fecha_visita_concretada'];
+	protected $fillable = ['id_cliente', 'fecha_visita_programada', 'fecha_visita_concretada','id_agenda','comentario','pedido_hecho','id_orden'];
 
 	protected $table = "agenda";
 

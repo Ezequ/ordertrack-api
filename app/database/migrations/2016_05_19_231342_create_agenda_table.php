@@ -14,10 +14,13 @@ class CreateAgendaTable extends Migration {
 	{
 		Schema::create('agenda', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->increments('id_agenda');
 			$table->integer('id_cliente');
 			$table->date('fecha_visita_programada')->nullable();
 			$table->date('fecha_visita_concretada')->nullable();
+			$table->string('comentario');
+			$table->boolean('pedido_hecho');
+			$table->integer('id_orden');
 		});
 	}
 
