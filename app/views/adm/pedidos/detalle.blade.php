@@ -22,25 +22,30 @@
                             <th class="text-center">Código</th>
                             <th>Nombre producto</th>
                             <th>Marca</th>
-                            <th class="text-center">Stock disponible</th>
                             <th class="text-center">Precio unitario</th>
                             <th class="text-center">Cantidad pedida</th>
+                            <th class="text-center">Subtotal sin descuento</th>
+                            <th class="text-center">Descuento</th>
                             <th class="text-center">Subtotal</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                    <?php $totalItems = 0;$totalPrice = 0; ?>
+                    <?php $totalItems = 0;$totalPrice = 0;$discountedTotalPrice=0;$totalDiscount = 0; ?>
                         @foreach($products as $product)
                             <tr>
-                                <?php $totalItems += $product->cantidad;$totalPrice += $product->precio * $product->cantidad; ?>
+                                <?php $totalItems += $product->cantidad;
+                                $totalPrice += $product->subtotal_con_descuento;
+                                $discountedTotalPrice += $product->subtotal_sin_descuento;
+                                $totalDiscount += $product->descuento_realizado;
+                                ?>
                                 <th class="text-center">{{$product->id}}</th>
                                 <th>{{$product->nombre}}</th>
                                 <th>{{$product->marca}}</th>
-                                <th class="text-center">{{$product->stock}}</th>
                                 <th class="text-center">${{PriceHelper::getPrice($product->precio)}}</th>
                                 <th class="text-center">{{$product->cantidad}}</th>
-                                <th class="text-center">${{PriceHelper::getPrice($product->precio * $product->cantidad)}}</th>
+                                <th class="text-center">${{PriceHelper::getPrice($product->subtotal_sin_descuento)}}</th>
+                                <th class="text-center">${{PriceHelper::getPrice($product->descuento_realizado)}}</th>
+                                <th class="text-center">${{PriceHelper::getPrice($product->subtotal_con_descuento)}}</th>
                             </tr>
                         @endforeach
                         <tr style="border-top: 2px solid #ddd !important;">
@@ -48,8 +53,9 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
                             <th class="text-center" style="font-size: 1.5em">{{$totalItems}}</th>
+                            <th class="text-center" style="font-size: 1em">${{PriceHelper::getPrice($discountedTotalPrice)}}</th>
+                            <th class="text-center" style="font-size: 1em">${{PriceHelper::getPrice($totalDiscount)}}</th>
                             <th class="text-center" style="font-size: 1.5em">${{PriceHelper::getPrice($totalPrice)}}</th>
                         </tr>
                     </tbody>

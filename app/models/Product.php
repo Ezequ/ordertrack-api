@@ -11,11 +11,11 @@ class Product extends Model {
 	public static $rules = array(
 		'stock'                   => 'required|integer|min:1',
 		'precio'                  => 'required|integer|min:1',
-		'descuento_1'             => 'integer',
-		'descuento_2'             => 'integer',
-		'descuento_3'             => 'integer',
-		'descuento_4'             => 'integer',
-		'descuento_5'             => 'integer',
+		'descuento_1'             => 'integer|max:100',
+		'descuento_2'             => 'integer|max:100',
+		'descuento_3'             => 'integer|max:100',
+		'descuento_4'             => 'integer|max:100',
+		'descuento_5'             => 'integer|max:100',
 		'descuento_1_min'         => 'integer',
 		'descuento_2_min'         => 'integer',
 		'descuento_3_min'         => 'integer',
@@ -32,6 +32,7 @@ class Product extends Model {
 		'integer'			=> 'El valor del :attribute debe ser un entero',
 		'required'      => 'El campo :attribute es requerido.',
 		'categoria.not_in'	=> 'La categoría asignada es inválida.',
+		'max'		=> "El porcentaje no puede superar al 100%"
 	);
 
 	public function getInputsForEdit()
