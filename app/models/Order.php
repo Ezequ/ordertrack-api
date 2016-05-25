@@ -60,6 +60,8 @@ class Order extends Model{
 				$client->fecha_ultima_visita = date('Y-m-d H:i:s',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 				$client->save();
 			}
+			$total = array_reduce($products, function($i, $obj){return $i += $obj->subtotal_con_descuento;});
+			$this->total = $total;
 			$this->orden_confirmada = json_encode($products);
 			$this->id_estado = Order::CONFIRM_STATE;
 		}
