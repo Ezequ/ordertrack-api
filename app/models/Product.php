@@ -1,22 +1,35 @@
 <?php
 
 class Product extends Model {
-	protected $fillable = ['nombre','descripcion', 'marca', 'categoria', 'stock', 'precio', 'url_image_tumbnail', 'url_image_mini'];
+	protected $fillable = ['nombre','descripcion', 'marca', 'categoria', 'stock',
+							'precio', 'url_image_tumbnail', 'url_image_mini','descuento_2','descuento_2_min',
+							'descuento_1','descuento_1_min','descuento_3','descuento_3_min',
+						'descuento_4','descuento_4_min','descuento_5','descuento_5_min',];
 
 	protected $table = 'productos';
 
 	public static $rules = array(
-		'stock'             => 'required|integer|min:1',
-		'precio'             => 'required|integer|min:1',
-		'categoria'             => 'required|not_in:0',
-		'nombre'             => 'required',
+		'stock'                   => 'required|integer|min:1',
+		'precio'                  => 'required|integer|min:1',
+		'descuento_1'             => 'integer',
+		'descuento_2'             => 'integer',
+		'descuento_3'             => 'integer',
+		'descuento_4'             => 'integer',
+		'descuento_5'             => 'integer',
+		'descuento_1_min'         => 'integer',
+		'descuento_2_min'         => 'integer',
+		'descuento_3_min'         => 'integer',
+		'descuento_4_min'         => 'integer',
+		'descuento_5_min'         => 'integer',
+		'categoria'               => 'required|not_in:0',
+		'nombre'                  => 'required',
 	);
 
 	protected $allowedFilters = array('categoria', 'descripcion', 'marca', 'stock', 'precio','nombre');
 
 	public static $messages = array(
-		'min'			=> 'El valor del :atribute debe ser mínimo 1',
-		'integer'			=> 'El valor del :atribute debe ser un entero',
+		'min'			=> 'El valor del :attribute debe ser mínimo 1',
+		'integer'			=> 'El valor del :attribute debe ser un entero',
 		'required'      => 'El campo :attribute es requerido.',
 		'categoria.not_in'	=> 'La categoría asignada es inválida.',
 	);
@@ -29,6 +42,16 @@ class Product extends Model {
 		$inputs[] = array("type" => 'common', 'data1' => 'Precio', 'data2' => 'precio', 'data3' => $this->precio);
 		$inputs[] = array("type" => 'common', 'data1' => 'Stock', 'data2' => 'stock', 'data3' => $this->stock);
 		$inputs[] = array("type" => 'common', 'data1' => 'Descripción', 'data2' => 'descripcion', 'data3' => $this->descripcion);
+		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 1 (% aplicado):', 'data2' => 'descuento_1', 'data3' => $this->descuento_1);
+		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 1:', 'data2' => 'descuento_1_min', 'data3' => $this->descuento_1_min);
+		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 2 (% aplicado):', 'data2' => 'descuento_2', 'data3' => $this->descuento_2);
+		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 2:', 'data2' => 'descuento_2_min', 'data3' => $this->descuento_2_min);
+		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 3 (% aplicado):', 'data2' => 'descuento_3', 'data3' => $this->descuento_3);
+		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 3:', 'data2' => 'descuento_3_min', 'data3' => $this->descuento_3_min);
+		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 4 (% aplicado):', 'data2' => 'descuento_4', 'data3' => $this->descuento_4);
+		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 4:', 'data2' => 'descuento_4_min', 'data3' => $this->descuento_4_min);
+		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 5 (% aplicado):', 'data2' => 'descuento_5', 'data3' => $this->descuento_5);
+		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 5:', 'data2' => 'descuento_5_min', 'data3' => $this->descuento_5_min);
 		return $inputs;
 	}
 
