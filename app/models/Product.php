@@ -43,16 +43,30 @@ class Product extends Model {
 		$inputs[] = array("type" => 'common', 'data1' => 'Precio', 'data2' => 'precio', 'data3' => $this->precio);
 		$inputs[] = array("type" => 'common', 'data1' => 'Stock', 'data2' => 'stock', 'data3' => $this->stock);
 		$inputs[] = array("type" => 'common', 'data1' => 'Descripción', 'data2' => 'descripcion', 'data3' => $this->descripcion);
-		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 1 (% aplicado):', 'data2' => 'descuento_1', 'data3' => $this->descuento_1);
-		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 1:', 'data2' => 'descuento_1_min', 'data3' => $this->descuento_1_min);
-		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 2 (% aplicado):', 'data2' => 'descuento_2', 'data3' => $this->descuento_2);
-		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 2:', 'data2' => 'descuento_2_min', 'data3' => $this->descuento_2_min);
-		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 3 (% aplicado):', 'data2' => 'descuento_3', 'data3' => $this->descuento_3);
-		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 3:', 'data2' => 'descuento_3_min', 'data3' => $this->descuento_3_min);
-		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 4 (% aplicado):', 'data2' => 'descuento_4', 'data3' => $this->descuento_4);
-		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 4:', 'data2' => 'descuento_4_min', 'data3' => $this->descuento_4_min);
-		$inputs[] = array("type" => 'common', 'data1' => 'Descuento 5 (% aplicado):', 'data2' => 'descuento_5', 'data3' => $this->descuento_5);
-		$inputs[] = array("type" => 'common', 'data1' => 'Cantidad necesaria para descuento 5:', 'data2' => 'descuento_5_min', 'data3' => $this->descuento_5_min);
+
+
+		$list[] = array("type" => 'text', 'text' => '1');
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_1', 'data3' => $this->descuento_1);
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_1_min', 'data3' => $this->descuento_1_min);
+
+		$list[] = array("type" => 'text', 'text' => '2');
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_2', 'data3' => $this->descuento_2);
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_2_min', 'data3' => $this->descuento_2_min);
+
+		$list[] = array("type" => 'text', 'text' => '3');
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_3', 'data3' => $this->descuento_3);
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_3_min', 'data3' => $this->descuento_3_min);
+
+		$list[] = array("type" => 'text', 'text' => '4');
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_4', 'data3' => $this->descuento_4);
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_4_min', 'data3' => $this->descuento_4_min);
+
+		$list[] = array("type" => 'text', 'text' => '5');
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_5', 'data3' => $this->descuento_5);
+		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_5_min', 'data3' => $this->descuento_5_min);
+
+		$inputs[] = array('type' => 'list', 'title' => 'Descuentos', 'extra' => array('columns' => 3, 'column_width' => '4', 'headers' => array('Num.', '% de descuento', 'Cantidad mínima')), 'data' => $list);
+
 		return $inputs;
 	}
 

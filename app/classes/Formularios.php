@@ -75,6 +75,13 @@ class Formularios
         ';
 	}
 
+	public function addText($text)
+	{
+		$this->form .=  '
+			<span>' . $text . '</span>
+        ';
+	}
+
 	public function addClean($label)
 	{
 		$this->form .=  '
@@ -99,6 +106,13 @@ class Formularios
                 <label>'.$label. $this->getRequired($name) .'</label>
                 <input type="'.$type.'" class="form-control" placeholder="'.$placeholder.'" name="'.$name.'" value="'.$value.'">
               </div>
+        ';
+	}
+
+	public function addInputSimple($label,$name,$value,$type, $placeholder = "Ingrese dato")
+	{
+		$this->form .=  '
+            <input type="'.$type.'" class="form-control" placeholder="'.$placeholder.'" name="'.$name.'" value="'.$value.'">
         ';
 	}
 
@@ -165,12 +179,83 @@ class Formularios
         ';
 	}
 
+	public function addListOfInputs($title, $extra, $inputs) {
+		
+		$this->form .= '<div class="sub-title">' . $title . '</div>';
+
+		$columns = $extra['columns'];
+		$column_i = 0;
+
+		$this->form .=  '
+		<div class=" col-md-12 no-padding no-margin">
+			<div class=" col-md-' . $extra['column_width'] . ' no-margin no-padding">
+	            <table class="table table-bordered table-responsive">
+        ';
+
+
+        $this->form .=  '
+	        		<thead>
+	            		<tr>
+        ';
+
+        foreach ($extra['headers'] as $key => $value) {
+        	$this->form .=  '<th>' . $value . '</th>';
+		}
+
+		$this->form .=  '
+	            		</tr>
+	            	</thead>
+	            	<tbody>
+        ';
+
+        foreach ($inputs as $key => $input) 
+        {
+        	if($column_i == 0) {
+        		$this->form .=  '<tr>';
+        	}
+
+        	$this->form .=  '<td class="text-center" style="vertical-align: middle;">';
+
+        	if($input['type'] == 'text') {
+        	
+        		$this->addText($input['text']);
+        	
+        	} else {
+
+	        	for ($i=1; $i < 6; $i++) {
+	            	if(!isset($input['data'.$i])) $input['data'.$i] = ""; 
+	        	}
+	        	$this->addGenericInput($input['type'], $input['data1'],  $input['data2'],  $input['data3'],  $input['data4'],  $input['data5']);
+        	}
+        	
+        	$this->form .=  '</td>';
+
+        	$column_i++;
+
+        	if($column_i == $columns) {
+        		$this->form .=  '</tr>';
+        		$column_i = 0;
+        	}
+        }
+
+        $this->form .=  '
+	        		</tbody>
+	            </table>
+	        </div>
+        </div>
+        ';
+	}
+
 	public function addGenericInput($input, $data1="", $data2="", $data3="", $data4="", $data5="")
 	{
 		switch ($input) {
 			case 'common':
 				$data3 = Input::old($data2) !== null ? Input::old($data2) : $data3;
 				return $this->addInput($data1,$data2,$data3,$data4,$data5);	//($label,$name,$value,$type, $placeholder = "Ingrese dato")
+				break;
+			case 'common_simple':
+				$data3 = Input::old($data2) !== null ? Input::old($data2) : $data3;
+				return $this->addInputSimple($data1,$data2,$data3,$data4,$data5);	//($label,$name,$value,$type, $placeholder = "Ingrese dato")
 				break;
 			case 'text':
 				$data3 = Input::old($data2) !== null ? Input::old($data2) : $data3;
