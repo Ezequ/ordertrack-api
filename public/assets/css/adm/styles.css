@@ -224,12 +224,32 @@ table.dataTable.no-footer,
 }
 
 .agenda-clients-list {
-    min-height: 100px;
-    max-height: 300px;
+    min-height: 330px;
+    max-height: 330px;
     overflow-y: scroll;
     padding: 5px;
 }
 
 .agenda-clients-list a.btn.agenda-event {
     width: 100%;
+}
+
+
+.agenda-migrate-popover {
+    cursor: pointer;
+}
+
+.footer {
+    background-color: #fefeee;
+    padding: 0px 5px 0px 5px;
+    vertical-align: middle;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+}
+
+.footer a i {
+    color: #888;    
 }

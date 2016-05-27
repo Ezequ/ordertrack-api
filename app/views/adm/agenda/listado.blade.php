@@ -46,9 +46,17 @@
                                                         <h2>{{$date}}</h2>
                                                     </div>
                                                     <div id="container_{{$date}}" class="content container_{{$date}}">
+
                                                         @foreach($day['customers'] as $customer)
                                                             <a id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}</a>
                                                         @endforeach
+                                                    </div>
+                                                    <div class="footer">
+                                                        <span data-toggle="tooltip" title="Migrar clientes">
+                                                            <a id="buttonMigrate" type="button" data-assigned="true" class="agenda-migrate agenda-migrate-popover" data-date="{{$customer->fecha_visita_programada}}">
+                                                                <i class="fa fa-retweet"></i>
+                                                            </a>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -104,6 +112,36 @@
         </button>
     </div>
 </div>
+
+<div id="content-migrate-popover" class="hide">
+    <button type="button" class="close">
+         &times;
+    </button>
+
+    <div class="form-inline ">
+        <div>
+            <select class="form-control" id="migrate-seller" name="id" onchange="submitForm()">
+                <!-- <option value="0" {{0 == Input::get('id') ? 'selected'  : ''}}>Vendedor</option> -->
+                @foreach(SellerDefinition::getDefinition() as $id => $name)
+                    <?php if($id == Input::get('id')) continue; ?>
+                    <option value="{{$id}}">{{$name}}</option>
+                @endforeach
+            </select>
+            <select class="week-day form-control">
+                @foreach($days as $date => $day)
+                    <option value="{{$date}}">{{$day['name']}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info btn-sm save pull-right">
+                Migrar <i class="fa fa-share"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
 
 @endsection
 @section('scripts')
@@ -246,6 +284,97 @@ $elements.each(function () {
                     },
                     type: 'GET'
                 });
+            });
+        }
+    });
+});
+
+
+/**
+ * Clients migration
+ */
+
+var $elements = $('.agenda-migrate-popover');
+var destination = "div2";
+var $activePopover = null;
+
+$elements.each(function () {
+    var $element = $(this);
+    
+    $element.popover({
+        html: true,
+        placement: 'top',
+        title: '<b>Migrar visitas programadas</b>',
+        container: $('body'), // This is just so the btn-group doesn't get messed up... also makes sorting the z-index issue easier
+        content: $('#content-migrate-popover').html()
+    });
+
+
+    $element.on('click', function() {
+        var client_assigned = $element.data('assigned');
+        var customer_id = $element.data('customer');
+        var date = $element.data('date');
+        var $tip = $element.data('bs.popover').tip();
+        var tip0 = $tip[0];
+        if (tip0){
+            $("#"+tip0.id).find('.save').attr("customer",customer_id);
+            $("#"+tip0.id).find('.remove').attr("customer",customer_id);
+            $("#"+tip0.id).find('.remove').attr("date",date);
+        }
+        if(client_assigned) {
+            $tip.find('button.remove').prop('disabled', false);
+
+            $week_day = $element.closest('.day').data('day');
+            $select = $tip.find('.week-day');
+            $select.val($week_day);
+        }
+    });
+    
+    $element.on('shown.bs.popover', function () {
+
+        var popover = $element.data('bs.popover');
+
+        if (typeof popover !== "undefined") {
+
+            var $tip = popover.tip();
+
+            $tip.find('.close').bind('click', function () {
+                popover.hide();
+            });
+
+            $tip.find('.save').bind('click', function () {
+
+                popover.hide();
+                customer_id = this.getAttribute('customer');
+                date = this.previousElementSibling.value;
+                $.ajax({
+                    url: "{{UrlsAdm::getSaveScheduleUrl()}}",
+                    data: {
+                        id_vendedor: '{{$sellerId}}',
+                        format: 'json',
+                        id: customer_id,
+                        fecha_visita_programada: date,
+                    },
+                    error: function() {
+                        alert("No hay sido posible realizar la modificación");
+                    },
+                    success: function(data) {
+                        customer = jQuery.parseJSON(data);
+                        customer_id = customer.id_cliente;
+                        date = customer.fecha_visita_programada;
+                        button = $("#buttonClient-"+customer_id);
+                        container = $("#container_"+date);
+                        button.attr("data-date",date);
+                        button.attr('data-assigned', true);
+                        button.appendTo(container).show("slide",{},"1000");
+                    },
+                    type: 'GET'
+                });
+                
+                if(destination == 'div2')
+                    destination = 'div1';
+                else
+                    destination = 'div2';
             });
         }
     });
