@@ -14,16 +14,16 @@ class AddDiscountsFieldsToProductsTable extends Migration {
 	{
 		Schema::table('productos', function(Blueprint $table)
 		{
-			$table->integer('descuento_1');
-			$table->integer('descuento_1_min');
-			$table->integer('descuento_2');
-			$table->integer('descuento_2_min');
-			$table->integer('descuento_3');
-			$table->integer('descuento_3_min');
-			$table->integer('descuento_4');
-			$table->integer('descuento_4_min');
-			$table->integer('descuento_5');
-			$table->integer('descuento_5_min');
+			$table->integer('descuento_1')->nulleable();
+			$table->integer('descuento_1_min')->nulleable();
+			$table->integer('descuento_2')->nulleable();
+			$table->integer('descuento_2_min')->nulleable();
+			$table->integer('descuento_3')->nulleable();
+			$table->integer('descuento_3_min')->nulleable();
+			$table->integer('descuento_4')->nulleable();
+			$table->integer('descuento_4_min')->nulleable();
+			$table->integer('descuento_5')->nulleable();
+			$table->integer('descuento_5_min')->nulleable();
 		});
 	}
 
