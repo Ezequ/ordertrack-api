@@ -18,7 +18,7 @@ class ScheduleController extends AdminController
         $from = isset($fromto['from']) ? $fromto['from'] : null;
         $to = isset($fromto['to']) ? $fromto['to'] : null;
         $customers = Schedule::getCustomersScheduled($from,$to,$sellerId);
-        $notScheduledCustomers = Schedule::getCustomersNotScheduled($customers,$sellerId);
+        $notScheduledCustomers = Schedule::getCustomersNotScheduled($from,$to,$sellerId);
         $days = DatesHelper::getDatesColumnsSchedule($from,$to);
         $days = $this->addCustomersToDays($days,$customers);
         return View::make('adm.agenda.listado')

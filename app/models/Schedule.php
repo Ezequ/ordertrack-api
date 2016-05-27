@@ -82,10 +82,12 @@ class Schedule extends Model {
 		return $return;
 	}
 
-	public static function getCustomersNotScheduled($customers,$seller)
+	public static function getCustomersNotScheduled($from,$to,$seller)
 	{
+		/* All customers scheduled between from a to dates no matter seller id */
+		$customersScheluded = self::getCustomersScheduled($from,$to);
 		$ids = array();
-		foreach ($customers as $index => $customer) {
+		foreach ($customersScheluded as $index => $customer) {
 			$ids[] = $customer->id_cliente;
 		}
 		$customers = Client::whereNotIn('id',$ids)->where('estado','>=' ,ClientsStatesDefinition::STATE_NORMAL);
