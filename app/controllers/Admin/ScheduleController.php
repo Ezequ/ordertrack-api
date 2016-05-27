@@ -6,7 +6,7 @@ class ScheduleController extends AdminController
     public function saveScheduleCustomer()
     {
         $customer = Schedule::saveCustomerScheduleForThisWeek(Input::get('id'), Input::get('fecha_visita_programada'),
-            Input::get('fecha_visita_concretada'));
+            Input::get('fecha_visita_concretada'), Input::get('id_vendedor'));
         return json_encode($customer);
 
     }
@@ -86,7 +86,7 @@ class ScheduleController extends AdminController
                     $defaultDay = 0;
                 }
                 $day = date('Y-m-d', strtotime($from . " +{$defaultDay} day"));
-                Schedule::saveCustomerScheduleForThisWeek($notScheduledCustomer->id, $day,null);
+                Schedule::saveCustomerScheduleForThisWeek($notScheduledCustomer->id, $day,null,$sellerId);
             }
         }
         return Redirect::to(UrlsAdm::getSchedule() . "?id={$sellerId}&from={$from}");

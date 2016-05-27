@@ -193,6 +193,7 @@ $elements.each(function () {
                 $.ajax({
                     url: "{{UrlsAdm::getSaveScheduleUrl()}}",
                     data: {
+                        id_vendedor: '{{$sellerId}}',
                         format: 'json',
                         id: customer_id,
                         fecha_visita_programada: date,

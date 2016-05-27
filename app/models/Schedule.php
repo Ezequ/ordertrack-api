@@ -29,7 +29,7 @@ class Schedule extends Model {
 		return array('from' => $from, 'to' => $to);
 	}
 
-	public static function saveCustomerScheduleForThisWeek($idCustomer,$dateSchedule,$dateVisited)
+	public static function saveCustomerScheduleForThisWeek($idCustomer,$dateSchedule,$dateVisited,$sellerId)
 	{
 		if (!$idCustomer || !$dateSchedule){
 			return null;
@@ -47,6 +47,9 @@ class Schedule extends Model {
 		if (!$customerScheduled) {
 			$customerScheduled = new Schedule();
 			$customerScheduled->id_cliente = $idCustomer;
+		}
+		if ($sellerId){
+			$customerScheduled->id_vendedor = $sellerId;
 		}
 		if ($dateSchedule){
 			$customerScheduled->fecha_visita_programada = $dateSchedule;
@@ -69,7 +72,7 @@ class Schedule extends Model {
 		$query->where('fecha_visita_programada', ">=", $dayFrom)
 			  ->where('fecha_visita_programada', "<=", $dayTo);
 		if ($seller){
-			$query->where('id_vendedor',$seller);
+			$query->where('agenda.id_vendedor',$seller);
 		}
 		if ($returnCollection){
 			$return = $query->get();
