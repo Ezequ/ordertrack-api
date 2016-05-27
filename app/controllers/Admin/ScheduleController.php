@@ -78,7 +78,7 @@ class ScheduleController extends AdminController
         $from = Input::get('from');
         $to = Input::get('to');
         $customers = Schedule::getCustomersScheduled($from,$to,$sellerId);
-        $notScheduledCustomers = Schedule::getCustomersNotScheduled($customers,$sellerId);
+        $notScheduledCustomers = Schedule::getCustomersNotScheduled($from,$to,$sellerId);
         foreach ($notScheduledCustomers as $index => $notScheduledCustomer) {
             $defaultDay = $notScheduledCustomer->dia_visita_defecto;
             if($defaultDay){
