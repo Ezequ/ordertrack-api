@@ -91,4 +91,19 @@ class ScheduleController extends AdminController
         }
         return Redirect::to(UrlsAdm::getSchedule() . "?id={$sellerId}&from={$from}");
     }
+
+    public function migrateCustomersToSellerFromDay()
+    {
+        $sellerIdFrom = Input::get('id_vendedor');
+        $sellerIdTo = Input::get('id_vendedor_destino');
+        $day = Input::get('fecha_desde');
+        $dayTo = Input::get('fecha_hasta') ? Input::get('fecha_hasta') : $day;
+        $schedules = Schedule::getCustomersScheduled($day,$day,$sellerIdFrom);
+        $seller = User::find($sellerIdTo);
+        if ($seller && $seller->isSeller()){
+            foreach ($schedules as $index => $schedule) {
+                Schedule::changeDayAndSellerToSchedule($schedule->id_agenda,$sellerIdTo,$dayTo);
+            }
+        }
+    }
 }

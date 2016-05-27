@@ -95,4 +95,15 @@ class Schedule extends Model {
 		return $customers->get();
 	}
 
+	public static function changeDayAndSellerToSchedule($scheduleId,$sellerId,$dayTo)
+	{
+		$schedule = self::find($scheduleId);
+		if ($schedule){
+			$schedule->id_vendedor = $sellerId;
+			$schedule->fecha_visita_programada = $dayTo;
+			$schedule->save();
+		}
+		return $schedule;
+	}
+
 }
