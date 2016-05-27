@@ -86,9 +86,12 @@ class ReportController extends \BaseController {
 	// Especials functions //
 
 	public function getReport($id)
-	{
-		$today = date('Y-m-d');
-		$tomorrow = date("Y-m-d", strtotime('tomorrow'));
+	{	
+
+		$today = date('Y-m-d',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
+		$tomorrow = date('Y-m-d',strtotime ( '+1 day' , strtotime ( $today ) ));
+
+
 		$query = DB::table('agenda')->join('clientes', 'agenda.id_cliente', '=', 'clientes.id');
 		$query->where('fecha_visita_concretada', "=", $today);
 		$query->where('fecha_visita_programada', "=", $today);
@@ -125,8 +128,8 @@ class ReportController extends \BaseController {
 			'clientsOnRoute'      => $clientsOnRoute,
 			'clientsNotOnRoute'  => $clientsNotOnRoute,
 			'totalProductos'	=> $totalProductos,
-			'totalMoney'  => $totalMoney
-		);
+			'totalMoney'  => $totalMoney,
+ 		);
 
 		return Response::json($report);
 	}
