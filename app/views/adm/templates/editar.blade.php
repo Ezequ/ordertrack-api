@@ -25,6 +25,11 @@
                 $f->inicioForm('post',$url);
                 foreach ($object->getInputsForEdit() as $key => $input) 
                 {
+                    if($input['type'] == 'list') {
+                        $f->addListOfInputs($input['title'], $input['extra'], $input['data']);
+                        continue;
+                    }
+                    
                 	for ($i=1; $i < 6; $i++) {
                     	if(!isset($input['data'.$i])) $input['data'.$i] = ""; 
                 	}
