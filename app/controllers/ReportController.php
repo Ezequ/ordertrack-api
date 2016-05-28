@@ -92,20 +92,14 @@ class ReportController extends \BaseController {
 		$tomorrow = date('Y-m-d',strtotime ( '+1 day' , strtotime ( $today ) ));
 
 
-		$query = DB::table('agenda')->join('clientes', 'agenda.id_cliente', '=', 'clientes.id');
+		$query = DB::table('agenda')->where('id_vendedor',$id);
 		$query->where('fecha_visita_concretada', "=", $today);
 		$query->where('fecha_visita_programada', "=", $today);
-		if ($id){
-			$query->where('id_vendedor',$id);
-		}
 		$clientsOnRoute = $query->count();
 
-		$query = DB::table('agenda')->join('clientes', 'agenda.id_cliente', '=', 'clientes.id');
+		$query = DB::table('agenda')->where('id_vendedor',$id);
 		$query->where('fecha_visita_concretada', "=", $today);
 		$query->where('fecha_visita_programada', "<>", $today);
-		if ($id){
-			$query->where('id_vendedor',$id);
-		}
 		$clientsNotOnRoute = $query->count();
 
 		$totalProductos = DB::table('ordenes')
