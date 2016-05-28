@@ -30,6 +30,10 @@ class UrlsAdm
 	{
 		return "/adm/agenda/agendar-cliente";
 	}
+	public static function getMigrateDayScheduleUrl()
+	{
+		return "/adm/agenda/migrar-clientes";
+	}
 
 	public static function getDeleteScheduleUrl()
 	{

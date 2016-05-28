@@ -53,7 +53,7 @@
                                                     </div>
                                                     <div class="footer">
                                                         <span data-toggle="tooltip" title="Migrar clientes">
-                                                            <a id="buttonMigrate" type="button" data-assigned="true" class="agenda-migrate agenda-migrate-popover" data-date="{{$customer->fecha_visita_programada}}">
+                                                            <a id="buttonMigrate" type="button" data-assigned="true" class="agenda-migrate agenda-migrate-popover">
                                                                 <i class="fa fa-retweet"></i>
                                                             </a>
                                                         </span>
@@ -119,15 +119,14 @@
     </button>
 
     <div class="form-inline ">
-        <div>
-            <select class="form-control" id="migrate-seller" name="id" onchange="submitForm()">
-                <!-- <option value="0" {{0 == Input::get('id') ? 'selected'  : ''}}>Vendedor</option> -->
+        <div class="form-group">
+            <select id="migrate-seller" class="form-control">
                 @foreach(SellerDefinition::getDefinition() as $id => $name)
                     <?php if($id == Input::get('id')) continue; ?>
                     <option value="{{$id}}">{{$name}}</option>
                 @endforeach
             </select>
-            <select class="week-day form-control">
+            <select id="week-day" class="week-day form-control">
                 @foreach($days as $date => $day)
                     <option value="{{$date}}">{{$day['name']}}</option>
                 @endforeach
@@ -159,6 +158,10 @@ function submitForm() {
     }
 }
 
+
+/**
+ * Clients assignments
+ */
 
 var $elements = $('.agenda-popover');
 var destination = "div2";
@@ -247,7 +250,7 @@ $elements.each(function () {
                         container = $("#container_"+date);
                         button.attr("data-date",date);
                         button.attr('data-assigned', true);
-                        button.appendTo(container).show("slide",{},"1000");
+                        button.appendTo(container).fadeIn(200);
                     },
                     type: 'GET'
                 });
@@ -279,7 +282,7 @@ $elements.each(function () {
                         button = $("#buttonClient-"+customer_id);
                         container = $(".agenda-clients-list");
                         button.attr('data-assigned', false);
-                        button.appendTo(container).show("slide");
+                        button.appendTo(container).fadeIn(200);
                         popover.hide();
                     },
                     type: 'GET'
@@ -295,8 +298,6 @@ $elements.each(function () {
  */
 
 var $elements = $('.agenda-migrate-popover');
-var destination = "div2";
-var $activePopover = null;
 
 $elements.each(function () {
     var $element = $(this);
@@ -309,18 +310,12 @@ $elements.each(function () {
         content: $('#content-migrate-popover').html()
     });
 
+    var date = $element.closest('.day').data('day');
 
     $element.on('click', function() {
         var client_assigned = $element.data('assigned');
-        var customer_id = $element.data('customer');
-        var date = $element.data('date');
         var $tip = $element.data('bs.popover').tip();
-        var tip0 = $tip[0];
-        if (tip0){
-            $("#"+tip0.id).find('.save').attr("customer",customer_id);
-            $("#"+tip0.id).find('.remove').attr("customer",customer_id);
-            $("#"+tip0.id).find('.remove').attr("date",date);
-        }
+
         if(client_assigned) {
             $tip.find('button.remove').prop('disabled', false);
 
@@ -345,36 +340,33 @@ $elements.each(function () {
             $tip.find('.save').bind('click', function () {
 
                 popover.hide();
+
                 customer_id = this.getAttribute('customer');
-                date = this.previousElementSibling.value;
+                var destiny_seller_id = $tip.find('#migrate-seller')[0].value;
+                var destiny_date = $tip.find('#week-day')[0].value;
+
                 $.ajax({
-                    url: "{{UrlsAdm::getSaveScheduleUrl()}}",
+                    url: "{{UrlsAdm::getMigrateDayScheduleUrl()}}",
                     data: {
-                        id_vendedor: '{{$sellerId}}',
                         format: 'json',
-                        id: customer_id,
-                        fecha_visita_programada: date,
+                        fecha_desde: date,
+                        id_vendedor: '{{$sellerId}}',
+                        id_vendedor_destino: destiny_seller_id,
+                        fecha_hasta: destiny_date,
                     },
                     error: function() {
                         alert("No hay sido posible realizar la modificación");
                     },
                     success: function(data) {
-                        customer = jQuery.parseJSON(data);
-                        customer_id = customer.id_cliente;
-                        date = customer.fecha_visita_programada;
-                        button = $("#buttonClient-"+customer_id);
-                        container = $("#container_"+date);
-                        button.attr("data-date",date);
-                        button.attr('data-assigned', true);
-                        button.appendTo(container).show("slide",{},"1000");
+                        
+                        var $day_clients = $('.agenda').find('#container_'+date+' a.agenda-event');
+
+                        for (var i = 0; i < $day_clients.length; i++) {
+                            $($day_clients[i]).fadeOut(200);
+                        }
                     },
                     type: 'GET'
                 });
-                
-                if(destination == 'div2')
-                    destination = 'div1';
-                else
-                    destination = 'div2';
             });
         }
     });
