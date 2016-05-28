@@ -48,12 +48,12 @@
                                                     <div id="container_{{$date}}" class="content container_{{$date}}">
 
                                                         @foreach($day['customers'] as $customer)
-                                                            <div style="position: relative;">
-                                                            <a data-agendaid="{{$customer->id_agenda}}" id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-{{Schedule::getCardClass($customer)}} btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}
-                                                            </a>
-                                                            @if($comment = $customer->comentario)
-                                                                <i class="fa fa-envelope-square comment" data-coment="{{$comment}}"></i>
-                                                            @endif
+                                                            <div>
+                                                                <a data-agendaid="{{$customer->id_agenda}}" id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-{{Schedule::getCardClass($customer)}} btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}" style="position: relative;">{{$customer->razon_social}}
+                                                                    @if($comment = $customer->comentario)
+                                                                    <i class="fa fa-envelope-square comment" data-coment="{{$comment}}"></i>
+                                                                    @endif
+                                                                </a>                                                                
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -426,12 +426,5 @@ $elements.each(function () {
 });
 
 </script>
-<style>
-    .fa-envelope-square.comment {
-        position: absolute;
-        top: 10%;
-        right: 0%;
-        cursor: pointer;
-    }
-</style>
+
 @endsection
