@@ -114,7 +114,7 @@ class Schedule extends Model {
 			return "default";
 		}
 		if ($schedule->fecha_visita_concretada){
-			if (strtotime($schedule->fecha_visita_concretada) <= strtotime($schedule->fecha_visita_programada)){
+			if (strtotime($schedule->fecha_visita_concretada) == strtotime($schedule->fecha_visita_programada)){
 				return "success";
 			} else {
 				return "danger";
