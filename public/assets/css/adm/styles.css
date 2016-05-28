@@ -162,10 +162,9 @@ table.dataTable.no-footer,
 i.comment {
     font-size: 15px;
     position: absolute;
-    top: 8px;
+    top: 15px;
     right: 5px;
     cursor: pointer;
-    z-index: 100;
 }
 
 @media (min-width: 768px){
