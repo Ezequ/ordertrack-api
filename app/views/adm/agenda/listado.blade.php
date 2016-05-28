@@ -392,7 +392,7 @@ $elements.each(function () {
  * Comments show
  */
 
-var $elements = $('.fa-envelope-square');
+var $elements = $('.comment');
 
 $elements.each(function () {
     var $element = $(this);
