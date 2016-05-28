@@ -403,7 +403,7 @@ $elements.each(function () {
         coment: commentData,
         html: true,
         placement: 'top',
-        title: '<b>Comentario de visita</b>',
+        title: '<b>Motivo</b>',
         container: $('body'), // This is just so the btn-group doesn't get messed up... also makes sorting the z-index issue easier
         content: container.html()
     });
