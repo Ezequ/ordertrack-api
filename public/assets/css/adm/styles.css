@@ -141,6 +141,10 @@ table.dataTable.no-footer,
     text-overflow: ellipsis;
 }
 
+.agenda .cell .content a.btn.comment-badge {
+    text-align: left !important;
+}
+
 
 .footer {
     background-color: #fefeee;
@@ -162,9 +166,10 @@ table.dataTable.no-footer,
 i.comment {
     font-size: 15px;
     position: absolute;
-    top: 15px;
-    right: 5px;
+    top: 13px;
+    right: 7px;
     cursor: pointer;
+    color: white;
 }
 
 @media (min-width: 768px){
