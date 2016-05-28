@@ -172,6 +172,10 @@ i.comment {
     color: white;
 }
 
+i.comment:hover {
+    color: #eee;
+} 
+
 @media (min-width: 768px){
     .agenda.seven-cols .col-md-1,
     .agenda.seven-cols .col-sm-1,
