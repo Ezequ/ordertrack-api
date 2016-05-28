@@ -18,7 +18,7 @@ class ClientController extends \BaseController {
 		$query = Schedule::getCustomersScheduled($data['fecha_visita'],$data['fecha_visita'],$data['id_vendedor'],false);
 		
 		if (isset($data['id'])){
-			$query->where('id', '=', $data['id']);
+			$query->where('id_cliente', '=', $data['id']);
 		}
 
 		if (isset($data['razon_social%'])){

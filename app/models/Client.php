@@ -4,12 +4,12 @@ class Client extends Model {
 
 	protected  $_paginatation = 99999999;
 
-	protected $fillable = ['apenom','dia_visita_defecto' ,'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
+	protected $fillable = ['id', 'apenom','dia_visita_defecto' ,'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 							'razon_social', 'cod_cliente', 'fecha_ultima_visita','estado'];
 
 	protected $table = "clientes";
 
-	protected $allowedFilters = array('apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
+	protected $allowedFilters = array('id', 'apenom', 'direccion','telefono', 'observaciones','id_vendedor','fecha_visita',
 		'razon_social', 'cod_cliente', 'estado');
 
 
