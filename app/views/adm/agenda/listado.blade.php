@@ -52,7 +52,7 @@
                                                                 <a data-agendaid="{{$customer->id_agenda}}" id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-{{Schedule::getCardClass($customer)}} btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover {{($comment = $customer->comentario) ? 'comment-badge' : ''}}" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}
                                                                 </a>
                                                                 @if($comment = $customer->comentario)
-                                                                    <i class="fa fa-envelope-square comment" data-coment="{{$comment}}"></i>
+                                                                    <i class="fa fa-envelope comment" data-coment="{{$comment}}"></i>
                                                                 @endif
                                                             </div>
                                                         @endforeach
