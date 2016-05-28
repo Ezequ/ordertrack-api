@@ -127,7 +127,7 @@ class ClientController extends \BaseController {
 		$comentario = Input::get('comentario');
 		Schedule::where('id_agenda',$idAgenda)
 				->update(array('fecha_visita_concretada' => date('Y-m-d'), 'comentario' => $comentario, 'pedido_hecho' => false));
-		$agenda = Schedule::where('id_agenda',$idAgenda)->get();
+		$agenda = Schedule::findOrFail($idAgenda);
 		return $agenda->toJson();
 	}
 
