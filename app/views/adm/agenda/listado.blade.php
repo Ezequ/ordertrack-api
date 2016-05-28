@@ -48,7 +48,13 @@
                                                     <div id="container_{{$date}}" class="content container_{{$date}}">
 
                                                         @foreach($day['customers'] as $customer)
-                                                            <a id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-default btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}</a>
+                                                            <div style="position: relative;">
+                                                            <a data-agendaid="{{$customer->id_agenda}}" id="buttonClient-{{$customer->id_cliente}}" type="button" data-assigned="true" class="btn btn-{{Schedule::getCardClass($customer)}} btn-sm agenda-event {{$customer->fecha_visita_concretada != null ? 'disabled' : ''}} agenda-popover" data-customer="{{$customer->id_cliente}}" data-date="{{$customer->fecha_visita_programada}}">{{$customer->razon_social}}
+                                                            </a>
+                                                            @if($comment = $customer->comentario)
+                                                                <i class="fa fa-envelope-square comment" data-coment="{{$comment}}"></i>
+                                                            @endif
+                                                            </div>
                                                         @endforeach
                                                     </div>
                                                     <div class="footer">
@@ -140,7 +146,12 @@
     </div>
 </div>
 
-
+<div id="content-comment-popover" class="hide">
+    <button type="button" class="close">
+        &times;
+    </button>
+    <div class="comment"></div>
+</div>
 
 @endsection
 @section('scripts')
@@ -358,11 +369,16 @@ $elements.each(function () {
                         alert("No hay sido posible realizar la modificación");
                     },
                     success: function(data) {
-                        
+
                         var $day_clients = $('.agenda').find('#container_'+date+' a.agenda-event');
+                        var $day_comments = $('.agenda').find('#container_'+date+' i.fa-envelope-square');
+
 
                         for (var i = 0; i < $day_clients.length; i++) {
                             $($day_clients[i]).fadeOut(200);
+                        }
+                        for (var i = 0; i < $day_comments.length; i++) {
+                            $($day_comments[i]).fadeOut(200);
                         }
                     },
                     type: 'GET'
@@ -372,6 +388,50 @@ $elements.each(function () {
     });
 });
 
+/**
+ * Comments show
+ */
+
+var $elements = $('.fa-envelope-square');
+
+$elements.each(function () {
+    var $element = $(this);
+    commentData = $element.data('coment');
+    container = $('#content-comment-popover');
+    container.find('.comment').html(commentData);
+    $pop = $element.popover({
+        coment: commentData,
+        html: true,
+        placement: 'top',
+        title: '<b>Comentario de visita</b>',
+        container: $('body'), // This is just so the btn-group doesn't get messed up... also makes sorting the z-index issue easier
+        content: container.html()
+    });
+
+    //$pop.find('.comment').html(commentData);
+
+    $element.on('shown.bs.popover', function (e) {
+        e.stopPropagation();
+        var popover = $element.data('bs.popover');
+
+        if (typeof popover !== "undefined") {
+
+            var $tip = popover.tip();
+
+            $tip.find('.close').bind('click', function () {
+                popover.hide();
+            });
+        }
+    });
+});
 
 </script>
+<style>
+    .fa-envelope-square.comment {
+        position: absolute;
+        top: 10%;
+        right: 0%;
+        cursor: pointer;
+    }
+</style>
 @endsection
