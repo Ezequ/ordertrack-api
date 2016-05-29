@@ -7,7 +7,10 @@ class UsersController extends \BaseController {
             $gcm = GcmToken::create($data);
             return $gcm->toJson();
         } catch(Exception $e){
-            return array();
+            $gcm = new GcmToken();
+            $gcm->id_user = '';
+            $gcm->token = '';
+            return json_encode($gcm);;
         }
     }
 
