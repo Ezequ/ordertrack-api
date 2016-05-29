@@ -70,9 +70,12 @@ class ProductsControllerAdm extends AdminController
 			$object->save();
 			if($object->id) 
 			{
-				PushNotification::app('fiuba-order-tracker')
-                ->to("758199789160")
-                ->send('Stock actualizado: '. $object->stock . ' - ' . $object->nombre);
+				$gcms = GcmToken::all();
+					foreach ($gcms as $gcm){
+						PushNotification::app('fiuba-order-tracker')
+	                		->to($gcm->token)
+	                		->send('Stock actualizado: '. $object->stock . ' - ' . $object->nombre);
+				}
 				$url = "/adm/".$this->name;
 				return Redirect::to($url);	
 			}
@@ -106,9 +109,12 @@ class ProductsControllerAdm extends AdminController
 			if($result){ 
 				$message = "Operación exitosa ! ";
 				if($oldStock <= 0){
-					PushNotification::app('fiuba-order-tracker')
-	                ->to("758199789160")
-	                ->send('Stock actualizado: '. $objectUpdated->stock . ' - ' . $objectUpdated->nombre);
+					$gcms = GcmToken::all();
+					foreach ($gcms as $gcm){
+						PushNotification::app('fiuba-order-tracker')
+	                		->to($gcm->token)
+	                		->send('Stock actualizado: '. $objectUpdated->stock . ' - ' . $objectUpdated->nombre);
+					}
                 }
 			}else{ 
 				$message = "No se pudo completar la operación";
