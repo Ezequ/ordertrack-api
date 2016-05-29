@@ -1,5 +1,7 @@
 <?php
 Route::post('/login', 'AuthController@login');
+Route::post('/users/savetoken', 'UsersController@saveToken');
+Route::post('/users/removetoken', 'UsersController@removeToken');
 Route::get('/login', 'AuthController@login');
 Route::resource('client', 'ClientController');
 Route::get('/client/getFromToday/{sellerId}', 'ClientController@getFromToday');
