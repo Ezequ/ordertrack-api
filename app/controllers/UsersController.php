@@ -10,7 +10,7 @@ class UsersController extends \BaseController {
             $gcm = new GcmToken();
             $gcm->id_user = '';
             $gcm->token = '';
-            return json_encode($gcm);;
+            return json_encode($gcm);
         }
     }
 
@@ -21,5 +21,9 @@ class UsersController extends \BaseController {
         if ($token && $userId){
             GcmToken::where('token',$token)->where('id_user',$userId)->delete();
         }
+        $gcm = new GcmToken();
+        $gcm->id_user = '';
+        $gcm->token = '';
+        return json_encode($gcm);
     }
 }
