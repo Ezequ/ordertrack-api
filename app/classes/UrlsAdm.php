@@ -1,6 +1,8 @@
 <?php
 class UrlsAdm
 {
+	const Y_M_D = 'd-m-Y';
+
 	public static function postLogin()
 	{
 		return "/adm/login";	
@@ -135,34 +137,34 @@ class UrlsAdm
 
 	public static function getOrdersCustomFilters()
 	{
-		$currentDate = date('Y-m-d');
+		$currentDate = date('' . self::Y_M_D . '');
 		$date = strtolower(date("l", strtotime($currentDate)));
 		if ($date == "sunday") {
-			$from = date('Y-m-d');
-			$to = date('Y-m-d', strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::Y_M_D);
+			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
 		} else if($date == "saturday") {
-			$to = date('Y-m-d');
-			$from = date('Y-m-d', strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::Y_M_D);
+			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
 		} else {
-			$from = date('Y-m-d', strtotime('last Sunday', strtotime($currentDate)));
-			$to = date('Y-m-d', strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
 		}
 		return "fecha_confirmacion>=" . $from . "&fecha_confirmacion<=" . $to . "&orderby=fecha_confirmacion&orientation=desc";
 	}
 
 	public static function getSchedulesCustomFilters()
 	{
-		$currentDate = date('Y-m-d');
+		$currentDate = date(self::Y_M_D);
 		$date = strtolower(date("l", strtotime($currentDate)));
 		if ($date == "sunday") {
-			$from = date('Y-m-d');
-			$to = date('Y-m-d', strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::Y_M_D);
+			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
 		} else if($date == "saturday") {
-			$to = date('Y-m-d');
-			$from = date('Y-m-d', strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::Y_M_D);
+			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
 		} else {
-			$from = date('Y-m-d', strtotime('last Sunday', strtotime($currentDate)));
-			$to = date('Y-m-d', strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
 		}
 		return "from=" . $from ;
 	}

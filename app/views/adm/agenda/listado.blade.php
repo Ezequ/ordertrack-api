@@ -43,7 +43,7 @@
                                                 <div class='cell col-md-1 day' data-day="{{$date}}">
                                                     <div class="header">
                                                         <h1>{{$day['name']}}</h1>
-                                                        <h2>{{$date}}</h2>
+                                                        <h2>{{DatesHelper::toDMY($date)}}</h2>
                                                     </div>
                                                     <div id="container_{{$date}}" class="content container_{{$date}}">
 
