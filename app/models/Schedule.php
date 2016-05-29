@@ -113,12 +113,19 @@ class Schedule extends Model {
 		if (!$schedule->fecha_visita_concretada && $schedule->id_orden == "0"){
 			return "default";
 		}
+
+		$concretada = strtotime($schedule->fecha_visita_concretada);
+		$programada = strtotime($schedule->fecha_visita_programada);
+
 		if ($schedule->fecha_visita_concretada){
-			if (strtotime($schedule->fecha_visita_concretada) <= strtotime($schedule->fecha_visita_programada)){
+			if ($concretada == $programada){
 				return "success";
 			} else {
 				return "danger";
 			}
+
+
+
 		}
 	}
 
