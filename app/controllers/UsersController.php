@@ -10,4 +10,13 @@ class UsersController extends \BaseController {
             return array();
         }
     }
+
+    public function removeToken()
+    {
+        $token = Input::get('token','');
+        $userId = Input::get('id_user','');
+        if ($token && $userId){
+            GcmToken::where('token',$token)->where('id_user',$userId)->delete();
+        }
+    }
 }

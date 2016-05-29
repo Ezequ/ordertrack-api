@@ -5,4 +5,5 @@ class GcmToken extends \Eloquent {
 	public $timestamps = false;
 	protected $table = 'gcm_tokens';
 
+
 }
