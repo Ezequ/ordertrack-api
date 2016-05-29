@@ -125,11 +125,6 @@ class ReportController extends \BaseController {
 			'totalMoney'  => $totalMoney,
  		);
 
- 		PushNotification::app('fiuba-order-tracker')
-                ->to("758199789160")
-                //->to("fiuba-order-tracker")
-                ->send('Hello World, i`m a push message');
-
 		return Response::json($report);
 	}
 

@@ -52,4 +52,74 @@ class ProductsControllerAdm extends AdminController
 		return $objects;
 	}
 
+	
+
+	public function postCreateWhitNotif($data = null)
+	{
+		$data = $data ? $data : Input::all();
+ 		$object =  $this->getModel();
+ 		$result = false;
+		if($object)
+		{
+			$rules = $this->customRule($object::$rules,$object->id);
+			$validation = \Illuminate\Support\Facades\Validator::make($data, $rules, $object::$messages);
+			if ($validation->fails()){
+				return Redirect::back()->withErrors($validation)->withInput($data);
+			}
+			$object->fill($data);
+			$object->save();
+			if($object->id) 
+			{
+				PushNotification::app('fiuba-order-tracker')
+                ->to("758199789160")
+                ->send('Stock actualizado: '. $object->stock . ' - ' . $object->nombre);
+				$url = "/adm/".$this->name;
+				return Redirect::to($url);	
+			}
+			else
+			{
+				$message = "No se pudo completar la operación";
+				return Redirect::back()->with('message',$message)->with('result',$result);	
+			} 
+		}
+		else
+		{
+			$message = "No se pudo completar la operación";
+			return Redirect::back()->with('message',$message)->with('result',$result);
+		}
+	}
+
+	public function postEditWhitNotif($id)
+	{
+ 		$object = $this->getObjectToModify($id);
+ 		$oldStock = $object->stock;
+
+		if($object)
+		{
+			$rules = $this->customRule($object::$rules,$object->id);
+			$validation = \Illuminate\Support\Facades\Validator::make(Input::all(), $rules, $object::$messages);
+			if ($validation->fails()){
+				return Redirect::back()->withErrors($validation)->withInput(Input::all());
+			}
+			$result = $object->update(Input::all());
+			$objectUpdated = $this->getObjectToModify($id);
+			if($result){ 
+				$message = "Operación exitosa ! ";
+				if($oldStock <= 0){
+					PushNotification::app('fiuba-order-tracker')
+	                ->to("758199789160")
+	                ->send('Stock actualizado: '. $objectUpdated->stock . ' - ' . $objectUpdated->nombre);
+                }
+			}else{ 
+				$message = "No se pudo completar la operación";
+			}
+			return Redirect::to('/adm/'.$this->name)->with('message',$message)->with('result',$result);
+		}
+		else
+		{
+			$message = "No se pudo completar la operación";
+			return Redirect::back()->with('message',$message);
+		}
+	}
+
 }

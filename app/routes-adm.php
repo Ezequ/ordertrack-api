@@ -17,8 +17,8 @@ Route::group(array('prefix' => 'adm', 'before' => 'auth|rol'), function()
 	Route::get('/producto', 'ProductsControllerAdm@getListado');
 	Route::get('/producto/crear', 'ProductsNewControllerAdm@getCreate');
 	Route::get('/producto/editar/{id}', 'ProductsEditControllerAdm@getEdit');
-	Route::post('/producto/editar/{id}', 'ProductsControllerAdm@postEdit');
-	Route::post('/producto/crear', 'ProductsControllerAdm@postCreate');
+	Route::post('/producto/editar/{id}', 'ProductsControllerAdm@postEditWhitNotif');
+	Route::post('/producto/crear', 'ProductsControllerAdm@postCreateWhitNotif');
 	Route::get('/producto/borrar/{id}', 'ProductsControllerAdm@getDelete');
 	/*	Usuarios	*/
 	Route::get('/usuario', 'UsuarioControllerAdm@getListado');
