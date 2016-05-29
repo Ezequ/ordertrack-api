@@ -1,7 +1,8 @@
 <?php
 class UrlsAdm
 {
-	const Y_M_D = 'd-m-Y';
+	const D_M_Y = 'd-m-Y';
+	const Y_M_D = 'Y-m-d';
 
 	public static function postLogin()
 	{
@@ -137,17 +138,17 @@ class UrlsAdm
 
 	public static function getOrdersCustomFilters()
 	{
-		$currentDate = date('' . self::Y_M_D . '');
+		$currentDate = date('' . self::D_M_Y . '');
 		$date = strtolower(date("l", strtotime($currentDate)));
 		if ($date == "sunday") {
-			$from = date(self::Y_M_D);
-			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::D_M_Y);
+			$to = date(self::D_M_Y, strtotime('next Saturday', strtotime($currentDate)));
 		} else if($date == "saturday") {
-			$to = date(self::Y_M_D);
-			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::D_M_Y);
+			$from = date(self::D_M_Y, strtotime('last Sunday', strtotime($currentDate)));
 		} else {
-			$from = date(self::Y_M_D, strtotime('last Sunday', strtotime($currentDate)));
-			$to = date(self::Y_M_D, strtotime('next Saturday', strtotime($currentDate)));
+			$from = date(self::D_M_Y, strtotime('last Sunday', strtotime($currentDate)));
+			$to = date(self::D_M_Y, strtotime('next Saturday', strtotime($currentDate)));
 		}
 		return "fecha_confirmacion>=" . $from . "&fecha_confirmacion<=" . $to . "&orderby=fecha_confirmacion&orientation=desc";
 	}
