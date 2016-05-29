@@ -50,8 +50,33 @@ class DatesHelper
         }
     }
 
-    public function getDayFromWeekByName($name)
+    public static function toDMY($date)
     {
-
+        return self::formatDate($date,'d-m-Y');
     }
+
+    public static function toYMD($date)
+    {
+        return self::formatDate($date,'Y-m-d');
+    }
+
+    public static function todmytime($date)
+    {
+        return self::formatDate($date,'d-m-Y H:i:s');
+    }
+
+    public static function formatDate($date,$format)
+    {
+        $date = new DateTime($date);
+        return $date->format($format);
+    }
+
+    public static function transformListObjects($list,$field,$callback)
+    {
+        foreach ($list as $index => $item) {
+            $item->$field = self::$callback($item->$field);
+        }
+        return $list;
+    }
+
 }

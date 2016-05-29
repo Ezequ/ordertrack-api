@@ -30,6 +30,7 @@ class PedidosControllerAdm extends AdminController
 		$objects = ClientsDefinition::convertObjectListFieldToDefinition($objects,'id_cliente');
 		$objects = OrderStatesDefinition::convertObjectListFieldToDefinition($objects, 'id_estado');
 		$objects = SellerDefinition::convertObjectListFieldToDefinition($objects, 'id_vendedor');
+		$objects = DatesHelper::transformListObjects($objects,'fecha_confirmacion','todmytime');
 		return $objects;
 	}
 
@@ -77,6 +78,12 @@ class PedidosControllerAdm extends AdminController
 	public function getFilteredOrders()
 	{
 		$filters = Input::all();
+		if (isset($filters['fecha_confirmacion>'])){
+			$filters['fecha_confirmacion>'] = DatesHelper::toYMD(($filters['fecha_confirmacion>']));
+		}
+		if (isset($filters['fecha_confirmacion<'])){
+			$filters['fecha_confirmacion<'] = DatesHelper::toYMD(($filters['fecha_confirmacion<']));
+		}
 		$orderProductsFilters = OrdersProducts::getList($filters);
 		$ids = array();
 		foreach ($orderProductsFilters as $index => $orderProduct) {

@@ -43,7 +43,7 @@
                                                 <div class='cell col-md-1 day' data-day="{{$date}}">
                                                     <div class="header">
                                                         <h1>{{$day['name']}}</h1>
-                                                        <h2>{{$date}}</h2>
+                                                        <h2>{{DatesHelper::toDMY($date)}}</h2>
                                                     </div>
                                                     <div id="container_{{$date}}" class="content container_{{$date}}">
 
@@ -403,7 +403,7 @@ $elements.each(function () {
         coment: commentData,
         html: true,
         placement: 'top',
-        title: '<b>Comentario de visita</b>',
+        title: '<b>Motivo</b>',
         container: $('body'), // This is just so the btn-group doesn't get messed up... also makes sorting the z-index issue easier
         content: container.html()
     });

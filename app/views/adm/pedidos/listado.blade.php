@@ -208,7 +208,7 @@
     }
 
 
-    $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 
 
     $('.modalCancelOrder').on('click', function(e) {

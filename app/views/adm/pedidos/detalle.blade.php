@@ -10,7 +10,7 @@
                 <span class="col-sm-3 col-md-3"><b>Cliente:</b></span> <span>{{$order->id_cliente}}</span><br>
                 <span class="col-sm-3 col-md-3"><b>Estado:</b></span> <span>{{$order->id_estado}}</span><br>
                 <span class="col-sm-3 col-md-3"><b>Comentarios:</b></span> <span>{{$order->comentarios}}</span><br>
-                <span class="col-sm-3 col-md-3"><b>Fecha de confirmación:</b></span> <span>{{$order->fecha_confirmacion}}</span><br>
+                <span class="col-sm-3 col-md-3"><b>Fecha de confirmación:</b></span> <span>{{DatesHelper::todmytime($order->fecha_confirmacion)}}</span><br>
             </div>
         </div>
         <div style="margin-top: 20px;">
