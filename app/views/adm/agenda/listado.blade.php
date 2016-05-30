@@ -369,17 +369,17 @@ $elements.each(function () {
                         alert("No hay sido posible realizar la modificación");
                     },
                     success: function(data) {
+                        location.reload();
+                        /* var $day_clients = $('.agenda').find('#container_'+date+' a.agenda-event');
+                         var $day_comments = $('.agenda').find('#container_'+date+' i.fa-envelope-square');
 
-                        var $day_clients = $('.agenda').find('#container_'+date+' a.agenda-event');
-                        var $day_comments = $('.agenda').find('#container_'+date+' i.fa-envelope-square');
 
-
-                        for (var i = 0; i < $day_clients.length; i++) {
-                            $($day_clients[i]).fadeOut(200);
-                        }
-                        for (var i = 0; i < $day_comments.length; i++) {
-                            $($day_comments[i]).fadeOut(200);
-                        }
+                         for (var i = 0; i < $day_clients.length; i++) {
+                             $($day_clients[i]).fadeOut(200);
+                         }
+                         for (var i = 0; i < $day_comments.length; i++) {
+                             $($day_comments[i]).fadeOut(200);
+                         }*/
                     },
                     type: 'GET'
                 });
