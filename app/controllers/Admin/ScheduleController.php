@@ -102,7 +102,9 @@ class ScheduleController extends AdminController
         $seller = User::find($sellerIdTo);
         if ($seller && $seller->isSeller()){
             foreach ($schedules as $index => $schedule) {
-                Schedule::changeDayAndSellerToSchedule($schedule->id_agenda,$sellerIdTo,$dayTo);
+                if(!$schedule->fecha_visita_concretada && $schedule->id_orden == "0"){
+                    Schedule::changeDayAndSellerToSchedule($schedule->id_agenda,$sellerIdTo,$dayTo);
+                }
             }
         }
     }
