@@ -75,14 +75,13 @@ class Product extends Model {
 		$disc["descuento_1"] = $d1;$disc["descuento_2"] = $d2;$disc["descuento_3"] = $d3;$disc["descuento_4"] = $d4;$disc["descuento_5"] = $d5;
 		asort($disc);
 		$cant = (int)$cant;
+		$apply_index = null;
 		foreach ($disc as $index => $item) {
 			if ($cant > (int)$item){
-				continue;
-			} else {
-				return $index;
+				$apply_index = $index;
 			}
 		}
-		return $index;
+		return $apply_index;
 	}
 
 	public function cmp($a, $b)
