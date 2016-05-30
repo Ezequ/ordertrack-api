@@ -71,10 +71,27 @@ class ProductsControllerAdm extends AdminController
 			if($object->id) 
 			{
 				$gcms = GcmToken::all();
-					foreach ($gcms as $gcm){
-						PushNotification::app('fiuba-order-tracker')
-	                		->to($gcm->token)
-	                		->send('Stock actualizado: '. $object->stock . ' - ' . $object->nombre);
+				foreach ($gcms as $gcm){
+
+					$not_sended = true;
+					$send_count = 0;
+					$send_limit = 15;
+
+					while($not_sended) {
+						
+						if($send_count == $send_limit) break;
+						$send_count++;
+
+						try {
+							PushNotification::app('fiuba-order-tracker')
+								->to($gcm->token)
+								->send('Stock actualizado: '. $object->stock . ' - ' . $object->nombre);
+							$not_sended = false;
+
+						} catch (Exception $e) {
+							$not_sended = true;
+						}
+					}				
 				}
 				$url = "/adm/".$this->name;
 				return Redirect::to($url);	
@@ -111,9 +128,27 @@ class ProductsControllerAdm extends AdminController
 				if($oldStock <= 0){
 					$gcms = GcmToken::all();
 					foreach ($gcms as $gcm){
-						PushNotification::app('fiuba-order-tracker')
-	                		->to($gcm->token)
-	                		->send('Stock actualizado: '. $objectUpdated->stock . ' - ' . $objectUpdated->nombre);
+
+	                	$not_sended = true;
+						$send_count = 0;
+						$send_limit = 15;
+
+						while($not_sended) {
+							
+							if($send_count == $send_limit) break;
+							$send_count++;
+
+							try {
+								PushNotification::app('fiuba-order-tracker')
+									->to($gcm->token)
+									->send('Stock actualizado: '. $objectUpdated->stock . ' - ' . $objectUpdated->nombre);
+
+								$not_sended = false;
+
+							} catch (Exception $e) {
+								$not_sended = true;
+							}
+						}
 					}
                 }
 			}else{ 
