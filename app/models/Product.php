@@ -77,7 +77,7 @@ class Product extends Model {
 		$cant = (int)$cant;
 		$apply_index = null;
 		foreach ($disc as $index => $item) {
-			if ($cant > (int)$item){
+			if ($cant >= (int)$item){
 				$apply_index = $index;
 			}
 		}
