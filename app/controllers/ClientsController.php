@@ -127,10 +127,11 @@ class ClientController extends \BaseController {
 
 	public function noOrderComment()
 	{
+		$today = date('Y-m-d',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 		$idAgenda = Input::get('id_agenda');
 		$comentario = Input::get('comentario');
 		Schedule::where('id_agenda',$idAgenda)
-				->update(array('fecha_visita_concretada' => date('Y-m-d'), 'comentario' => $comentario, 'pedido_hecho' => false));
+				->update(array('fecha_visita_concretada' => $today, 'comentario' => $comentario, 'pedido_hecho' => false));
 		$agenda = Schedule::findOrFail($idAgenda);
 		return $agenda->toJson();
 	}

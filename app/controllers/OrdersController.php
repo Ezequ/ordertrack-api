@@ -69,6 +69,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function store()
 	{
+		$today = date('Y-m-d',strtotime ( '-3 hour' , strtotime ( date("Y-m-d H:i:s") ) ));
 		$data = Input::all();
 		$order = Order::create($data);
 		if($order){
@@ -77,7 +78,7 @@ class OrdersController extends \BaseController {
 			Schedule::where('id_cliente',$idCustomer)
 						->where('fecha_visita_programada', "<=", $fromto['to'])
 						->whereNull('fecha_visita_concretada')
-						->update(array('fecha_visita_concretada' => date('Y-m-d'), 'id_orden' => $order->id, 'pedido_hecho' => true));
+						->update(array('fecha_visita_concretada' => $today, 'id_orden' => $order->id, 'pedido_hecho' => true));
 			return json_encode($order);
 		} else {
 			return Response::make('No se encontró la orden', 500);
