@@ -91,7 +91,8 @@ table.dataTable.no-footer,
 .agenda .cell {
     display:table-cell;
     border-right: 1px solid #eee;
-
+    position: relative;
+    padding-bottom: 30px;
 }
 
 .agenda .cell:last-child {
@@ -139,6 +140,47 @@ table.dataTable.no-footer,
     overflow: hidden; 
     text-overflow: ellipsis;
 }
+
+
+.agenda .cell .content a.btn.comment-badge {
+    text-align: left !important;
+}
+
+
+.footer {
+    background-color: #fefeee;
+    padding: 0px 5px 0px 5px;
+    vertical-align: middle;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+    position: absolute;  
+    bottom: 0;
+}
+
+.footer a i {
+    color: #888;    
+}
+
+i.comment {
+    font-size: 15px;
+    position: absolute;
+    top: 12px;
+    right: 7px;
+    cursor: pointer;
+    color: white;
+}
+
+i.comment:hover {
+    color: #eee;
+} 
+
+
+
+
+
 
 @media (min-width: 768px){
     .agenda.seven-cols .col-md-1,
@@ -237,19 +279,4 @@ table.dataTable.no-footer,
 
 .agenda-migrate-popover {
     cursor: pointer;
-}
-
-.footer {
-    background-color: #fefeee;
-    padding: 0px 5px 0px 5px;
-    vertical-align: middle;
-    text-align: right;
-    border-bottom: 1px solid #eee;
-    line-height: 30px;
-    height: 30px;
-    width: 100%;
-}
-
-.footer a i {
-    color: #888;    
 }
