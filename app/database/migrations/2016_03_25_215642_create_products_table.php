@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration {
 			$table->string('marca');
 			$table->text('descripcion');
 			$table->integer('categoria');
-			$table->integer('precio');
+			$table->float('precio');
 			$table->integer('stock');
 			$table->timestamps();
 		});
