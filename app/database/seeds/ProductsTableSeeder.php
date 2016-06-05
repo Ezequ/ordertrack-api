@@ -9,6 +9,7 @@ class ProductsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 		$products = $this->getProductsForSeed();
+		$products = array();
 		foreach($products as $product)
 		{
 			Product::create([

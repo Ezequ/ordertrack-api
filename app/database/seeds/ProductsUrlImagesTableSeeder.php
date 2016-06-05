@@ -7,7 +7,7 @@ class ProductsUrlImagesTableSeeder extends Seeder {
 
 	public function run()
 	{
-
+		return;
 		$urlsNormal = array('http://pinkman.mx/wp-content/uploads/2013/12/Apple-TV.png',
 						'http://im-nova.com/img/articulos/1327917422.png');
 		$urlsMini = array('https://www.walmartonline.com.ar/images/products/img_large/0779696260034L.jpg',

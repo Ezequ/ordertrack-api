@@ -21,10 +21,19 @@ class CategoriesTableSeeder extends Seeder {
 	private function getCategoriesToSeed()
 	{
 		return array(
-				array('nombre' => 'Tecnología', 'activo' => '1'),
-				array('nombre' => 'Indumentaria', 'activo' => '1'),
-				array('nombre' => 'Hogar', 'activo' => '1'),
-				array('nombre' => 'Música', 'activo' => '1'),
+			array('nombre' => 'Almacén', 'activo' => '1'),
+			array('nombre' => 'Frescos', 'activo' => '1'),
+			array('nombre' => 'Bebidas', 'activo' => '1'),
+			array('nombre' => 'Perfumería', 'activo' => '1'),
+			array('nombre' => 'Limpieza', 'activo' => '1'),
+			array('nombre' => 'Bebes y Mamás', 'activo' => '1'),
+			array('nombre' => 'Tecnología', 'activo' => '1'),
+			array('nombre' => 'Electrodomésticos', 'activo' => '1'),
+			array('nombre' => 'Hogar y Bazar', 'activo' => '1'),
+			array('nombre' => 'Juguetería', 'activo' => '1'),
+			array('nombre' => 'Librería y Ocio', 'activo' => '1'),
+			array('nombre' => 'Automotor y Ferretería', 'activo' => '1'),
+			array('nombre' => 'Ropa y Calzados', 'activo' => '1'),
 		);
 	}
 

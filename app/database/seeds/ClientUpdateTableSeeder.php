@@ -7,7 +7,7 @@ class ClientUpdateTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
+		/*$faker = Faker::create();
 		$clients = Client::all();
 		foreach ($clients as $index => $client) {
 			$client['cod_cliente'] = substr(md5(uniqid(rand(), true)),0,6);
@@ -15,7 +15,7 @@ class ClientUpdateTableSeeder extends Seeder {
 			$client['longitud'] = $faker->longitude;
 			$client['razon_social'] = $faker->name;
 			$client->save();
-		}
+		}*/
 	}
 
 }

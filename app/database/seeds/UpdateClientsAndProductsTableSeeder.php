@@ -6,7 +6,6 @@ class UpdateClientsAndProductsTableSeeder extends Seeder {
 	public function run()
 	{
 		$this->seedProducts();
-		$this->seedClients();
 	}
 
 	public function seedClients()
