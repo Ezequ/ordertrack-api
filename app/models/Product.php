@@ -2,7 +2,7 @@
 
 class Product extends Model {
 	protected $fillable = ['nombre','descripcion', 'marca', 'categoria', 'stock',
-							'precio', 'url_image_tumbnail', 'url_image_mini','descuento_2','descuento_2_min',
+							'precio', 'url_image_tumbnail', 'url_image_mini','url_image_normal','descuento_2','descuento_2_min',
 							'descuento_1','descuento_1_min','descuento_3','descuento_3_min',
 						'descuento_4','descuento_4_min','descuento_5','descuento_5_min',];
 
@@ -43,7 +43,8 @@ class Product extends Model {
 		$inputs[] = array("type" => 'common', 'data1' => 'Precio', 'data2' => 'precio', 'data3' => $this->precio);
 		$inputs[] = array("type" => 'common', 'data1' => 'Stock', 'data2' => 'stock', 'data3' => $this->stock);
 		$inputs[] = array("type" => 'common', 'data1' => 'Descripción', 'data2' => 'descripcion', 'data3' => $this->descripcion);
-
+		$inputs[] = array("type" => 'common', 'data1' => 'Imagen normal', 'data2' => 'url_image_normal', 'data3' => $this->url_image_normal);
+		$inputs[] = array("type" => 'common', 'data1' => 'Imagen mini', 'data2' => 'url_image_mini', 'data3' => $this->url_image_mini);
 
 		$list[] = array("type" => 'text', 'text' => '1');
 		$list[] = array("type" => 'common_simple', 'data1' => '', 'data2' => 'descuento_1', 'data3' => $this->descuento_1);
