@@ -10,7 +10,7 @@ class Product extends Model {
 
 	public static $rules = array(
 		'stock'                   => 'required|integer|min:1',
-		'precio'                  => 'required|integer|min:1',
+		'precio'                  => 'required|numeric|min:1',
 		'descuento_1'             => 'integer|max:100',
 		'descuento_2'             => 'integer|max:100',
 		'descuento_3'             => 'integer|max:100',
