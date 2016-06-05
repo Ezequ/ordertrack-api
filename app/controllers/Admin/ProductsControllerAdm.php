@@ -33,7 +33,7 @@ class ProductsControllerAdm extends AdminController
 		);
 		
 		/* nombre => campo en base de datos	*/
-		$fields = array('id' => 'id', 'nombre' => 'nombre', 'Marca' => 'marca', 'Precio' => 'precio', 'Stock' => 'stock');
+		$fields = array('id' => 'id', 'Nombre' => 'nombre', 'Categoría' => 'categoria' ,'Marca' => 'marca', 'Precio' => 'precio', 'Stock' => 'stock');
 		/*	listar(campos,nombre,botones,vista,tamtabla);	*/
 		return parent::getList($fields,$buttons,null,'12');
 	}
@@ -49,6 +49,7 @@ class ProductsControllerAdm extends AdminController
 		$objects = $this->getModel()->getList(Input::all(),true);
 		$objects = YesNoDefinition::convertObjectListFieldToDefinition($objects,'activo');
 		$objects = ProductsPricesDefinition::convertObjectListFieldToDefinition($objects,'precio');
+		$objects = ProductsCategoryDefinition::convertObjectListFieldToDefinition($objects,'categoria');
 		return $objects;
 	}
 
