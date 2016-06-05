@@ -136,9 +136,13 @@ table.dataTable.no-footer,
 
 .agenda .cell .content a.btn {
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden; 
+    padding-right: 25px;
+    overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 
